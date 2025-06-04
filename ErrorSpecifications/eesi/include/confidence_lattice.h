@@ -103,6 +103,9 @@ class ConfidenceLattice {
   static LatticeElementConfidence Meet(const LatticeElementConfidence &x,
                                        const LatticeElementConfidence &y);
 
+  static bool Intersects(const LatticeElementConfidence &x,
+                         const SignLatticeElement &y);
+
   // Perform a join on every LatticeElementConfidence in the vector.
   static LatticeElementConfidence JoinOnVector(
       const std::vector<LatticeElementConfidence> &lattice_element_confidences);

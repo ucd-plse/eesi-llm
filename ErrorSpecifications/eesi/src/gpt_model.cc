@@ -6,7 +6,7 @@
 
 namespace error_specifications {
 
-GptModel::GptModel(std::string ctags_file) {
+GptModel::GptModel(std::string llm_name, std::string ctags_file) {
   std::shared_ptr<grpc::Channel> channel;
   channel = grpc::CreateChannel("localhost:50059",
                                 grpc::InsecureChannelCredentials());
@@ -17,6 +17,7 @@ GptModel::GptModel(std::string ctags_file) {
     stub_ = nullptr;
     return;
   }
+  llm_name_ = llm_name;
   stub_ = GptService::NewStub(channel);
   ctags_file_ = ctags_file;
 }  // namespace error_specifications
@@ -34,6 +35,7 @@ GptModel::GetThirdPartySpecifications(
   for (auto p : function_names) {
     function_names_map[p.first] = p.second;
   }
+  request.set_llm_name(llm_name_);
   *request.mutable_error_specifications() = {specifications.begin(),
                                              specifications.end()};
   *request.mutable_function_names() = {function_names_map.begin(),
@@ -61,6 +63,7 @@ std::unordered_map<std::string, SignLatticeElement> GptModel::GetSpecification(
 
   GetGptSpecificationRequest request;
   request.set_function_name(function_name);
+  request.set_llm_name(llm_name_);
   request.set_ctags_file(ctags_file_);
   *request.mutable_error_specifications() = {specifications.begin(),
                                              specifications.end()};
@@ -83,4 +86,6 @@ std::unordered_map<std::string, SignLatticeElement> GptModel::GetSpecification(
   return std::unordered_map<std::string, SignLatticeElement>(
       response.specifications().begin(), response.specifications().end());
 }
+
+bool GptModel::IsLLMNameEmpty() { return llm_name_.empty(); }
 }  // namespace error_specifications

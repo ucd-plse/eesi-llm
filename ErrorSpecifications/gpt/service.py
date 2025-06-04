@@ -19,10 +19,6 @@ import proto.domain_knowledge_pb2
 import proto.gpt_pb2
 import proto.gpt_pb2_grpc
 
-#MODEL_NAME = "gpt-3.5-turbo-1106"
-MODEL_NAME = "gpt-4-1106-preview" 
-#MODEL_NAME="gpt-4"
-
 MAX_CONTEXT_LEN = 4096
 # This implementation is obviously very confusing as we are translating
 # BOTTOM to EMPTYSET. This is because currently the implementation doesn't
@@ -289,7 +285,7 @@ class GptServicer(
 
     def GetGptThirdPartySpecifications(self, request, context):
         system_context = MODEL_THIRD_PARTY_CONTEXT
-        if request.error_code_names and "gpt-4" in MODEL_NAME:
+        if request.error_code_names:
             print("Supplied error codes for context...")
             formatted_error_codes = ""
             for error_code_name, lattice_element in request.error_code_names.items():
@@ -328,7 +324,7 @@ class GptServicer(
             }
         ]
         results = self.completion_with_backoff(
-            model=MODEL_NAME,
+            model=request.llm_name,
             messages=messages,
         )
         try:
@@ -345,7 +341,7 @@ class GptServicer(
         messages.append({"role": "user", "content": reprompt})
 
         results = self.completion_with_backoff(
-            model=MODEL_NAME,
+            model=request.llm_name,
             messages=messages,
         )
         try:
@@ -390,14 +386,14 @@ class GptServicer(
             print(formatted_error_specs)
             print("="*30)
         system_context = MODEL_MAIN_CONTEXT
-        if request.error_code_names and "gpt-4" in MODEL_NAME:
+        if request.error_code_names:
             formatted_error_codes = ""
             for error_code_name, lattice_element in request.error_code_names.items():
                 formatted_error_codes += f"{error_code_name}: {LATTICE_ELEMENT_TO_STRING[lattice_element]}\n"
             system_context += \
                 "\nAdditionally, here are several error return variables/macros " + \
                 f"and their corresponding abstract value: {formatted_error_codes}\n"
-        if request.success_code_names and "gpt-4" in MODEL_NAME:
+        if request.success_code_names:
             formatted_success_codes = ""
             for success_code_name, lattice_element in request.success_code_names.items():
                 formatted_success_codes += f"{success_code_name}: {LATTICE_ELEMENT_TO_STRING[lattice_element]}\n"
@@ -429,8 +425,7 @@ class GptServicer(
         ]
 
         results = self.completion_with_backoff(
-            #model="gpt-4-1106-preview",
-            model=MODEL_NAME,
+            model=request.llm_name,
             messages=messages,
         )
         try:
@@ -479,7 +474,7 @@ class GptServicer(
             messages.append({"role": "user", "content": reprompt})
 
             results = self.completion_with_backoff(
-                model=MODEL_NAME,
+                model=request.llm_name,
                 messages=messages,
             )
 

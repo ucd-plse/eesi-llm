@@ -129,6 +129,11 @@ LatticeElementConfidence ConfidenceLattice::Intersection(
                                   confidence_emptyset);
 }
 
+bool ConfidenceLattice::Intersects(const LatticeElementConfidence &x,
+                                   const SignLatticeElement &y) {
+  return !IsUnknown(Intersection(x, y));
+}
+
 // TODO(patrickjchap): This is can be simplified.
 bool ConfidenceLattice::Equals(const LatticeElementConfidence &x,
                                const SignLatticeElement &y) {

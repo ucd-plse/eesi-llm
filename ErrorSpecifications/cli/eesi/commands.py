@@ -65,57 +65,6 @@ COMMON_FILES_TO_PROJECT_NAME = defaultdict(str, {
     "lfs-reg2mem.bc": "Little FS",
 })
 
-def get_predicted_specifications_all(database, service_configuration_handler,
-                                     top_ks, plot):
-    """Prints predicted specification precisions for all bitcode registered.
-
-    Args:
-        database: pymongo database object.
-        service_configuration_handler: ServicesConfigurationHandler with
-            services configured for: embedding
-        top_ks: The top_k most similar functions in the embedding for each
-            function label. This function can take multiple k values
-    """
-
-    results = {}
-    for top_k in [int(x) for x in top_ks]:
-        log.info("="*10 + f"Results k={top_k}" + "="*10)
-        results[top_k] = {}
-        for bitcode_uri in list(cli.bitcode.db.read_uris(database)):
-            project_name = COMMON_FILES_TO_PROJECT_NAME[os.path.basename(
-                cli.common.uri.to_str(bitcode_uri))]
-            if not project_name:
-                project_name = cli.common.uri.to_str(bitcode_uri)
-            precision = get_predicted_specifications_uri(
-                database=database,
-                service_configuration_handler=service_configuration_handler,
-                top_k=top_k,
-                bitcode_uri=cli.common.uri.to_str(bitcode_uri))
-            if not precision:
-                continue
-            results[top_k][project_name] = precision
-
-    if plot:
-        fig = plt.figure()
-        projects = []
-        colors = cm.rainbow(np.linspace(0, 1, len(results.items())))
-        c_ind = 0
-        for top_k, project_precisions in results.items():
-            if not projects:
-                projects = list(project_precisions.keys())
-            color = colors[c_ind]
-            ax = fig.add_subplot(111)
-            ax.plot(list(project_precisions.values()), color=color, label=top_k)
-            ax.plot(list(project_precisions.values()), color=color, marker="o")
-            c_ind += 1
-
-        fig.suptitle("Precision for top-k nearest function specifications.")
-        plt.xticks(range(len(projects)), projects, size=7)
-        plt.legend(title="Top-k")
-        plt.xlabel("Project")
-        plt.ylabel("Precision")
-        plt.show()
-
 def _setup_called_functions(database, service_configuration_handler,
                             bitcode_id, str_uri):
     log.warning(f"Missing called function entries for {str_uri}. Running"
@@ -166,7 +115,7 @@ def _setup_bitcode(database, service_configuration_handler, uri):
 def inject_specifications(database, specifications_path,
                               service_configuration_handler,
                               domain_knowledge_handler,
-                              synonym_configuration_handler,
+                              llm_name,
                               smart_success_code_zero,
                               bitcode_uri, overwrite,):
     """Injects a GetSpecificationsResponse given a specifications file.
@@ -256,8 +205,7 @@ def inject_specifications(database, specifications_path,
         initial_specifications=applicable_initial_specifications,
         error_codes=domain_knowledge_handler.error_codes,
         success_codes=domain_knowledge_handler.success_codes,
-        synonym_finder_parameters=synonym_configuration_handler.\
-            get_synonym_finder_parameters(),
+        llm_name=llm_name,
         smart_success_code_zero=smart_success_code_zero,
     )
 
@@ -326,7 +274,7 @@ def inject_specifications(database, specifications_path,
 
 def get_specifications_all(database, service_configuration_handler,
                            domain_knowledge_handler,
-                           synonym_configuration_handler,
+                           llm_name,
                            smart_success_code_zero,
                            overwrite):
     """Gets specifications for all bitcode files registered in MongoDB.
@@ -334,12 +282,10 @@ def get_specifications_all(database, service_configuration_handler,
     Args:
         database: pymongo database object.
         service_configuration_handler: ServicesConfigurationHandler with
-            services configured for: EESI, bitcode, and embedding
-            (if using embeddings for EESI).
+            services configured for: EESI, bitcode.
         domain_knowledge_handler: DomainKnowledgeHandler containing appropriate
             domain knowledge for a GetSpecifications task.
-        synonym_configuration_handler: SynonymConfigurationHandler according
-            to configuration for this GetSpecifications task.
+        llm_name: Name of the LLM to use, if any. 
         smart_success_code_zero: Whether to apply a heuristic to determine if 0
             is a success code in certain contexts, instead of every time.
         overwrite: Overwrites specification entries in MongoDB if an entry
@@ -421,9 +367,7 @@ def get_specifications_all(database, service_configuration_handler,
             initial_specifications=applicable_initial_specifications,
             error_codes=domain_knowledge_handler.error_codes,
             success_codes=domain_knowledge_handler.success_codes,
-            embedding_id=embedding_id,
-            synonym_finder_parameters=synonym_configuration_handler.\
-                get_synonym_finder_parameters(),
+            llm_name=llm_name,
             smart_success_code_zero=smart_success_code_zero,
         )
         bitcode_id_requests[bitcode_id_handle.id] = request
@@ -445,7 +389,7 @@ def get_specifications_all(database, service_configuration_handler,
 def get_specifications_uri(database,
                            service_configuration_handler,
                            domain_knowledge_handler,
-                           synonym_configuration_handler,
+                           llm_name,
                            smart_success_code_zero, ctags_file,
                            bitcode_uri, overwrite,):
     """Get specifications for a single bitcode file registered with MongoDB.
@@ -453,12 +397,11 @@ def get_specifications_uri(database,
     Args:
         database: pymongo database object.
         service_configuration_handler: ServicesConfigurationHandler with
-            services configured for: EESI, bitcode, and embedding
-            (if using embeddings for EESI).
+            services configured for: EESI, bitcode
         domain_knowledge_handler: DomainKnowledgeHandler containing appropriate
             domain knowledge for a GetSpecifications task.
-        synonym_configuration_handler: SynonymConfigurationHandler according
-            to configuration for this GetSpecifications task.
+        llm_name: Bool to use the LLM for assistance in error specification
+            inference.
         smart_success_code_zero: Whether to apply a heuristic to determine if 0
             is a success code in certain contexts, instead of every time.
         bitcode_uri: String representation of the bitcode file URI.
@@ -548,9 +491,7 @@ def get_specifications_uri(database,
         error_codes=domain_knowledge_handler.error_codes,
         success_codes=domain_knowledge_handler.success_codes,
         ctags_file=ctags_file,
-        embedding_id=embedding_id,
-        synonym_finder_parameters=synonym_configuration_handler.\
-            get_synonym_finder_parameters(),
+        llm_name=llm_name,
         smart_success_code_zero=smart_success_code_zero,
     )
 
@@ -565,57 +506,6 @@ def get_specifications_uri(database,
     )
 
     cli.common.log.log_finished("GetSpecificationsUri")
-
-def list_specifications_coverage(database, bitcode_uri_filter):
-    """Prints outs a coverage table for specifications based on type."""
-
-    id_file_dict = cli.bitcode.db.read_id_file_dict(database)
-    for bitcode_id, bitcode_uri in id_file_dict.items():
-        # Skip bitcode files not matching bitcode_uri_filter.
-        print("-"*30)
-        print(colored(
-            f"{'Bitcode ID (last 8 characters):':<40} {'File name:':<75}",
-            "red"))
-        print(f"{bitcode_id[-8:]:40} {os.path.basename(bitcode_uri):<75}")
-
-        if bitcode_uri_filter and bitcode_uri_filter != bitcode_uri:
-            continue
-
-        defined_type_counter = defaultdict(int)
-        defined_functions_response = \
-            cli.bitcode.db.read_defined_functions_response(
-                database, bitcode_id)
-        for defined_function in defined_functions_response.functions:
-            defined_type_counter[
-                RETURN_TYPE_TO_STRING[
-                    defined_function.return_type]] += 1
-
-
-        specifications_request = cli.eesi.db.read_specifications_request(
-            database, bitcode_id)
-        initial_specification_function_names = [
-            spec.function.source_name
-            for spec in specifications_request.initial_specifications]
-        specifications_response = cli.eesi.db.read_specifications_response(
-            database, bitcode_id)
-        if not specifications_response:
-            print("NONE FOUND")
-            continue
-
-        specifications_type_counter = defaultdict(int)
-        specifications = specifications_response
-        for specification in specifications:
-            function_name = specification.function.source_name
-            specifications_type_counter[
-                RETURN_TYPE_TO_STRING[specification.function.return_type]] += 1
-            if function_name in initial_specification_function_names:
-                continue
-        for return_type in defined_type_counter:
-            spec_count = specifications_type_counter[return_type]
-            defined_type_count = defined_type_counter[return_type]
-            print(f"{return_type} coverage: "
-                  f"{spec_count}/{defined_type_count} "
-                  f"({float(spec_count)/float(defined_type_count)})")
 
 
 def list_specifications(database, bitcode_uri_filter, confidence_threshold, raw):
@@ -675,10 +565,6 @@ def list_specifications(database, bitcode_uri_filter, confidence_threshold, raw)
                 if specification_sign == "==0":
                     specification_sign = "'==0"
                 print(f"{function_name}: {function_name} {specification_sign}")
-                #print(f"{function_name}: {function_name} {specification_sign}"
-                #      f"('==0': {specification.confidence_zero},"
-                #      f" '<0': {specification.confidence_less_than_zero},"
-                #      f" '>0': {specification.confidence_greater_than_zero})")
                 continue
                 
 
@@ -768,63 +654,6 @@ def list_specifications_table(database, bitcode_uri_filter,
                 f"{inferred_specifications_count['emptyset']:<7}  {col_sep:<3} "
                 f"{total:<8} {col_sep:<3}"
               f"{increase:.2f} {row_end:<5}")
-
-def specifications_table_to_latex(database, confidence_threshold):
-    """ Prints out the specifications table in latex format.
-
-    Args:
-        database: Pymongo database object.
-        confidence_threshold: The minimum confidence for a component in the
-            confidence/powerset lattice (==0, <0, >0) to be used as part of the
-            final SignLatticeElement representative. These confidences are found
-            in the Specification proto.
-    """
-    id_file_dict = cli.bitcode.db.read_id_file_dict(database)
-
-    header = "Project $\\lessz$ $\\gtrz$ $\\zero$ $\\lez$ $\\gez$ $\\notz$ " \
-             "$\\top$ Total"
-    print("{:<30}& {:>9}& {:>9}& {:>9}& {:>9}& {:>9}& {:>9}& {:>9}& {:>9} \\\\"
-          .format(*header.split()))
-
-    for bitcode_id, bitcode_uri in id_file_dict.items():
-        # Skip bitcode files not matching bitcode_uri_filter.
-
-        specifications_response = cli.eesi.db.read_specifications_response(
-            database, bitcode_id)
-
-        # If no specifications attached to entry, notify user.
-        if not specifications_response:
-            continue
-
-        specifications_request = cli.eesi.db.read_specifications_request(
-            database, bitcode_id)
-        initial_specification_function_names = [
-            spec.function.source_name
-            for spec in specifications_request.initial_specifications]
-
-        inferred_specifications_count = defaultdict(int)
-
-        specifications = specifications_response
-        for specification in specifications:
-            function_name = specification.function.source_name
-            specification_sign = LATTICE_ELEMENT_TO_STRING[
-                cli.eesi.lattice_helper.get_lattice_element_from_confidence(
-                    specification,
-                    confidence_threshold)]
-
-            if (specification_sign != "bottom" and
-                    function_name not in initial_specification_function_names):
-                inferred_specifications_count[specification_sign] += 1
-        project_name = COMMON_FILES_TO_PROJECT_NAME[
-            os.path.basename(bitcode_uri)] or bitcode_uri
-        print(f"{project_name:<30}& {inferred_specifications_count['<0']:>9}& "
-              f"{inferred_specifications_count['>0']:>9}& "
-              f"{inferred_specifications_count['==0']:>9}& "
-              f"{inferred_specifications_count['<=0']:>9}& "
-              f"{inferred_specifications_count['>=0']:>9}& "
-              f"{inferred_specifications_count['!=0']:>9}& "
-              f"{inferred_specifications_count['top']:>9}& "
-              f"{sum(inferred_specifications_count.values()):>9} \\\\")
 
 def specifications_table_to_csv(database, bitcode_uri_filter,
                                 confidence_threshold, output_path):
@@ -973,6 +802,8 @@ def list_specifications_diff(database_a, database_b, confidence_threshold,
                               "red"))
 
 
+# TODO: The below was implemented extremely piecemeal at the time.
+ # Incredibly poorly-written and should be redone.
 def list_statistics_database(bitcode_uri, ground_truth_file, database, t):
     """ Lists statistics from specifications inferred against ground-truth."""
 
@@ -1091,7 +922,14 @@ def list_statistics_database(bitcode_uri, ground_truth_file, database, t):
                 continue
             if ground_truth[fname] == "bottom":
                 continue
+            print("="*80)
             print(f"false positive {fname}: {le}")
+            print(f"Inferred via LLM: {specification.inferred_with_llm}")
+            print(f"Sources ==0: {specification.sources_of_inference_zero}")
+            print(f"Sources <0: {specification.sources_of_inference_less_than_zero}")
+            print(f"Sources >0: {specification.sources_of_inference_greater_than_zero}")
+            print(f"Sources EMPTYSET: {specification.sources_of_inference_emptyset}")
+            print("="*80)
             fp += 1
             if unique:
                 unique_fp += 1
@@ -1252,104 +1090,3 @@ def list_statistics_file(ground_truth_file, init_specs_path, specs_path, t):
     print(f"Precision: {precision:.2f}%")
     print(f"Recall: {recall:.2f}%")
     print(f"F1: {f1}")
-
-def plot_specifications_counts(database_meet, database_join,
-                               database_max):
-
-    specification_counts = {
-            "base": defaultdict(int),
-            "meet": defaultdict(int),
-            "join": defaultdict(int),
-            "max":defaultdict(int),
-    }
-    for database in [database_meet, database_join, database_max]:
-        curr_dbname = ""
-        if database is database_meet:
-            curr_dbname = "meet"
-        elif database is database_join:
-            curr_dbname = "join"
-        elif database is database_max:
-            curr_dbname = "max"
-        id_file_dict = cli.bitcode.db.read_id_file_dict(database)
-        processed = 0
-        for bitcode_id, bitcode_uri in sorted(id_file_dict.items(), key=lambda x: x[1]):
-            if ("littlefs" not in bitcode_uri and
-                "mbedtls" not in bitcode_uri and
-                "netdata" not in bitcode_uri and
-                "openssl" not in bitcode_uri and
-                "pidgin" not in bitcode_uri and
-                "zlib" not in bitcode_uri):
-                continue
-
-            specifications_response = cli.eesi.db.read_specifications_response(
-                database, bitcode_id)
-
-            # If no specifications attached to entry, notify user.
-            if not specifications_response:
-                print("NONE FOUND")
-                continue
-
-            bench_name = ""
-            if "littlefs" in bitcode_uri:
-                bench_name = "lfs"
-            elif "mbedtls" in bitcode_uri:
-                bench_name = "mbedtls"
-            elif "netdata" in bitcode_uri:
-                bench_name = "netdata"
-            elif "openssl" in bitcode_uri:
-                bench_name = "openssl"
-            elif "pidgin" in bitcode_uri:
-                bench_name = "pidgin"
-            elif "zlib" in bitcode_uri:
-                bench_name = "zlib"
-
-            specifications = specifications_response
-            total = 0
-            # Calculating total for the max confidence to see overall increase.
-            total_baseline = 0
-            for specification in specifications:
-                specification_sign = LATTICE_ELEMENT_TO_STRING[
-                    cli.eesi.lattice_helper.get_lattice_element_from_confidence(
-                        specification, 1)]
-                specification_sign_baseline = LATTICE_ELEMENT_TO_STRING[
-                    cli.eesi.lattice_helper.get_lattice_element_from_confidence(
-                        specification, 100)]
-                # Poorly adapted, but works for now.
-                if specification_sign_baseline != "bottom":
-                    total_baseline += 1
-                if specification_sign == "bottom":
-                    continue
-                    
-                specification_counts[curr_dbname][bench_name] += 1
-                # Only want to increment baseline once.
-                if curr_dbname == "meet" and specification_sign_baseline != "bottom":
-                    specification_counts["base"][bench_name] += 1
-            processed += 1
-        assert processed == 6
-
-        def get_ordered_values(d):
-            return (d["lfs"], d["mbedtls"], d["netdata"], d["openssl"], d["pidgin"], d["zlib"])
-        #def get_ordered_values(d):
-        #    return (d["<0"], d[">0"], d["==0"], d["<=0"], d[">=0"], d["!=0"], d["emptyset"])
-
-    ind = np.arange(0, 12, 2)
-    print(ind)
-
-    print(ind)
-    width = 0.3
-    print(get_ordered_values(specification_counts["base"]))
-    plt.bar(ind, get_ordered_values(specification_counts["base"]), width, label=r"$EESIER_{\mathcal{A}}$")
-    plt.bar(ind + width, get_ordered_values(specification_counts["meet"]), width, label=r"$EESIER_{\sqcap}$")
-    plt.bar(ind + (2 *width), get_ordered_values(specification_counts["join"]), width,  label=r"$EESIER_{\sqcup}$")
-    plt.bar(ind + (3 * width), get_ordered_values(specification_counts["max"]), width, label="$EESIER_{max}$")
-
-    plt.ylabel("Total number of inferred error specifications.")
-    plt.xlabel("Error specification lattice element.")
-    plt.title("Number of inferred error specifications for the baseline analysis and using expansion operators.")
-
-    #plt.xticks(ind + width / 2, ("<0", ">0", "0", r"$\leq 0$", r"$\geq 0$", r"$\neq 0$", r"$\emptyset$")) 
-    plt.xticks(ind + width / 2, ("Little FS", "MbedTLS", "Netdata", "OpenSSL", "Pidgin OTRv4", "zlib"))
-    plt.xlim(-1, 11)
-
-    plt.legend(loc="best")
-    plt.show()

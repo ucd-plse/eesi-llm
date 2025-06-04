@@ -54,6 +54,21 @@ struct ErrorBlocksPass : public llvm::ModulePass {
   // changed.
   bool RunOnFunction(llvm::Function *fn);
 
+  void AddInferenceSources(std::string function_name,
+                           std::vector<std::string> context_functions,
+                           LatticeElementConfidence inferred_element);
+  void AddInferenceSource(std::string function_name,
+                          std::string context_function,
+                          LatticeElementConfidence inferred_element);
+  void AddInferenceSourceLessThanZero(std::string function_name,
+                                      std::string context_function);
+  void AddInferenceSourceGreaterThanZero(std::string function_name,
+                                         std::string context_function);
+  void AddInferenceSourceZero(std::string function_name,
+                              std::string context_function);
+  void AddInferenceSourceEmptyset(std::string function_name,
+                                  std::string context_function);
+
   // Expands the error specification of the function using the error
   // specifications of the converged functions.
   // Returns true if the resulting error specification of the function
@@ -240,6 +255,9 @@ struct ErrorBlocksPass : public llvm::ModulePass {
   // specifications. These should never change.
   ErrorSpecificationMap initial_error_specifications_;
 
+  std::unordered_map<std::string, std::vector<Specification>>
+      llm_specifications_;
+
   // Map of function source names that correspond to their return type.
   ReturnTypeMap function_return_types_;
 
@@ -251,8 +269,20 @@ struct ErrorBlocksPass : public llvm::ModulePass {
   // be external functions that we could not analyze the body for.
   std::unordered_set<std::string> non_doomed_function_names_;
 
+  // Tracking the function name to the functions involved in inferring the
+  // particular lattice element;
+  std::unordered_map<std::string, std::unordered_set<std::string>>
+      sources_of_inference_less_than_zero_;
+  std::unordered_map<std::string, std::unordered_set<std::string>>
+      sources_of_inference_greater_than_zero_;
+  std::unordered_map<std::string, std::unordered_set<std::string>>
+      sources_of_inference_zero_;
+  std::unordered_map<std::string, std::unordered_set<std::string>>
+      sources_of_inference_emptyset_;
+
   std::unordered_map<std::string, std::unordered_set<std::string>>
       called_functions_;
+  std::unordered_set<std::string> inferred_with_llm_;
 };
 
 }  // namespace error_specifications

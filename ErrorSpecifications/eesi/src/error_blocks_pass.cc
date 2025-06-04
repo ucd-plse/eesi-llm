@@ -23,7 +23,7 @@ void ErrorBlocksPass::SetSpecificationsRequest(
     const GetSpecificationsRequest &req) {
   smart_success_code_zero_ = req.smart_success_code_zero();
   checker_ = new Checker();
-  language_model_ = new GptModel(req.ctags_file());
+  language_model_ = new GptModel(req.llm_name(), req.ctags_file());
 
   for (const auto &error_only_fn : req.error_only_functions()) {
     const auto source_name = error_only_fn.function().source_name();
@@ -196,44 +196,42 @@ bool ErrorBlocksPass::runOnModule(llvm::Module &module) {
       // Perform fixpoint only if SCC has a loop.
     } while (has_loop && changed);
 
-    // Only expand using the embedding if the appropriate SynonymFinder
-    //    has
-    // been configured.
-
-    const auto &return_range_pass = getAnalysis<ReturnRangePass>();
-    auto it1 = std::partition(
-        scc_funcs.begin(), scc_funcs.end(),
-        [this, &return_range_pass](llvm::Function *func) {
-          const auto return_range = return_range_pass.GetReturnRange(
-              *func,
-              /*default=*/SignLatticeElement::SIGN_LATTICE_ELEMENT_TOP);
-          std::string func_name = GetSourceName(*func);
-          return ReturnsDomainKnowledgeCodes(func_name) ||
-                 ConfidenceLattice::IsEmptyset(
-                     GetErrorSpecification(func_name)) ||
-                 !ConfidenceLattice::IsUnknown(
-                     GetErrorSpecification(func_name));
-        });
-    // it1 to scc_funcs.end() are the functions whose error
-    // specifications are bottom. We only need to expand the error
-    // specifications for these functions.
-    auto it2 =
-        std::partition(it1, std::end(scc_funcs),
-                       [this, &converged_functions](llvm::Function *func) {
-                         // return ExpandErrorSpecification(func,
-                         // converged_functions);
-                         return LlmExpandErrorSpecification(func);
-                       });
-    // scc_funcs.begin() to it2 are the functions whose error
-    // specifications
-    // are not bottom and have converged. Add these to the set of
-    //      converged
-    // functions.
-    std::for_each(std::begin(scc_funcs), it2,
-                  [this, &converged_functions](auto f) {
-                    converged_functions.insert(
-                        std::make_pair(GetSourceName(*f), GetReturnType(*f)));
-                  });
+    if (!language_model_->IsLLMNameEmpty()) {
+      const auto &return_range_pass = getAnalysis<ReturnRangePass>();
+      auto it1 = std::partition(
+          scc_funcs.begin(), scc_funcs.end(),
+          [this, &return_range_pass](llvm::Function *func) {
+            const auto return_range = return_range_pass.GetReturnRange(
+                *func,
+                /*default=*/SignLatticeElement::SIGN_LATTICE_ELEMENT_TOP);
+            std::string func_name = GetSourceName(*func);
+            return ReturnsDomainKnowledgeCodes(func_name) ||
+                   ConfidenceLattice::IsEmptyset(
+                       GetErrorSpecification(func_name)) ||
+                   !ConfidenceLattice::IsUnknown(
+                       GetErrorSpecification(func_name));
+          });
+      // it1 to scc_funcs.end() are the functions whose error
+      // specifications are bottom. We only need to expand the error
+      // specifications for these functions.
+      auto it2 =
+          std::partition(it1, std::end(scc_funcs),
+                         [this, &converged_functions](llvm::Function *func) {
+                           // return ExpandErrorSpecification(func,
+                           // converged_functions);
+                           return LlmExpandErrorSpecification(func);
+                         });
+      // scc_funcs.begin() to it2 are the functions whose error
+      // specifications
+      // are not bottom and have converged. Add these to the set of
+      //      converged
+      // functions.
+      std::for_each(std::begin(scc_funcs), it2,
+                    [this, &converged_functions](auto f) {
+                      converged_functions.insert(
+                          std::make_pair(GetSourceName(*f), GetReturnType(*f)));
+                    });
+    }
   }
 
   // Just printing off the reachable functions and the total count, as well as
@@ -266,11 +264,80 @@ bool ErrorBlocksPass::runOnModule(llvm::Module &module) {
   return false;
 }
 
+void ErrorBlocksPass::AddInferenceSources(
+    std::string function_name, std::vector<std::string> context_functions,
+    LatticeElementConfidence inferred_element) {
+  for (std::string context_function : context_functions) {
+    AddInferenceSource(function_name, context_function, inferred_element);
+  }
+}
+
+void ErrorBlocksPass::AddInferenceSource(
+    std::string function_name, std::string context_function,
+    LatticeElementConfidence inferred_element) {
+  if (ConfidenceLattice::IsEmptyset(inferred_element)) {
+    AddInferenceSourceEmptyset(function_name, context_function);
+  }
+  if (ConfidenceLattice::Intersects(
+          inferred_element,
+          SignLatticeElement::SIGN_LATTICE_ELEMENT_LESS_THAN_ZERO)) {
+    AddInferenceSourceLessThanZero(function_name, context_function);
+  }
+  if (ConfidenceLattice::Intersects(
+          inferred_element,
+          SignLatticeElement::SIGN_LATTICE_ELEMENT_GREATER_THAN_ZERO)) {
+    AddInferenceSourceGreaterThanZero(function_name, context_function);
+  }
+  if (ConfidenceLattice::Intersects(
+          inferred_element, SignLatticeElement::SIGN_LATTICE_ELEMENT_ZERO)) {
+    AddInferenceSourceZero(function_name, context_function);
+  }
+}
+
+void ErrorBlocksPass::AddInferenceSourceEmptyset(std::string function_name,
+                                                 std::string context_function) {
+  if (sources_of_inference_emptyset_.find(function_name) ==
+      sources_of_inference_emptyset_.end()) {
+    sources_of_inference_emptyset_[function_name] =
+        std::unordered_set<std::string>();
+  }
+  sources_of_inference_emptyset_[function_name].insert(context_function);
+}
+void ErrorBlocksPass::AddInferenceSourceLessThanZero(
+    std::string function_name, std::string context_function) {
+  if (sources_of_inference_less_than_zero_.find(function_name) ==
+      sources_of_inference_less_than_zero_.end()) {
+    sources_of_inference_less_than_zero_[function_name] =
+        std::unordered_set<std::string>();
+  }
+  sources_of_inference_less_than_zero_[function_name].insert(context_function);
+}
+void ErrorBlocksPass::AddInferenceSourceGreaterThanZero(
+    std::string function_name, std::string context_function) {
+  if (sources_of_inference_greater_than_zero_.find(function_name) ==
+      sources_of_inference_greater_than_zero_.end()) {
+    sources_of_inference_greater_than_zero_[function_name] =
+        std::unordered_set<std::string>();
+  }
+  sources_of_inference_greater_than_zero_[function_name].insert(
+      context_function);
+}
+void ErrorBlocksPass::AddInferenceSourceZero(std::string function_name,
+                                             std::string context_function) {
+  if (sources_of_inference_zero_.find(function_name) ==
+      sources_of_inference_zero_.end()) {
+    sources_of_inference_zero_[function_name] =
+        std::unordered_set<std::string>();
+  }
+  sources_of_inference_zero_[function_name].insert(context_function);
+}
+
 bool ErrorBlocksPass::LlmExpandThirdPartyErrorSpecifications(
     std::vector<std::pair<std::string, std::string>> function_names) {
   LOG(INFO) << "LLM Third party expansion";
   bool updated = false;
   std::vector<Specification> specifications;
+  std::vector<std::string> specification_function_names;
   for (auto init_spec : initial_error_specifications_) {
     Function f;
     f.set_llvm_name(init_spec.first);
@@ -281,6 +348,7 @@ bool ErrorBlocksPass::LlmExpandThirdPartyErrorSpecifications(
         ConfidenceLattice::LatticeElementConfidenceToSignLatticeElement(
             init_spec.second));
     specifications.push_back(s);
+    specification_function_names.push_back(init_spec.first);
   }
   auto llm_specifications = language_model_->GetThirdPartySpecifications(
       function_names, specifications, error_code_names_, success_code_names_);
@@ -304,9 +372,13 @@ bool ErrorBlocksPass::LlmExpandThirdPartyErrorSpecifications(
     // Silly, but this if for logging purposes...
     updated = updated_spec || updated;
     if (updated_spec) {
+      llm_specifications_[specification.first] = specifications;
       LOG(INFO) << "LLM successful update!";
       LOG(INFO) << "LLM specification: "
                 << GetErrorSpecification(specification.first);
+      AddInferenceSources(specification.first, specification_function_names,
+                          GetErrorSpecification(specification.first));
+      inferred_with_llm_.insert(specification.first);
     }
   }
   return updated;
@@ -321,6 +393,10 @@ bool ErrorBlocksPass::LlmExpandErrorSpecification(llvm::Function *func) {
   // called function error specifications passed to the LLM for
   // context.
   std::vector<Specification> specifications;
+  short max_confidence_val = kMinConfidence;
+  short average_non_zero_confidence = 0;
+  short divisor = 0;
+  std::vector<std::string> specification_function_names;
   if (called_functions_.find(func_name) != called_functions_.end()) {
     for (auto called_function : called_functions_[func_name]) {
       auto lattice_confidence = GetErrorSpecification(called_function);
@@ -338,8 +414,42 @@ bool ErrorBlocksPass::LlmExpandErrorSpecification(llvm::Function *func) {
       Specification s;
       s.mutable_function()->CopyFrom(f);
       s.set_lattice_element(lattice_element);
+      s.set_confidence_emptyset(lattice_confidence.GetConfidenceEmptyset());
+      s.set_confidence_less_than_zero(
+          lattice_confidence.GetConfidenceLessThanZero());
+      if (lattice_confidence.GetConfidenceLessThanZero() > max_confidence_val) {
+        max_confidence_val = lattice_confidence.GetConfidenceLessThanZero();
+      }
+      if (lattice_confidence.GetConfidenceLessThanZero() > kMinConfidence) {
+        average_non_zero_confidence =
+            lattice_confidence.GetConfidenceLessThanZero();
+        divisor++;
+      }
+      s.set_confidence_zero(lattice_confidence.GetConfidenceZero());
+      if (lattice_confidence.GetConfidenceZero() > max_confidence_val) {
+        max_confidence_val = lattice_confidence.GetConfidenceZero();
+      }
+      if (lattice_confidence.GetConfidenceZero() > kMinConfidence) {
+        average_non_zero_confidence = lattice_confidence.GetConfidenceZero();
+        divisor++;
+      }
+      s.set_confidence_greater_than_zero(
+          lattice_confidence.GetConfidenceGreaterThanZero());
+      if (lattice_confidence.GetConfidenceGreaterThanZero() >
+          max_confidence_val) {
+        max_confidence_val = lattice_confidence.GetConfidenceGreaterThanZero();
+      }
+      if (lattice_confidence.GetConfidenceGreaterThanZero() > kMinConfidence) {
+        average_non_zero_confidence =
+            lattice_confidence.GetConfidenceGreaterThanZero();
+        divisor++;
+      }
       specifications.push_back(s);
+      specification_function_names.push_back(called_function);
     }
+  }
+  if (divisor != 0) {
+    average_non_zero_confidence = average_non_zero_confidence / divisor;
   }
   bool updated = false;
   auto llm_specifications = language_model_->GetSpecification(
@@ -351,18 +461,24 @@ bool ErrorBlocksPass::LlmExpandErrorSpecification(llvm::Function *func) {
     LatticeElementConfidence lattice_confidence(0, 0, 0, 50);
     if (specification.second !=
         SignLatticeElement::SIGN_LATTICE_ELEMENT_BOTTOM) {
+      // float ratio = 0.9 * (float(max_confidence_val) / kMaxConfidence);
+      float ratio = 0.9 * (float(average_non_zero_confidence) / kMaxConfidence);
       lattice_confidence =
           ConfidenceLattice::SignLatticeElementToLatticeElementConfidence(
-              specification.second, kMinConfidence, 0.5);
+              specification.second, kMinConfidence, ratio);
     }
-    LOG(INFO) << "LLama says: " << lattice_confidence;
+    LOG(INFO) << "LLM says: " << lattice_confidence;
     bool updated_spec =
         UpdateErrorSpecification(specification.first, lattice_confidence);
     // if (specification.first != func_name) continue;
     if (updated_spec) {
+      llm_specifications_[specification.first] = specifications;
       LOG(INFO) << "LLM successful update!";
       LOG(INFO) << "LLM specification: "
                 << GetErrorSpecification(specification.first);
+      AddInferenceSources(specification.first, specification_function_names,
+                          GetErrorSpecification(specification.first));
+      inferred_with_llm_.insert(specification.first);
     }
     updated = updated_spec || updated;
   }
@@ -750,6 +866,7 @@ LatticeElementConfidence ErrorBlocksPass::VisitBlock(
                   << " g=\"" << propagate_callee << "\""
                   << " E(g)=\"" << callee_confidence;
 
+        AddInferenceSource(parent_fname, constraint_fname, callee_confidence);
         if (ReturnsDomainKnowledgeCodes(propagate_callee)) {
           AddFunctionReturningDomainKnowledgeCodes(parent_fname);
         }
@@ -816,6 +933,8 @@ LatticeElementConfidence ErrorBlocksPass::VisitBlock(
                       << " fprime=" << constraint_fname << " constraint=\""
                       << block_constraint.lattice_element << "\""
                       << " E(fprime)=\"" << constraining_function_confidence;
+            AddInferenceSource(parent_fname, constraint_fname,
+                               return_lattice_confidence);
           } else if (llvm::isa<llvm::ConstantPointerNull>(v)) {
             // The confidence_zero should be the max of the constraining
             // function's error specification confidences.
@@ -866,6 +985,8 @@ LatticeElementConfidence ErrorBlocksPass::VisitBlock(
                       << " g=\"" << propagate_callee << "\""
                       << " E(g)=\"" << callee_confidence;
 
+            AddInferenceSource(parent_fname, constraint_fname,
+                               callee_confidence);
             if (ReturnsDomainKnowledgeCodes(propagate_callee)) {
               AddFunctionReturningDomainKnowledgeCodes(parent_fname);
             }
@@ -1056,6 +1177,32 @@ GetSpecificationsResponse ErrorBlocksPass::GetSpecifications() const {
       assert(initial_spec_it->second == function_lattice_confidence.second);
     }
 
+    std::unordered_set<std::string> function_sources_of_inference_zero;
+    std::unordered_set<std::string>
+        function_sources_of_inference_less_than_zero;
+    std::unordered_set<std::string>
+        function_sources_of_inference_greater_than_zero;
+    std::unordered_set<std::string> function_sources_of_inference_emptyset;
+    if (sources_of_inference_emptyset_.find(source_name) !=
+        sources_of_inference_emptyset_.end()) {
+      function_sources_of_inference_emptyset =
+          sources_of_inference_emptyset_.at(source_name);
+    }
+    if (sources_of_inference_less_than_zero_.find(source_name) !=
+        sources_of_inference_less_than_zero_.end()) {
+      function_sources_of_inference_less_than_zero =
+          sources_of_inference_less_than_zero_.at(source_name);
+    }
+    if (sources_of_inference_greater_than_zero_.find(source_name) !=
+        sources_of_inference_greater_than_zero_.end()) {
+      function_sources_of_inference_greater_than_zero =
+          sources_of_inference_greater_than_zero_.at(source_name);
+    }
+    if (sources_of_inference_zero_.find(source_name) !=
+        sources_of_inference_zero_.end()) {
+      function_sources_of_inference_zero =
+          sources_of_inference_zero_.at(source_name);
+    }
     SignLatticeElement lattice_element =
         ConfidenceLattice::LatticeElementConfidenceToSignLatticeElement(
             function_lattice_confidence.second);
@@ -1074,6 +1221,20 @@ GetSpecificationsResponse ErrorBlocksPass::GetSpecifications() const {
         function_lattice_confidence.second.GetConfidenceGreaterThanZero());
     s->set_confidence_emptyset(
         function_lattice_confidence.second.GetConfidenceEmptyset());
+    *s->mutable_sources_of_inference_emptyset() = {
+        function_sources_of_inference_emptyset.begin(),
+        function_sources_of_inference_emptyset.end()};
+    *s->mutable_sources_of_inference_less_than_zero() = {
+        function_sources_of_inference_less_than_zero.begin(),
+        function_sources_of_inference_less_than_zero.end()};
+    *s->mutable_sources_of_inference_greater_than_zero() = {
+        function_sources_of_inference_greater_than_zero.begin(),
+        function_sources_of_inference_greater_than_zero.end()};
+    *s->mutable_sources_of_inference_zero() = {
+        function_sources_of_inference_zero.begin(),
+        function_sources_of_inference_zero.end()};
+    s->set_inferred_with_llm(inferred_with_llm_.find(source_name) !=
+                             inferred_with_llm_.end());
   }
 
   std::vector<Violation> violations = checker_->GetViolations();
