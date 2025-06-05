@@ -115,7 +115,6 @@ def _setup_bitcode(database, service_configuration_handler, uri):
 def inject_specifications(database, specifications_path,
                               service_configuration_handler,
                               domain_knowledge_handler,
-                              llm_name,
                               smart_success_code_zero,
                               bitcode_uri, overwrite,):
     """Injects a GetSpecificationsResponse given a specifications file.
@@ -205,7 +204,7 @@ def inject_specifications(database, specifications_path,
         initial_specifications=applicable_initial_specifications,
         error_codes=domain_knowledge_handler.error_codes,
         success_codes=domain_knowledge_handler.success_codes,
-        llm_name=llm_name,
+        llm_name="Injected",
         smart_success_code_zero=smart_success_code_zero,
     )
 
@@ -223,41 +222,44 @@ def inject_specifications(database, specifications_path,
         ">0": proto.eesi_pb2.SignLatticeElement \
               .SIGN_LATTICE_ELEMENT_GREATER_THAN_ZERO,
         "==0": proto.eesi_pb2.SignLatticeElement.SIGN_LATTICE_ELEMENT_ZERO,
+        "'==0": proto.eesi_pb2.SignLatticeElement.SIGN_LATTICE_ELEMENT_ZERO,
         "<=0": proto.eesi_pb2.SignLatticeElement \
                .SIGN_LATTICE_ELEMENT_LESS_THAN_EQUAL_ZERO,
         ">=0": proto.eesi_pb2.SignLatticeElement \
                .SIGN_LATTICE_ELEMENT_GREATER_THAN_EQUAL_ZERO,
         "!=0": proto.eesi_pb2.SignLatticeElement.SIGN_LATTICE_ELEMENT_NOT_ZERO,
         "top": proto.eesi_pb2.SignLatticeElement.SIGN_LATTICE_ELEMENT_TOP,
+        "emptyset": proto.eesi_pb2.SignLatticeElement.SIGN_LATTICE_ELEMENT_BOTTOM,
     }
     STRING_CONFIDENCE = {
         "bottom": (0, 0, 0, 0),
         "<0": (100, 0, 0, 0), 
         ">0": (0, 0, 100, 0),
         "==0": (0, 100, 0, 0),
+        "'==0": (0, 100, 0, 0),
         "<=0": (100, 100, 0, 0),
         ">=0": (0, 100, 100, 0),
         "!=0": (100, 0, 100, 0),
         "top": (100, 100, 100, 0),
+        "emptyset": (0, 0, 0, 100),
     }
     for line in specifications_lines:
         _, function, lattice_element = line.split()
         # The LLVM name will be the same as the source name
         # as the user-provided domain knowledge wouldn't
         # typically include the LLVM name.
-        c_ltz, c_zero, c_gtz, _ = STRING_CONFIDENCE[lattice_element]
+        c_ltz, c_zero, c_gtz, c_empty = STRING_CONFIDENCE[lattice_element]
         function_message = proto.bitcode_pb2.Function(
             llvm_name=function,
             source_name=function,
         )
-        print(STRING_TO_LATTICE_ELEMENT[lattice_element])
         specification_message = proto.eesi_pb2.Specification(
             function=function_message,
             lattice_element=STRING_TO_LATTICE_ELEMENT[lattice_element],
             confidence_zero=c_zero,
             confidence_less_than_zero=c_ltz,
             confidence_greater_than_zero=c_gtz,
-            confidence_emptyset=0
+            confidence_emptyset=c_empty
         )
         messages.append(specification_message)
 
