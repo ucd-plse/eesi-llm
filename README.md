@@ -15,9 +15,9 @@ inherently non-deterministic, so the per-run results will likely be different.
 ### Papers
 
 The paper `Interleaving Static Analysis and LLM Prompting` that was published
-at *SOAP 2024* is included at [paper/soap_paper.pdf](paper/soap_paper.pdf).
+at *SOAP 2024* is included at [paper/soap24_paper.pdf](paper/soap24_paper.pdf).
 The paper `Interleaving Static Analayis and LLM Prompting with Applications
-to Error Specification Inference` from *STTT 2025* is included at [paper/sttt_paper.pdf](paper/sttt_paper.pdf).
+to Error Specification Inference` from *STTT 2025* is included at [paper/sttt25_paper.pdf](paper/sttt25_paper.pdf).
 
 ### Results from Presented Experimental Results
 
