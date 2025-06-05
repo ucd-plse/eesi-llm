@@ -1,24 +1,15 @@
-# Interleaving Static Analysis and LLM Prompting 
+# Interleaving Static Analysis and LLM Prompting - Tool Implementation
 
 ### Requirements
-To install dependencies:
+To install the initial set of dependencies:
 ```bash
 $ ./scripts/install_deps.sh
 ```
 
-You can install `bazel 4.1.0` and `MongoDB 3.6`:
+You can also install `bazel 4.1.0` and `MongoDB 3.6`:
 
 - [bazel 4.1.0](https://docs.bazel.build/versions/4.1.0/install-ubuntu.html)
 - [MongoDB 3.6](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/)
-
-To install dependencies to run with (2) docker:
-```bash
-$ ./scripts/setup_docker.sh
-```
-
-`Docker` is located at:
-- [Docker](https://docs.docker.com/engine/install/)
-
 
 #### bazel_python (aprox. running time: 15-20 minutes)
 
@@ -26,15 +17,24 @@ EESI depends on the `bazel_python` package. To install and setup
 `bazel_python`, please visit the [repository](https://github.com/95616ARG/bazel_python/)
 and follow the `README`. Note: We use python `3.7.4` as demonstrated in the
 `bazel_python` `README`. If you do not use `bazel-4.1.0`, installing `bazel_python` will
-likely not work.
+likely not work. We have also included a `bazel_python.tar.gz` file with
+the compressed version.
+
+#### OpenAI API Token
+
+You must have an OpenAI API token to use the interleaved analysis. You can
+get one by visiting their [website](https://www.platform.openai.com/api-keys).
+You then must set the environment variable `OPENAI_API_KEY` to the token that
+you have generated. If you have not set this up properly, then the GPT service
+introduced later will not start properly.
 
 ### Initial Setup
 
 #### Launching Services
 
-##### EESIER Services
+##### Interleaved Analyis Services
 
-The EESI pipeline is implemented as gRPC services, in order to run the
+The analysis pipeline is implemented as gRPC services, in order to run the
 analysis, you must launch each service. You can do so automatically by
 running the script:
 ```bash
@@ -46,9 +46,9 @@ script will launch services in tmux sessions: `bitcode`, `eesi`, and `gpt`.
 
 You can also launch the services manually by:
 ```bash
-$ bazel run //bitcode:main
-$ bazel run //eesi:main
-$ bazel run //gpt:service
+$ bazel run //bitcode:main --cxxopt='-std=c++14'
+$ bazel run //eesi:main --cxxopt='-std=c++14'
+$ bazel run //gpt:service --cxxopt='-std=c++14'
 ```
 
 ##### Mongo
@@ -62,11 +62,137 @@ $ mongod --port 27017
 
 ### Running the Tool
 
-#### Registering Bitcode
-To run the tool on some arbitrary program, you must first register the bitcode
-that will be analyzed by EESI:
+You can either re-run the interleaved analysis on the same benchmarks presented
+in the paper by following the directions in [Reproducing Analysis from Paper](####-Reproducing-Analysis-from-Paper)
+or you can run your own analysis by following the directions in [Running Analysis on Your Own](####-Running-Analysis-on-Your-Own).
+
+#### Reproducing Analysis from Paper 
+
+To replicate the results in Interleaving Static Analysis and LLM Prompting,
+refer to the follow section. Note: Due to the random nature of LLMs, you will
+almost certainly not get the same results running the entire analysis from
+scratch. We have included the results that we obtained during our runs, 
+
+##### Benchmark Bitcode
+
+In order to replicate the results for EESI, please extract the bitcode files
+by doing the following:
+```bash
+$ cd ./testdata/benchmarks/bitcode && tar -xf benchmarks.tar.gz && cd -
 ```
-bazel run //clli:main -- --db-name <DB-NAME> bitcode RegisterBitcode \
+
+You should now have the following files in your `./testdata/benchmarks/bitcode`
+folder:
+```
+benchmarks.tar.gz   littlefs-reg2mem.bc  httpd-reg2mem.bc
+mbedtls-reg2mem.bc  netdata-reg2mem.bc   pidgin-reg2mem.ll
+zlib-reg2mem.bc
+```
+
+##### Benchmark Source Code
+
+The source code for all of the analyzed benchmarks presented in the papers
+are too large for this repo. You can download a compressed tar file from
+the [following link]().
+Move the downloaded `.tar` file to `./testdata/benchmarks` and then extract
+the source code using:
+```bash
+cd ./testdata/benchmarks/ && tar -xf ./benchmarks-src-code.tar.gz && cd -
+```
+
+Note: The helper scripts for reproducing paper results expect the benchmark
+source code to be in the location described above.
+
+##### Reproducing Evaluation Results (approx. running time: 30 minutes, ~20 GB memory) 
+
+As the LLM ran in the experiments is [GPT-4](https://openai.com/index/gpt-4/), the results
+are inherently non-deterministic from the LLM. It is extremely likely that your results
+will not match the paper results exactly. Also, model changes could potentially impact
+the results in the future, either negatively or positively. As such, our framework is
+designed to be LLM-agnostic, and you can set up your own LLM of choice (from OpenAI).
+The included helper scripts will run with GPT-4.1-mini by default, as it is a mix
+of being cost-effective with reasonable performance. If you simply wish to just
+view the final results of our interleaved analysis, we have included the learned
+specifications and a helper script to view the final set of learned error specifications.
+
+**Injecting Specifications**: To view the final results of our interleaved analysis
+(the numbers from Table 4 in both SOAP and STTT papers), you can use the
+`./scripts/inject_specifications.sh` helper script to inject the specifications
+from the files included in `./testdata/benchmarks/artifact_results`. You can
+then view the raw number of learned error specifications using the command:
+```bash
+bazel run //cli:main -- --db-name eesi_llm_injected eesi ListSpecificationsTable
+```
+Please note that these injected results are for just simply viewing the raw
+numbers for comparison against the numbers presented in the paper.
+
+**Running Analysis**: To run EESI and the interleaved LLM analysis, you can use
+the script `./scripts/run_benchmarks.sh`. Due to the size of the benchmarks
+being analyzed, the memory usage for EESI can be quite high relative to
+some systems, approximately ~20 GB in the case of running on all benchmarks.
+If you wish to just run on a select benchmark, you can refer to the usage:
+```bash
+$ ./scripts/run_benchmarks.sh [-z zlib] [-p pidgin] [-n netdata] [-m mbedtls]
+                              [-l littlefs] [-a httpd] [-o overwrite] 
+```
+
+If you already have results stored in the database, you can supply the `-o`
+flag which will overwrite the currently stored results. Note: If you just want
+to get a quick result, you can just run the analysis on the LittleFS benchmark
+using `-l`, as it is the smallest.
+
+
+##### Specification Counts (approx. running time: <1 minute)
+
+To view the specifications counts, refer to the `ListSpecificationsTable` commands
+and use the appropriate `--db-name` related to your experimental results of
+interest. For example, if you store the baseline static analysis results from
+EESI (`Table 3` in STTT and SOAP papers) where the results are stored in `gpt-4_1-mini-2024-04-14_eesi_llm`:
+
+```bash
+bazel run //cli:main -- --db-name gpt-4_1-mini-2024-04-14_eesi_llm eesi ListSpecificationsTable --confidence-threshold 100
+```
+
+The output should look like:
+```
+Bitcode ID (last 8 characters)           File name:                                                                  <0          >0          ==0         <=0         >=0         !=0         top         emptyset    total        increase %
+614e5c1f                                 littlefs-reg2mem.bc                                                         40          0            7            0           0           0           0           10           57          0.00      
+ef786082                                 mbedtls-reg2mem.bc                                                          723         10           48           3           0           1           0           246          1031        0.00      
+91d8f71a                                 netdata-reg2mem.bc                                                          17          35           108          0           1           1           0           116          278         0.00      
+4bd676a1                                 pidgin-reg2mem.bc                                                           11          4            24           0           0           0           0           29           68          0.00      
+cd77a397                                 zlib-reg2mem.bc                                                             68          1            14           0           0           0           0           29           112         0.00  
+cd77a397                                 httpd-reg2mem.bc                                                            16          42           16           0           1           27          0           183          285         0.00  
+```
+
+Note: The above results are non-deterministic, as the above command will
+cut-off any error specifications learned via LLM-assisted analysis. The remainder
+of the `List` commands will result in non-deterministic numbers.
+
+If you run the interleaved analysis, you can view your results by supplying the correct
+`--db-name` (e.g., `gpt-4_1-mini-2024-04-14_eesi_llm`) and changing the `--confidence-threshold` value
+to `1`. Remember, if you ran the analysis locally, it is extremely likely your results
+will not match the paper. The results for our individual experimental run
+were presented in Table 4 of both the STTT and SOAP papers.
+
+##### Precision, Recall, and F1 (approx. running time: 1-5 minutes)
+
+After having learned the error specifications using the interleaved analysis, you
+can dump a simple statistics summary using the helper script `./scripts/list_eesi_llm_stats.sh`.
+These will dump `*.txt` files into the `testdata/benchmarks/stats` directory
+for the experimental results in the `gpt-4_1-mini-2025-04-14_eesi_llm` database.
+Each `*.txt` file will correspond to the benchmark results stored in the database
+for the baseline analysis (without the LLM-assistance) and the interleaved
+analysis. These numbers represent the raw metrics that are presented in the
+remaining figures regarding precision, recall, and F1.
+
+#### Running Analysis on Your Own
+
+##### Registering Bitcode
+To run the tool on some arbitrary program, you must first register the bitcode
+that will be analyzed by EESI. If you don't have the bitcode set up, read
+the [generating bitcode](#####-Generating-Bitcode) section:
+```
+bazel run //cli:main -- --db-name <DB-NAME> bitcode RegisterBitcode \
     --bitcode-uri <BITCODE-URI> 
 ```
 
@@ -112,101 +238,12 @@ Or, you may also view the specifications table count (for all registered bitcode
 ```
 bazel run //cli:main -- --db-name <DB-NAME> eesi ListSpecificationsTable
 ```
-
-### Replicating Evaluation Results
-
-To replicate the results in Interleaving Static Analysis and LLM Prompting,
-refer to the follow section. Note: Due to the random nature of LLMs, you will
-almost certainly not get the same results running the entire analysis from
-scratch. We have included the results that we obtained during our runs, 
-
-#### Benchmark Bitcode
-
-In order to replicate the results for EESI, please extract the bitcode files
-by doing the following:
-```bash
-$ cd ./testdata/benchmarks/bitcode && tar -xf benchmarks.tar.gz && cd -
-```
-
-You should now have the following files in your `./testdata/benchmarks/bitcode`
-folder:
-```
-benchmarks.tar.gz   littlefs-reg2mem.bc  httpd-reg2mem.bc
-mbedtls-reg2mem.bc  netdata-reg2mem.bc   pidgin-reg2mem.ll
-zlib-reg2mem.bc
-```
-
-
-#### Replroducing Evaluation Results (approx. running time: 30 minutes, ~20 GB memory) 
-
-As the LLM ran in the experiments is [GPT-4](https://openai.com/index/gpt-4/), the results
-are inherently non-deterministic from the LLM. It is extremely likely that your results
-will not match the paper results exactly. Also, model changes could potentially impact
-the results in the future, either negatively or positively. As such, our framework is
-designed to be LLM-agnostic, and you can set up your own LLM of choice.
-
-To run EESI and the interleaved LLM analysis, you can use
-the script `./scripts/run_benchmarks.sh`. Due to the size of the benchmarks
-being analyzed, the memory usage for EESI can be quite high relative to
-some systems, approximately ~20 GB in the case of running on all benchmarks.
-If you wish to just run on a select benchmark, you can refer to the usage:
-```bash
-$ ./scripts/run_benchmarks.sh [-z zlib] [-p pidgin] [-n netdata] [-m mbedtls]
-                              [-l littlefs] [-s openssl] [-o overwrite] 
-```
-
-If you already have results stored in the database, you can supply the `-o`
-flag which will overwrite the currently stored results.
-
-
-##### Specification Counts (approx. running time: <1 minute)
-
-To view the specifications counts, refer to the `ListSpecificationsTable` commands
-and use the appropriate `--db-name` related to your experimental results of
-interest. For example, if you store the baseline static analysis results from
-EESI (`Table 3`) where the results are stored in `eesi_results`:
-
-```bash
-bazel run //cli:main -- --db-name eesi_results eesi ListSpecificationsTable --confidence-threshold 100
-```
-
-The output should look like:
-```
-Bitcode ID (last 8 characters)           File name:                                                                  <0          >0          ==0         <=0         >=0         !=0         top         emptyset    total        increase %
-614e5c1f                                 littlefs-reg2mem.bc                                                         40          0            7            0           0           0           0           10           57          0.00      
-ef786082                                 mbedtls-reg2mem.bc                                                          723         10           48           3           0           1           0           246          1031        0.00      
-91d8f71a                                 netdata-reg2mem.bc                                                          17          35           108          0           1           1           0           116          278         0.00      
-4bd676a1                                 pidgin-reg2mem.bc                                                           11          4            24           0           0           0           0           29           68          0.00      
-cd77a397                                 zlib-reg2mem.bc                                                             68          1            14           0           0           0           0           29           112         0.00  
-```
-
-If you run the interleaved analysis, you can view your results by supplying the correct
-`--db-name` (e.g., `eesi_llm_results`) and changing the `--confidence-threshold` value
-to `1`. Remember, if you ran the analysis locally, it is extremely likely your results
-will not match the paper.
-
-##### Precision, Recall, and F1 (approx. running time: 1-5 minutes)
-
-After having generated the specifications for the EESI baseline, you can calculate statistics
-for benchmarks by running the script:
-```bash
-$ ./scripts/list_eesi_stats.sh
-```
-
-Running this script should take approximately one minute. This script will populate the
-`./testdata/benchmarks/stats/` folder with statistics for the
-benchmarks that specifications were found for by EESI. You can then list and
-view the statistics that were presented in the paper.
- or `100` in the name of the file. The number indicates the confidence
-threshold that was applied, where the `1` confidence indicates the minimum
-confidence threshold and `100` indicates the maximum confidence threshold:
-
-## Generating New Bitcode
+##### Generating Bitcode
 
 Bitcode files can be generated using [gllvm](https://github.com/SRI-CSL/gllvm)
 and following their instructions.
 
-You can also use `clang` with LLVM 7.0+ support. For example generating a bitcode
+You can also use `clang` with LLVM 7.1 support. For example generating a bitcode
 file for `hello.c`:
 
 ```bash
