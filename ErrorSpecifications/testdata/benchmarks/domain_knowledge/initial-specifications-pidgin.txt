@@ -1,0 +1,4 @@
+malloc ==0
+calloc ==0
+g_malloc ==0
+realloc ==0

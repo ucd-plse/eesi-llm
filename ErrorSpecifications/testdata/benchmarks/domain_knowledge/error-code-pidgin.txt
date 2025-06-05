@@ -1,0 +1,1 @@
+OTRNG_ERROR 0 libotr-ng/
