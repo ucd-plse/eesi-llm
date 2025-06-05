@@ -1,0 +1,311 @@
+otrng_global_state_instance_tags_read_from  ==0 X
+__fprintf_chk   <0  X
+fgets_unlocked  ==0 X
+gcry_strerror   emptyset    X
+otrng_gtk_dialog_get_ui_ops emptyset    
+g_source_remove emptyset    X
+persistance_write_fingerprints_v4   <0  
+otrng_gtk_dialog_private_key_wait_start emptyset    
+otrng_global_state_prekeys_read_from    ==0 X
+purple_blist_node_get_bool  emptyset    X
+client_conversation_to_plugin_conversation  ==0 
+gtk_event_box_new   ==0 X
+purple_conversations_get_handle emptyset    X
+policy_cb   emptyset    
+otrng_plugin_fingerprint_v3_to_otr_conversation ==0 
+purple_user_dir emptyset    X
+purple_find_buddy   emptyset    X
+tooltip_menu_new    ==0 
+persistance_write_fingerprints_v3   <0  
+is_logged_in_cb <0  
+otrng_dialog_private_key_wait_start emptyset    
+gtk_table_get_type  emptyset    X
+gtk_icon_size_from_name emptyset    X
+g_random_int    emptyset    X
+otrng_global_state_prekey_profile_read_from ==0 X
+g_build_filename    emptyset    X
+otrng_plugin_conv_to_selected_context   ==0 
+time    <0  X
+gtk_entry_get_text  ==0 X
+purple_menu_action_new  ==0 X
+gtk_image_get_type  emptyset    X
+__isoc99_sscanf <0  X
+strchr  emptyset    X
+purple_conversation_get_name    ==0 X
+gtk_dialog_get_type emptyset    X
+purple_find_conversation_with_account   emptyset    X
+gtk_hbox_new    ==0 X
+gtk_events_pending  emptyset    X
+gtk_container_get_type  emptyset    X
+serv_send_im    emptyset    X
+otrng_plugin_conversation_to_trust  emptyset    
+otrng_client_profile_copy   emptyset    X
+gtk_menu_item_new_with_label    ==0 X
+purple_imgstore_add_with_id emptyset    X
+otrng_plugin_fingerprint_get_active emptyset    
+otrng_plugin_conv_to_context    ==0 
+otr_icon    emptyset    
+resent_msg_prefix_cb    emptyset    
+otrng_global_state_generate_forging_key ==0 X
+gtk_clist_new_with_titles   emptyset    X
+create_verify_fingerprint_label emptyset    
+otrng_fingerprint_get_by_fp emptyset    X
+g_hash_table_new_full   ==0 X
+purple_buddy_get_presence   ==0 X
+gtk_image_menu_item_new_with_label  ==0 X
+purple_prefs_exists emptyset    X
+umask   emptyset    X
+otrng_global_state_instag_generate_into ==0 X
+gtk_dialog_new_with_buttons ==0 X
+otrng_fingerprint_add   emptyset    X
+gtk_clist_get_row_data  ==0 X
+otrng_client_disconnect ==0 X
+xmpp_iq_received    emptyset    
+otrng_plugin_conversation_to_protocol_version   emptyset    
+otrng_global_state_new  ==0 X
+purple_strequal emptyset    X
+purple_normalize    emptyset    X
+otrng_prekey_client_request_storage_information emptyset    X
+purple_conversation_get_data    ==0 X
+gtk_widget_get_type emptyset    X
+otrng_global_state_fingerprints_v3_read_from    emptyset    X
+xmlnode_get_child   ==0 X
+otrng_plugin_fingerprint_to_otr_conversation    ==0 
+otrng_client_should_publish emptyset    X
+receiving_im_msg_cb emptyset    
+gtk_notebook_get_type   emptyset    X
+otrng_prekey_plugin_peers_unload    emptyset    
+g_hash_table_lookup_extended    emptyset    X
+g_hash_table_remove emptyset    X
+g_list_find emptyset    X
+g_list_append   emptyset    X
+gtk_label_get_type  emptyset    X
+otrng_global_state_private_key_v3_write_to  ==0 X
+otrng_global_state_private_key_v4_read_from ==0 X
+purple_blist_node_get_type  emptyset    X
+check_incoming_instance_change  emptyset    
+gtk_toggle_button_get_type  emptyset    X
+otrng_plugin_conversation_to_client emptyset    
+g_type_check_class_cast emptyset    X
+otrng_client_get_prekey_profile emptyset    X
+get_otrng_client    emptyset    
+purple_prefs_get_bool   emptyset    X
+otrng_global_state_prekey_profile_write_to  ==0 X
+g_signal_connect_data   emptyset    X
+purple_account_get_connection   ==0 X
+purple_conversation_to_plugin_conversation  ==0 
+gtk_combo_box_new_text  ==0 X
+gtk_menu_get_type   emptyset    X
+purple_init_plugin  emptyset    
+otrng_prekey_plugin_account_unload  emptyset    
+purple_accounts_find    ==0 X
+g_type_register_static  emptyset    X
+purple_blist_get_handle emptyset    X
+conversation_timestamp  emptyset    
+gtk_container_get_children  ==0 X
+button_pressed  emptyset    
+gtk_scrolled_window_new ==0 X
+otrng_plugin_conversation_new   ==0 
+purple_accounts_get_handle  emptyset    X
+otrng_plugin_proto_supports_otr emptyset    
+otrng_plugin_lookup_prekey_servers_for_self ==0 
+otrng_client_get    ==0 X
+g_hash_table_new    ==0 X
+get_domain_from_jid ==0 
+gtk_entry_get_type  emptyset    X
+gtk_check_button_new_with_label ==0 X
+otrng_plugin_fingerprints_unload    emptyset    
+tooltip_menu_get_box    emptyset    
+persistance_write_client_profile_FILEp  <0  
+max_message_size_cb ==0 
+gtk_check_menu_item_get_type    emptyset    X
+otrng_conversation_is_encrypted emptyset    X
+purple_buddy_get_account    ==0 X
+otrng_client_smp_start  emptyset    X
+purple_timeout_add_seconds  emptyset    X
+g_timeout_add_seconds   emptyset    X
+otrng_init  emptyset    X
+purple_buddy_get_contact    ==0 X
+otrng_gtk_dialog_display_otr_message    <0  
+g_hash_table_insert emptyset    X
+otrng_plugin_conversation_copy  ==0 
+protocol_and_account_to_purple_account  emptyset    
+gtk_bin_get_child   ==0 X
+otrng_global_state_expired_prekey_profile_write_to  ==0 X
+otrng_client_smp_abort  ==0 X
+gtk_scrolled_window_get_type    emptyset    X
+purple_find_buddies emptyset    X
+purple_conversation_new emptyset    X
+gtk_entry_new   ==0 X
+purple_account_get_protocol_id  ==0 X
+otrng_client_get_prekey_client  emptyset    X
+get_otrng_client_from_id    emptyset    
+gtk_image_new   ==0 X
+strlen  emptyset    X
+persistance_write_prekey_messages   <0  
+otrng_prekey_plugin_account_load    emptyset    
+__printf_chk    <0  X
+g_list_prepend  emptyset    X
+gtk_clist_append    <0  X
+purple_account_to_otrng_client  emptyset    
+gtk_progress_bar_get_type   emptyset    X
+gtk_bin_get_type    emptyset    X
+pidgin_blist_get_default_gtk_blist  emptyset    X
+g_param_spec_object emptyset    X
+purple_account_get_username ==0 X
+otrng_plugin_userinfo_to_conv   emptyset    
+pidgin_conversations_get_handle emptyset    X
+create_dialog   ==0 
+otrng_client_send_non_interactive_auth  ==0 X
+otrng_fingerprint_get_by_username   emptyset    X
+otrng_xstrndup  emptyset    X
+otrng_plugin_context_to_conv    emptyset    
+purple_plugin_is_loaded emptyset    X
+gtk_hseparator_new  ==0 X
+g_object_new    ==0 X
+otrng_dialog_get_ui_ops emptyset    
+define_policy   emptyset    
+otrng_global_state_fingerprints_v4_read_from    ==0 X
+gtk_signal_connect_full ==0 X
+purple_account_is_connected emptyset    X
+pidgin_conv_get_window  emptyset    X
+otrng_client_send   ==0 X
+gtk_label_new   ==0 X
+otrng_plugin_load   emptyset    
+gtk_notebook_new    ==0 X
+purple_signal_register  emptyset    X
+getline <0  X
+gtk_image_menu_item_new_with_mnemonic   ==0 X
+otrng_prekey_plugin_load    emptyset    
+malloc  ==0 X
+memcmp  emptyset    X
+g_list_remove   ==0 X
+gcry_control    ==0 X
+otrng_plugin_buddy_is_offline   emptyset    
+gtk_separator_menu_item_new ==0 X
+otrng_global_state_generate_private_key ==0 X
+gtk_tooltips_new    ==0 X
+purple_buddy_get_name   ==0 X
+g_strdup    emptyset    X
+g_strdup_printf emptyset    X
+otrng_plugin_lookup_prekey_servers_for  emptyset    
+gtk_main_iteration  emptyset    X
+otrng_global_state_expired_prekey_profile_read_from ==0 X
+purple_plugin_register  emptyset    X
+xmlnode_get_attrib  ==0 X
+otrng_global_state_generate_private_key_v3  ==0 X
+gtk_combo_box_get_type  emptyset    X
+otrng_xmalloc_z emptyset    X
+gtk_window_get_type emptyset    X
+pidgin_account_option_menu_get_selected emptyset    X
+otrng_client_profile_should_publish emptyset    X
+otrng_client_get_conversation   ==0 X
+fopen   ==0 X
+otrng_prekey_profile_should_publish emptyset    X
+purple_value_new    ==0 X
+otrng_global_state_private_key_v3_read_from ==0 X
+purple_account_supports_offline_message emptyset    X
+pidgin_create_prpl_icon emptyset    X
+pidgin_account_option_menu_new  ==0 X
+purple_conversation_to_otrng_conversation   emptyset    
+otrng_prekey_client_publish emptyset    X
+otrng_prekey_ensemble_validate  ==0 X
+otrng_plugin_context_to_trust   emptyset    
+gtk_progress_bar_new    ==0 X
+gdk_pixbuf_new_from_xpm_data    ==0 X
+client_id_to_purple_account emptyset    
+g_type_name emptyset    X
+persistance_write_expired_prekey_profile    <0  
+otrng_fingerprint_hash_to_human ==0 X
+tooltip_menu_get_gtype  emptyset    
+g_hash_table_lookup emptyset    X
+gtk_button_get_type emptyset    X
+gtk_box_get_type    emptyset    X
+otrng_prekey_plugin_peers_load  emptyset    
+g_malloc    emptyset    X
+gtk_frame_new   ==0 X
+gtk_image_menu_item_get_type    emptyset    X
+persistance_write_private_keys_v3   <0  
+otrng_prekey_client_retrieve_prekeys    emptyset    X
+persistance_write_expired_client_profile    <0  
+purple_conversation_get_type    emptyset    X
+gtk_misc_get_type   emptyset    X
+otrng_client_get_client_profile emptyset    X
+otrng_conversation_is_finished  emptyset    X
+otrl_privkey_fingerprint    emptyset    X
+gtk_label_get_label ==0 X
+otrng_fingerprint_get_current   ==0 X
+gtk_table_new   ==0 X
+g_hash_table_replace    emptyset    X
+purple_presence_is_online   emptyset    X
+xmlnode_new_child   ==0 X
+otrng_plugin_unload emptyset    
+otrng_global_state_fingerprints_v4_write_to ==0 X
+purple_find_prpl    emptyset    X
+g_memdup    emptyset    X
+strtol  emptyset    X
+otrng_client_query_message  ==0 X
+g_markup_printf_escaped emptyset    X
+otrl_context_find   emptyset    X
+otrng_global_state_generate_client_profile  ==0 X
+gtk_toggle_button_get_active    emptyset    X
+persistance_write_prekey_profile_FILEp  <0  
+otrng_global_state_prekey_messages_write_to ==0 X
+g_type_check_instance_cast  emptyset    X
+otrng_plugin_jabber_lookup_prekey_servers_for   ==0 
+purple_plugins_find_with_id emptyset    X
+otrng_global_state_forging_key_write_to ==0 X
+gtk_menu_item_new_with_mnemonic ==0 X
+xmlnode_new ==0 X
+otrng_plugin_conv_to_selected_instag    emptyset    
+otrng_global_state_fingerprints_v3_write_to ==0 X
+otrng_global_state_forging_key_read_from    ==0 X
+pidgin_conv_window_get_active_gtkconv   ==0 X
+g_type_check_instance_is_a  emptyset    X
+gtk_button_new  ==0 X
+purple_connection_get_account   ==0 X
+gtk_object_get_type emptyset    X
+otrng_global_state_client_profile_write_to  ==0 X
+purple_get_core emptyset    X
+gtk_image_new_from_stock    ==0 X
+gtk_image_new_from_pixbuf   ==0 X
+otrng_prekey_plugin_unload  emptyset    
+gtk_combo_box_get_active    emptyset    X
+otrng_global_state_generate_prekey_profile  ==0 X
+otrng_client_receive    ==0 X
+process_receiving_im    emptyset    
+persistance_write_forging_key   <0  
+otrng_client_smp_respond    ==0 X
+purple_connections_get_handle   emptyset    X
+otrng_global_state_private_key_v4_write_to  ==0 X
+otrng_gtk_ui_make_widget    ==0 
+build_prekey_publication_message_cb emptyset    
+xmlnode_get_next_twin   ==0 X
+otrng_gtk_ui_get_ui_ops emptyset    
+__strdup    ==0 X
+g_type_class_peek_parent    ==0 X
+fclose  <0  X
+get_context_instance_to_index   ==0 
+g_dgettext  emptyset    X
+strncpy emptyset    X
+gtk_notebook_append_page    <0  X
+gtk_menu_new    ==0 X
+otrng_ui_get_ui_ops emptyset    
+g_list_last ==0 X
+purple_buddy_get_contact_alias  emptyset    X
+otrng_client_get_our_fingerprint    ==0 X
+gtk_menu_item_get_type  emptyset    X
+otrng_global_state_client_profile_read_from ==0 X
+purple_conversation_get_account ==0 X
+otrng_global_state_expired_client_profile_read_from ==0 X
+otrng_prekey_client_receive emptyset    X
+persistance_write_privkey_v4_FILEp  <0  
+otr_error_message_cb    ==0 
+gtk_vbox_new    ==0 X
+otrng_dialog_display_otr_message    !=0 
+gtk_menu_shell_get_type emptyset    X
+otrv4_client_adapter_privkey_fingerprint    ==0 
+gtk_clist_get_type  emptyset    X
+purple_signal_connect   ==0 X
+otrng_global_state_expired_client_profile_write_to  ==0 X
+otrng_plugin_fingerprints_load  emptyset    

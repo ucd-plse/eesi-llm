@@ -1,0 +1,71 @@
+lfs_emubd_prog  <0  
+lfs_emubd_read  ==0 
+lfs_emubd_create    <0  
+lfs_mount   <0  
+lfs_format  <0  
+lfs_rename  <0  
+lfs_remove  <0  
+lfs_stat    <0  
+lfs_file_rewind <0  
+lfs_file_seek   <0  
+lfs_dir_seek    <0  
+lfs_dir_read    <=0 
+lfs_dir_close   emptyset    
+lfs_mkdir   <0  
+lfs_dir_alloc   <0  
+fclose  <0  X
+lfs_emubd_erase <0  
+strspn  emptyset    X
+lfs_alloc   <0  
+lfs_cache_prog  <0  
+lfs_alloc_lookahead emptyset    
+fread_unlocked  <0  X
+lfs_dir_commit  <0  
+lfs_dir_open    <0  
+__errno_location    emptyset    X
+strcspn emptyset    X
+feof    emptyset    X
+strlen  emptyset    X
+lfs_file_truncate   <0  
+strcpy  emptyset    X
+lfs_file_tell   emptyset    
+unlink  <0  X
+lfs_dir_next    <0  
+fseek   <0  X
+lfs_dir_tell    emptyset    
+lfs_file_flush  <0  
+lfs_file_open   <0  
+lfs_dir_fetch   <0  
+lfs_dir_rewind  <0  
+malloc  ==0 X
+lfs_cache_read  <0  
+lfs_file_size   emptyset    
+lfs_ctz_find    <0  
+lfs_bd_crc  <0  
+fopen   ==0 X
+strchr  emptyset    X
+memcmp  emptyset    X
+lfs_dir_find    <0  
+lfs_cache_flush <0  
+stat    <0  X
+lfs_dir_append  <0  
+lfs_deorphan    <0  
+lfs_file_close  <0  
+lfs_file_relocate   <0  
+fwrite_unlocked emptyset    X
+lfs_file_read   <0  
+lfs_ctz_traverse    <0  
+lfs_emubd_sync  <0  
+lfs_pred    <0  
+printf  <0  X
+lfs_dir_remove  <0  
+lfs_init    <0  
+mkdir   <0  X
+lfs_cache_cmp   <0  
+lfs_parent  <0  
+lfs_traverse    <0  
+lfs_file_write  <0  
+lfs_moved   <0  
+snprintf    <0  X
+lfs_file_sync   <0  
+lfs_file_opencfg    <0  

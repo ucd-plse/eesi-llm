@@ -1,0 +1,133 @@
+gzflush <0  
+gzputc  <0  
+gzwrite ==0 
+gzerror emptyset    
+gzoffset    <0  
+gzoffset64  <0  
+gztell  <0  
+gztell64    <0  
+gzseek  <0  
+gzrewind    <0  
+gzdopen ==0 
+gzopen64    ==0 
+compressBound   emptyset    
+compress    <0  
+compress2   <0  
+inflateCodesUsed    <0  
+gzprintf    <0  
+inflateUndermine    <0  
+inflateCopy <0  
+inflateSyncPoint    <0  
+inflateSync <0  
+inflateMark emptyset    
+inflateSetDictionary    <0  
+inflateGetDictionary    <0  
+gzopen  ==0 
+bi_reverse  emptyset    
+gzread  <0  
+gz_write    ==0 
+inflateInit_    <0  
+deflateParams   <0  
+gz_init <0  
+gzclose <0  
+zlibCompileFlags    emptyset    
+read_buf    emptyset    
+gz_load <0  
+snprintf    <0  X
+vsnprintf   <0  X
+inflateGetHeader    <0  
+deflateInit2_   <0  
+gz_fetch    <0  
+memcmp  emptyset    X
+strerror    !=0 X
+malloc  ==0 X
+gzvprintf   <0  
+gzputs  <0  
+close   <0  X
+gzfwrite    ==0 
+open    <0  X
+deflateTune <0  
+inflateBackEnd  <0  
+crc32_combine   emptyset    
+inflatePrime    <0  
+inflate_table   <0  
+gzungetc    <0  
+adler32_combine64   emptyset    
+gf2_matrix_times    emptyset    
+zcalloc ==0 
+inflateInit2_   <0  
+read    <0  X
+inflateStateCheck   emptyset    
+crc32   emptyset    
+deflateResetKeep    <0  
+write   <0  X
+fprintf <0  X
+deflateStateCheck   >0  
+strlen  emptyset    X
+memchr  emptyset    X
+deflate <0  
+inflateEnd  <0  
+gzfread ==0 
+adler32 emptyset    
+main    emptyset    
+adler32_z   emptyset    
+lseek64 <0  X
+_tr_tally   emptyset    
+gzeof   emptyset    
+inflateValidate <0  
+inflate <0  
+deflateGetDictionary    <0  
+_IO_putc    <0  X
+crc32_z emptyset    
+deflateReset    <0  
+__errno_location    emptyset    X
+crc32_combine_  emptyset    
+gzdirect    emptyset    
+build_bl_tree   emptyset    
+detect_data_type    emptyset    
+gz_decomp   <0  
+gzclose_w   <0  
+deflateSetHeader    <0  
+gzgetc  <0  
+updatewindow    emptyset    
+deflateSetDictionary    <0  
+inflateResetKeep    <0  
+gzbuffer    <0  
+deflate_slow    emptyset    
+gz_look <0  
+gzsetparams <0  
+syncsearch  emptyset    
+gz_skip <0  
+crc32_big   emptyset    
+gzgetc_ <0  
+inflateReset    <0  
+gz_avail    <0  
+crc32_little    emptyset    
+gz_open ==0 
+gz_read ==0 
+deflate_huff    emptyset    
+deflate_rle emptyset    
+inflateReset2   <0  
+longest_match   emptyset    
+inflateBackInit_    <0  
+get_crc_table   emptyset    
+deflate_stored  emptyset    
+deflateEnd  <0  
+deflateInit_    <0  
+gzclose_r   <0  
+uncompress2 <0  
+crc32_combine64 emptyset    
+gzseek64    <0  
+uncompress  <0  
+deflate_fast    emptyset    
+deflatePending  <0  
+deflatePrime    <0  
+__ctype_b_loc   emptyset    X
+gzgets  ==0 
+deflateBound    emptyset    
+adler32_combine emptyset    
+gz_comp <0  
+zlibVersion emptyset    
+deflateCopy <0  
+zError  emptyset    
+inflateBack <0  

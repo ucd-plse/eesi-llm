@@ -1,0 +1,1232 @@
+mbedtls_ssl_cache_set   >0  
+mbedtls_x509write_crt_set_authority_key_identifier  <0  
+mbedtls_rsa_rsaes_oaep_encrypt  <0  
+unhexify    emptyset    
+psa_tls12_prf_set_label <0  
+des_crypt_cbc_wrap  <0  
+mbedtls_ssl_set_hs_own_cert <0  
+mbedtls_ssl_session_reset   <0  
+mbedtls_cipher_info_from_string emptyset    
+psa_get_key_bits    emptyset    
+mbedtls_ccm_star_auth_decrypt   <0  
+mbedtls_rsa_rsassa_pss_verify_ext   <0  
+mbedtls_mpi_add_mod <0  
+ssl_parse_extended_ms_ext   <0  
+psa_mac_abort   <0  
+rnd_std_rand    emptyset    
+mbedtls_ssl_conf_dh_param   <0  
+rnd_buffer_rand emptyset    
+mbedtls_ecp_tls_read_group  <0  
+camellia_crypt_cfb128_wrap  <0  
+psa_cipher_set_iv   <0  
+pk_get_pk_alg   <0  
+psa_validate_key_policy <0  
+mbedtls_ssl_get_ciphersuite emptyset    
+mbedtls_sha1_update_ret <0  
+mbedtls_rsa_export  <0  
+mbedtls_rsa_validate_params <0  
+mbedtls_ssl_set_session <0  
+ecdh_setup_internal <0  
+psa_key_derivation_hkdf_read    <0  
+strstr  emptyset    X
+x509_get_certificate_policies   <0  
+xts_aes_setkey_enc_wrap <0  
+zero_alloc  emptyset    
+close   <0  X
+ssl_compute_master  <0  
+mbedtls_xtea_crypt_cbc  <0  
+F   emptyset    
+mbedtls_cipher_write_tag    <0  
+mbedtls_pkcs12_pbe_sha1_rc4_128 <0  
+mbedtls_ctr_drbg_update_seed_file   <0  
+psa_mac_verify_finish   <0  
+arc4_crypt_stream_wrap  emptyset    
+eckey_can_do    emptyset    
+ssl_session_load    <0  
+mbedtls_des3_set3key_enc    emptyset    
+ccm_ctx_alloc   ==0 
+mbedtls_camellia_crypt_cbc  <0  
+pk_group_id_from_group  <0  
+mbedtls_pem_read_buffer <0  
+asn1_get_nonzero_mpi    <0  
+ssl_write_server_hello  <0  
+psa_hash_abort  <0  
+des3_set2key_enc_wrap   emptyset    
+blowfish_ctx_alloc  ==0 
+ssl_ticket_update_keys  <0  
+ssl_parse_alpn_ext  <0  
+ssl_cookie_check_dummy  <0  
+mbedtls_ecp_point_write_binary  <0  
+ssl_parse_server_key_exchange   <0  
+pkcs12_pbe_derive_key_iv    <0  
+mpi_uint_bigendian_to_host  emptyset    
+camellia_crypt_ecb_wrap <0  
+ssl_handshake_init  <0  
+mbedtls_x509_write_sig  <0  
+mbedtls_asn1_find_named_data    emptyset    
+x509_date_is_valid  <0  
+mbedtls_asn1_write_int  <0  
+mbedtls_ecp_gen_privkey <0  
+mbedtls_x509write_csr_set_ns_cert_type  <0  
+mbedtls_ssl_renegotiate <0  
+convert_params  <0  
+psa_copy_key_material   <0  
+mbedtls_x509_write_names    <0  
+psa_aead_encrypt    <0  
+mbedtls_x509_crt_parse_file <0  
+mbedtls_net_set_nonblock    <0  
+mbedtls_ssl_own_cert    emptyset    
+mbedtls_x509_crl_parse_file <0  
+psa_hash_verify <0  
+mbedtls_ssl_get_ciphersuite_name    emptyset    
+mgf_mask    <0  
+ssl_parse_certificate_chain <0  
+mbedtls_oid_get_sig_alg_desc    <0  
+dummy_send  emptyset    
+if_int  emptyset    
+ssl_prepare_server_key_exchange <0  
+mbedtls_cipher_finish   <0  
+mbedtls_camellia_setkey_enc <0  
+mbedtls_x509_parse_subject_alt_name <0  
+mbedtls_mpi_safe_cond_swap  <0  
+psa_ecdsa_sign  <0  
+mbedtls_ecp_tls_read_group_id   <0  
+mbedtls_hmac_drbg_random    <0  
+ssl_write_new_session_ticket    <0  
+ecp_normalize_jac   <0  
+pk_write_rsa_pubkey <0  
+asn1_find_named_data    emptyset    
+mbedtls_x509write_crt_set_extension <0  
+psa_key_derivation_output_key   <0  
+mbedtls_mpi_cmp_mpi <0  
+mbedtls_ssl_conf_own_cert   <0  
+mbedtls_ssl_prepare_handshake_record    <0  
+mbedtls_sha256_ret  <0  
+psa_key_algorithm_permits   emptyset    
+psa_mac_setup   <0  
+select  <0  X
+ssl_parse_certificate_verify    <0  
+x509_get_attr_type_value    <0  
+mbedtls_cipher_info_from_values ==0 
+exercise_mac_setup  ==0 
+mbedtls_sha512_finish_ret   <0  
+mbedtls_oid_get_cipher_alg  <0  
+psa_crypto_init <0  
+mbedtls_ssl_write_certificate   <0  
+pem_aes_decrypt <0  
+mbedtls_ecdh_make_public    <0  
+psa_is_key_slot_occupied    emptyset    
+mbedtls_ssl_ciphersuite_uses_ecdh   emptyset    
+ferror  emptyset    X
+mbedtls_asn1_write_octet_string <0  
+mbedtls_rsa_pkcs1_verify    <0  
+mbedtls_md_setup    <0  
+mbedtls_pk_decrypt  <0  
+signal  <0  X
+mbedtls_entropy_update_manual   <0  
+psa_destroy_key <0  
+ssl_parse_signature_algorithm   <0  
+mbedtls_mpi_write_string    <0  
+vsnprintf   <0  X
+mbedtls_md_list emptyset    
+ecdsa_sign_wrap <0  
+mbedtls_asn1_write_mpi  <0  
+mbedtls_chacha20_setkey <0  
+mbedtls_arc4_self_test  >0  
+mbedtls_ctr_drbg_self_test  >0  
+mbedtls_ecp_read_key    <0  
+mbedtls_platform_entropy_poll   <0  
+x509_crt_check_signature    <0  
+mbedtls_aes_setkey_dec  <0  
+mbedtls_to_psa_error    <0  
+mbedtls_mpi_bitlen  emptyset    
+ssl_parse_server_psk_hint   <0  
+x509_get_ext_key_usage  <0  
+mbedtls_cipher_update_ad    <0  
+mbedtls_oid_get_oid_by_ec_grp   <0  
+mbedtls_pkcs5_pbes2 <0  
+pk_write_ec_param   <0  
+mbedtls_ecdsa_read_signature    <0  
+ssl_write_server_hello_done <0  
+mbedtls_ssl_ciphersuite_uses_ecdhe  emptyset    
+mbedtls_sha1_self_test  >0  
+psa_generate_key    <0  
+blowfish_crypt_cbc_wrap <0  
+mbedtls_ssl_write   <0  
+mbedtls_mpi_add_mpi <0  
+mbedtls_ssl_get_ciphersuite_sig_alg emptyset    
+fprintf <0  X
+mbedtls_mpi_write_binary_le <0  
+mbedtls_mpi_sub_abs <0  
+ssl_generate_random <0  
+restore_output  <0  
+tls_prf_sha384  <0  
+ssl_mfl_code_to_length  emptyset    
+mbedtls_ecp_mul <0  
+mbedtls_des_crypt_ecb   emptyset    
+des3_crypt_cbc_wrap <0  
+ssl_parse_max_fragment_length_ext   <0  
+dispatch_test   emptyset    
+mbedtls_psa_crypto_configure_entropy_sources    <0  
+pk_parse_key_sec1_der   <0  
+x509_get_other_name <0  
+rsa_check_pair_wrap <0  
+mbedtls_gcm_starts  <0  
+mbedtls_mpi_cmp_int <0  
+mbedtls_asn1_get_bool   <0  
+mbedtls_ecp_gen_keypair_base    <0  
+mbedtls_sha1_ret    <0  
+ssl_conf_has_psk_or_cb  emptyset    
+mbedtls_x509_get_rsassa_pss_params  <0  
+mbedtls_ssl_context_save    <0  
+mbedtls_oid_get_x509_ext_type   <0  
+mbedtls_sha256_finish_ret   <0  
+mbedtls_ecp_gen_keypair <0  
+psa_cipher_finish   <0  
+aes_crypt_ofb_wrap  <0  
+oid_sig_alg_from_asn1   emptyset    
+mbedtls_rsa_rsassa_pss_sign <0  
+psa_hash_compute    <0  
+ssl_double_retransmit_timeout   emptyset    
+psa_get_key_type    emptyset    
+blowfish_crypt_cfb64_wrap   <0  
+mbedtls_sha512_ret  <0  
+psa_sign_hash   <0  
+ctr_drbg_self_test_entropy  emptyset    
+psa_restrict_key_policy <0  
+mbedtls_md_info_from_psa    emptyset    
+mbedtls_rsa_deduce_primes   <0  
+des3_set3key_enc_wrap   emptyset    
+psa_calculate_key_bits  <0  
+mbedtls_md5_update_ret  <0  
+mbedtls_aesni_has_support   emptyset    
+mbedtls_chachapoly_encrypt_and_tag  <0  
+mbedtls_chachapoly_update   <0  
+exercise_export_public_key  ==0 
+mbedtls_version_check_feature   emptyset    
+mbedtls_cipher_reset    <0  
+psa_get_rsa_public_exponent <0  
+mbedtls_cipher_crypt    <0  
+mbedtls_gcm_auth_decrypt    <0  
+mbedtls_cipher_set_iv   <0  
+mbedtls_x509_crl_parse  <0  
+x509_crt_verifycrl  <0  
+mbedtls_x509_time_is_past   emptyset    
+camellia_crypt_cbc_wrap <0  
+ecdh_gen_public_restartable <0  
+ssl_get_reassembly_buffer_size  emptyset    
+mbedtls_ripemd160_self_test >0  
+mbedtls_x509_crl_parse_der  <0  
+mbedtls_asn1_write_tagged_string    <0  
+mbedtls_pkcs12_pbe  <0  
+mbedtls_gcm_self_test   !=0 
+mbedtls_hmac_drbg_seed  <0  
+ssl_prepare_record_content  <0  
+mbedtls_camellia_crypt_ecb  <0  
+mbedtls_asn1_get_bitstring_null <0  
+psa_remove_key_data_from_memory <0  
+mbedtls_ssl_check_record    <0  
+ssl_cookie_write_dummy  <0  
+get_pkcs_padding    <0  
+mbedtls_ssl_in_hdr_len  emptyset    
+mbedtls_chachapoly_finish   <0  
+ssl_parse_supported_point_formats   <0  
+mbedtls_x509write_crt_set_key_usage <0  
+mbedtls_sha256_update_ret   <0  
+arc4_ctx_alloc  ==0 
+mbedtls_x509write_crt_set_subject_key_identifier    <0  
+getsockname <0  X
+mbedtls_timing_self_test    >0  
+mbedtls_ssl_read_record <0  
+key_agreement_with_self <0  
+ecp_mod_p448    <0  
+run_test_snprintf   emptyset    
+mbedtls_platform_gmtime_r   ==0 
+mbedtls_ssl_sig_from_pk_alg emptyset    
+psa_asymmetric_encrypt  <0  
+mbedtls_cipher_setup    <0  
+mbedtls_rsa_import  <0  
+psa_get_key_usage_flags emptyset    
+mbedtls_ssl_write_finished  <0  
+mbedtls_des3_set2key_enc    emptyset    
+derive_mpi  <0  
+mbedtls_pk_debug    <0  
+mbedtls_ccm_encrypt_and_tag <0  
+mbedtls_pk_write_key_der    <0  
+ssl_get_hs_frag_off emptyset    
+read    <0  X
+mbedtls_blowfish_crypt_cfb64    <0  
+ssl_context_load    <0  
+mbedtls_rsa_export_raw  <0  
+mbedtls_ecp_point_read_string   <0  
+mbedtls_ecp_point_read_binary   <0  
+ssl_parse_hello_verify_request  <0  
+aes_setkey_dec_wrap <0  
+fwrite  emptyset    X
+mbedtls_mpi_mul_int <0  
+strncpy emptyset    X
+mbedtls_ssl_set_hs_psk  <0  
+psa_key_derivation_abort    <0  
+listen  <0  X
+x509_get_basic_constraints  <0  
+ecp_mul_mxz <0  
+mbedtls_pkcs5_self_test >0  
+ccm_auth_crypt  <0  
+chachapoly_crypt_and_tag    <0  
+syscall <0  X
+ecdsa_can_do    emptyset    
+camellia_setkey_dec_wrap    <0  
+mbedtls_ssl_dtls_record_replay_check    <0  
+mbedtls_pk_load_file    <0  
+mbedtls_ssl_get_record_expansion    <0  
+mbedtls_ssl_dtls_replay_check   emptyset    
+mbedtls_asn1_write_oid  <0  
+mbedtls_pk_verify   <0  
+verify_int  <0  
+mbedtls_md5_starts_ret  emptyset    
+ccm_aes_setkey_wrap <0  
+mbedtls_internal_aes_decrypt    emptyset    
+ssl_check_record_type   <0  
+psa_hash_setup  <0  
+fileno  emptyset    X
+socket  <0  X
+x509_profile_check_md_alg   emptyset    
+mbedtls_oid_get_pkcs12_pbe_alg  <0  
+mbedtls_x509write_csr_set_subject_name  <0  
+mbedtls_mpi_shift_l_mod <0  
+psa_cipher_abort    <0  
+accept  <0  X
+ecp_double_add_mxz  <0  
+x509_info_cert_type emptyset    
+ecp_mod_p256    <0  
+fflush  <0  X
+mbedtls_oid_get_extended_key_usage  <0  
+psa_read_rsa_exponent   <0  
+mbedtls_ecdh_can_do emptyset    
+rand    emptyset    X
+aes_crypt_ctr_wrap  <0  
+main    emptyset    
+mbedtls_x509_crt_parse  <0  
+psa_close_key   <0  
+mbedtls_ssl_ciphersuite_no_pfs  emptyset    
+mbedtls_ssl_safer_memcmp    emptyset    
+ecp_mod_p255    <0  
+mbedtls_ecdh_compute_shared <0  
+mbedtls_chacha20_starts <0  
+ecp_check_pubkey_sw <0  
+ssl_cookie_hmac <0  
+mbedtls_rsa_self_test   >0  
+entropy_update  <0  
+rsa_alt_decrypt_wrap    <0  
+mbedtls_asn1_write_bool <0  
+mbedtls_pk_verify_ext   <0  
+pk_parse_key_pkcs8_encrypted_der    <0  
+psa_rsa_verify  <0  
+ssl_populate_transform  <0  
+mbedtls_ssl_get_current_mtu emptyset    
+mbedtls_ssl_write_handshake_msg <0  
+mbedtls_ssl_ep_len  emptyset    
+ecdsa_verify_wrap   <0  
+mbedtls_ecp_point_cmp       
+ssl_write_encrypted_pms <0  
+mbedtls_ssl_ciphersuite_from_id ==0 
+mbedtls_dhm_calc_secret <0  
+printf  <0  X
+mbedtls_x509_dn_gets    <0  
+mbedtls_camellia_setkey_dec <0  
+ssl_parse_encrypted_pms <0  
+mbedtls_ssl_write_record    <0  
+ecp_add_mixed   <0  
+psa_hkdf_input  <0  
+mbedtls_hmac_drbg_reseed    <0  
+xts_aes_ctx_alloc   ==0 
+psa_get_key_algorithm   emptyset    
+mbedtls_x509_crt_is_revoked emptyset    
+ssl_srv_check_client_no_crt_notification    emptyset    
+mbedtls_cipher_get_cipher_mode  emptyset    
+asn1_write_10x  <0  
+mbedtls_ecdh_make_params    <0  
+mbedtls_x509_crt_verify_info    <0  
+pkcs5_parse_pbkdf2_params   <0  
+mbedtls_md_info_from_string ==0 
+mbedtls_sha1_finish_ret <0  
+mbedtls_mpi_cmp_abs <0  
+psa_copy_key    <0  
+mbedtls_mpi_set_bit <0  
+mbedtls_x509write_csr_der   <0  
+rsa_alt_get_bitlen  emptyset    
+ssl_check_ctr_renegotiate   <0  
+psa_asymmetric_sign <0  
+mbedtls_asn1_traverse_sequence_of   <0  
+mbedtls_mpi_lsb <0  
+psa_get_key_from_slot   <0  
+des3_set3key_dec_wrap   emptyset    
+strncmp emptyset    X
+ecdh_get_params_internal    <0  
+ssl_parse_renegotiation_info    <0  
+mbedtls_pk_parse_public_keyfile <0  
+mbedtls_hkdf_extract    <0  
+mbedtls_pk_rsa  emptyset    
+mbedtls_ssl_parse_change_cipher_spec    <0  
+fgets   ==0 X
+mbedtls_rsa_pkcs1_encrypt   <0  
+x509_profile_check_pk_alg   emptyset    
+psa_mac_init    <0  
+mbedtls_gcm_crypt_and_tag   <0  
+mbedtls_pk_verify_restartable   <0  
+mbedtls_aes_self_test   <0  
+mbedtls_rsa_rsassa_pss_verify   <0  
+mbedtls_x509_serial_gets    <0  
+rsa_rsassa_pkcs1_v15_encode <0  
+mbedtls_ssl_conf_alpn_protocols <0  
+ecp_select_comb <0  
+ssl_write_split <0  
+getrandom_wrapper   <0  
+aes_crypt_xts_wrap  <0  
+rsa_get_bitlen  emptyset    
+mbedtls_md_hmac_starts  <0  
+x509_memcasecmp emptyset    
+mbedtls_rsa_check_pubkey    <0  
+mbedtls_ssl_conf_dh_param_ctx   <0  
+ecdh_make_params_internal   <0  
+mbedtls_asn1_write_printable_string <0  
+mbedtls_base64_encode   <0  
+exercise_cipher_setup   ==0 
+mbedtls_ssl_setup   <0  
+x509_attr_descr_from_name   ==0 
+mbedtls_ssl_encrypt_buf <0  
+aes_crypt_cbc_wrap  <0  
+x509_name_cmp   emptyset    
+mbedtls_mpi_read_file   <0  
+mbedtls_pk_write_pubkey <0  
+x509_get_ns_cert_type   <0  
+fread   ==0 X
+mbedtls_asn1_get_alg    <0  
+asn1_get_sequence_of_cb <0  
+psa_hmac_setup_internal <0  
+mbedtls_ssl_ciphersuite_uses_dhe    emptyset    
+mbedtls_xtea_self_test  >0  
+ecdsa_sign_det_restartable  <0  
+x509_crt_verify_chain   <0  
+mul64   emptyset    
+mbedtls_hmac_drbg_self_test >0  
+mbedtls_x509write_crt_set_issuer_name       
+mbedtls_hmac_drbg_update_seed_file      
+oid_x509_ext_from_asn1      
+mbedtls_entropy_func        
+aes_ctx_alloc       
+mbedtls_pk_ec   emptyset    
+calloc      X
+mpi_get_digit       
+mbedtls_x509_crl_info   <0  
+mbedtls_hmac_drbg_write_seed_file   <0  
+dummy_random    <0  
+mbedtls_poly1305_finish     
+psa_key_derivation_check_input_type     
+mbedtls_ecp_gen_key <0  
+ssl_consume_current_message     
+mbedtls_pk_setup_rsa_alt        
+mbedtls_ecp_mul_restartable     
+parse_arguments     
+write       X
+ssl_check_peer_crt_unchanged        
+psa_asymmetric_verify       
+pkcs12_parse_pbe_params <0  
+ssl_pick_cert       
+mbedtls_rsa_gen_key     
+mbedtls_entropy_add_source      
+mbedtls_asn1_write_raw_buffer       
+mbedtls_rsa_rsassa_pkcs1_v15_sign       
+exercise_aead_key   ==0 
+pem_des_decrypt     
+ssl_ciphersuite_match       
+psa_get_key_slot    <0  
+x509_write_time     
+psa_set_key_domain_parameters       
+mbedtls_oid_get_ec_grp      
+x509_crt_find_parent        
+ssl_ticket_select_key       
+mbedtls_md_hmac <0  
+mbedtls_mpi_mod_mpi <0  
+mpi_check_small_factors     
+mbedtls_mpi_shrink  <0  
+mbedtls_pk_get_len      
+psa_key_derivation_input_internal       
+psa_aead_decrypt        
+mbedtls_oid_get_oid_by_sig_alg  <0  
+ssl_load_buffered_message       
+check_key_attributes_sanity     
+ssl_write_hello_verify_request      
+mbedtls_sha512_update_ret   <0  
+mbedtls_oid_get_md_hmac     
+mbedtls_rsa_deduce_crt      
+mbedtls_ecp_tls_read_point  <0  
+pem_pbkdf1      
+mbedtls_mpi_sub_int <0  
+mbedtls_timing_get_delay    emptyset    
+mbedtls_mpi_write_binary    <0  
+mbedtls_mpi_read_binary <0  
+ssl_get_next_record     
+chachapoly_setkey_wrap      
+mbedtls_mpi_shift_l <0  
+eckey_alloc_wrap        
+ssl_parse_truncated_hmac_ext        
+dummy_constant_time     
+mbedtls_ssl_hs_hdr_len      
+ecp_use_curve25519      
+ecdh_calc_secret_internal       
+mbedtls_ecdsa_sign_det_ext      
+mbedtls_mpi_read_string <0  
+feof        X
+mbedtls_hardclock_poll      
+mbedtls_pkcs12_derivation   <0  
+psa_key_derivation_key_agreement        
+ecp_mul_comb_after_precomp      
+mbedtls_ecp_mul_shortcuts       
+ssl_tls12prf_from_cs        
+x509_get_crt_ext        
+mbedtls_mpi_size    emptyset    
+mbedtls_md_process  <0  
+mbedtls_dhm_parse_dhmfile       
+mbedtls_des_crypt_cbc   <0  
+mbedtls_mpi_grow    <0  
+x509_check_time     
+psa_key_derivation_input_bytes      
+mbedtls_ssl_fetch_input     
+ssl_append_key_cert <0  
+mbedtls_mpi_sub_mod <0  
+chacha20_stream_wrap    <0  
+psa_get_key_attributes      
+mbedtls_ssl_get_session     
+mbedtls_mpi_inv_mod <0  
+ecp_normalize_jac_many      
+mbedtls_ssl_decrypt_buf <0  
+mbedtls_ecdsa_from_keypair      
+mbedtls_gcm_finish      
+getenv      X
+mbedtls_ssl_close_notify        
+mbedtls_pk_parse_subpubkey      
+mbedtls_ecdsa_genkey        
+mbedtls_ssl_config_defaults     
+mbedtls_hmac_drbg_seed_buf  <0  
+mbedtls_x509_get_name   <0  
+mbedtls_x509_get_alg        
+ssl_decrypt_encrypted_pms       
+mbedtls_ripemd160_ret       
+ssl_buffer_future_record        
+mbedtls_x509_write_extensions       
+mbedtls_dhm_self_test       
+mbedtls_md_update   <0  
+psa_key_derivation_set_capacity     
+strrchr     X
+dhm_check_range     
+mbedtls_mpi_get_bit <0  
+psa_cipher_encrypt_setup        
+psa_key_derivation_tls12_prf_read       
+mbedtls_ecp_curve_list  emptyset    
+mbedtls_strerror        
+mbedtls_net_bind    <0  
+ecp_mod_p192        
+mbedtls_hmac_drbg_update_ret        
+mbedtls_rsa_pkcs1_sign      
+psa_validate_persistent_key_parameters      
+mbedtls_des_setkey_enc  emptyset    
+dhm_read_bignum     
+psa_mac_finish_internal     
+ecp_mod_p256k1      
+blowfish_crypt_ecb_wrap     
+mbedtls_x509_get_sig    <0  
+ssl_parse_certificate_request       
+psa_cipher_generate_iv      
+oid_certificate_policies_from_asn1      
+psa_get_key_enrollment_algorithm        
+x509_crt_verify_restartable_ca_cb       
+psa_import_key_into_slot        
+mbedtls_internal_aes_encrypt        
+ssl_conf_set_psk_identity       
+x509_string_cmp     
+mbedtls_dhm_read_params <0  
+ecp_use_curve448        
+ssl_write_client_hello      
+mbedtls_x509write_crt_set_validity      
+mbedtls_pk_info_from_type       
+mbedtls_x509_get_serial     
+mbedtls_x509_crt_verify_with_profile        
+mbedtls_oid_get_certificate_policies    <0  
+ssl_write_certificate_request       
+ssl_buffer_make_space       
+mbedtls_x509_self_test  <0  
+ssl_parse_supported_elliptic_curves     
+ccm_camellia_setkey_wrap    <0  
+ssl_ticket_gen_key      
+mbedtls_ssl_session_copy    <0  
+mbedtls_chachapoly_self_test    <0  
+test_operations_on_invalid_handle       
+mbedtls_ssl_md_alg_from_hash        
+tls_prf_get_type        
+mbedtls_asn1_store_named_data       
+mem_is_char     
+get_zeros_padding       
+mbedtls_x509write_crt_set_serial        
+mbedtls_md_file     
+mbedtls_ssl_ticket_write    <0  
+mbedtls_aes_xts_setkey_dec  <0  
+mbedtls_pkcs5_pbkdf2_hmac       
+psa_generate_derived_key_internal       
+mbedtls_camellia_crypt_cfb128   <0  
+mbedtls_xtea_crypt_ecb  emptyset    
+mbedtls_aes_crypt_xts   <0  
+mbedtls_pem_write_buffer        
+ssl_write_certificate_verify        
+net_would_block     
+asn1_get_tagged_int     
+mbedtls_ssl_session_reset_int       
+ssl_get_remaining_payload_in_datagram       
+mbedtls_pk_parse_public_key     
+x509_get_current_time       
+ssl_set_handshake_prfs      
+mbedtls_asn1_get_bitstring      
+mbedtls_aes_crypt_cfb8  <0  
+x509_get_hash_alg       
+x509_get_key_usage      
+gcm_aes_setkey_wrap     
+prepare_raw_data_slot       
+x509_get_version        
+mbedtls_asn1_write_tag      
+mbedtls_x509_sig_alg_gets       
+psa_import_ec_public_key        
+psa_finish_key_creation     
+psa_generate_key_internal       
+mbedtls_ecp_check_pub_priv      
+block_cipher_df     
+mbedtls_md_hmac_finish      
+mbedtls_chacha20_self_test      
+camellia_ctx_alloc  ==0 
+x509_crt_find_parent_in     
+hmac_drbg_self_test_entropy emptyset    
+mbedtls_internal_ripemd160_process      
+mbedtls_pk_sign_restartable     
+alarm       X
+mbedtls_ssl_sig_hash_set_find       
+mbedtls_x509_crt_check_key_usage        
+mbedtls_ssl_get_ciphersuite_sig_pk_alg  emptyset    
+ecp_mod_p192k1  <0  
+ssl_parse_client_psk_identity   <0  
+blowfish_crypt_ctr_wrap     
+mbedtls_rsa_copy    <0  
+mbedtls_des_self_test       
+mbedtls_chacha20_crypt      
+usage_to_exercise   ==0 
+mbedtls_ssl_session_load    <0  
+pk_write_pubkey_simple      
+mbedtls_internal_sha1_process       
+mbedtls_rsa_check_pub_priv  <0  
+rsa_alt_sign_wrap       
+ssl_parse_servername_ext        
+mbedtls_ssl_cache_get       
+ecdh_read_public_internal       
+ssl_parse_server_hello_done     
+lifetime_is_secure_element      
+mbedtls_md_get_size     
+mbedtls_ripemd160_starts_ret    emptyset    
+x509_crt_check_cn       
+opendir     X
+ecp_pick_window_size        
+ecdsa_signature_to_asn1     
+psa_rsa_decode_md_type      
+mbedtls_ctr_drbg_random     
+mbedtls_chachapoly_update_aad   <0  
+pk_write_ec_pubkey      
+psa_raw_key_agreement       
+bind    <0  X
+mbedtls_x509_crt_verify_restartable     
+ssl_parse_signature_algorithms_ext      
+mbedtls_ssl_handshake_server_step       
+mbedtls_ecdh_read_params        
+mbedtls_clz     
+psa_mac_sign_finish     
+mbedtls_mpi_fill_random <0  
+mbedtls_ssl_ciphersuite_uses_srv_cert       
+__errno_location    emptyset    X
+ssl_buffer_message      
+mbedtls_ecdsa_sign_det      
+mbedtls_mpi_write_file  <0  
+mbedtls_cipher_auth_encrypt     
+mbedtls_ssl_conf_max_frag_len   <0  
+mbedtls_gcm_update      
+mbedtls_ssl_check_timer     
+construct_fake_rsa_key      
+psa_key_derivation_setup        
+get_line        
+mbedtls_mpi_lset    <0  
+test_snprintf       
+mbedtls_ecdsa_verify        
+mbedtls_chachapoly_starts   <0  
+mbedtls_oid_get_numeric_string      
+redirect_output     
+fdopen      X
+x509_info_ext_key_usage     
+mbedtls_rsa_deduce_private_exponent     
+mbedtls_dhm_make_params     
+psa_cipher_init     
+mbedtls_pk_sign <0  
+gcm_ctx_alloc       
+exercise_asymmetric_encryption_key  ==0 
+raw_key_agreement_with_self     
+mbedtls_oid_get_oid_by_md       
+mbedtls_camellia_crypt_ctr  <0  
+mbedtls_x509_crt_parse_der  <0  
+psa_export_public_key       
+mbedtls_mpi_shift_r <0  
+psa_get_empty_key_slot      
+all_or_nothing_int      
+mbedtls_safer_memcmp        
+mbedtls_rsa_pkcs1_decrypt       
+rsa_encrypt_wrap        
+des_ctx_alloc       
+mbedtls_ssl_parse_finished      
+mbedtls_ecp_copy    <0  
+tls_prf_sha256  <0  
+psa_key_policy_algorithm_intersection       
+mbedtls_x509write_csr_set_extension     
+x509_csr_get_version        
+chacha20_setkey_wrap    <0  
+fix_negative        
+mbedtls_net_accept      
+mbedtls_asn1_write_enum     
+x509_get_subject_alt_name       
+get_no_padding      
+mbedtls_rsa_validate_crt        
+mbedtls_ssl_session_save    <0  
+exercise_raw_key_agreement_key  ==0 
+psa_cipher_decrypt_setup    <0  
+mbedtls_aes_setkey_enc  <0  
+rsa_alloc_wrap      
+mbedtls_chacha20_update     
+mbedtls_ecp_is_zero <0  
+oid_pkcs12_pbe_alg_from_asn1        
+mbedtls_rsa_check_privkey       
+mbedtls_pk_write_pubkey_pem     
+mbedtls_dhm_make_public     
+mbedtls_ctr_drbg_reseed <0  
+mbedtls_ecdsa_sign      
+mpi_write_hlp       
+closedir        X
+x509_get_entries        
+psa_tls12_prf_set_key       
+mbedtls_asn1_get_alg_null       
+pem_des3_decrypt        
+strtol      X
+mbedtls_hmac_drbg_random_with_add       
+des3_ctx_alloc      
+x509_info_key_usage     
+mbedtls_ctr_drbg_set_nonce_len      
+mbedtls_ssl_get_verify_result       
+mbedtls_ecc_group_of_psa        
+mbedtls_md_get_name     
+mbedtls_asn1_get_sequence_of        
+mbedtls_ccm_star_encrypt_and_tag        
+ssl_write_hello_request     
+pk_hashlen_helper       
+mpi_montmul     
+mbedtls_ssl_get_max_frag_len    emptyset    
+mbedtls_ssl_resend_hello_request        
+ecp_randomize_mxz       
+mbedtls_cipher_get_iv_size      
+camellia_setkey_enc_wrap        
+ct_lt_mpi_uint      
+psa_open_key        
+eckey_get_bitlen        
+ssl_session_save        
+pk_group_id_from_specified      
+psa_verify_hash <0  
+mbedtls_ssl_get_key_exchange_md_ssl_tls     
+mbedtls_des_key_check_key_parity    >0  
+mbedtls_poly1305_self_test      
+mbedtls_ssl_out_hdr_len     
+mbedtls_ssl_transform_uses_aead     
+mbedtls_mpi_add_abs <0  
+mbedtls_ssl_cookie_setup        
+mbedtls_ecp_check_pubkey        
+mbedtls_ecdh_grp_id     
+mbedtls_ssl_check_curve <0  
+psa_key_derivation_input_key    <0  
+psa_tls12_prf_set_seed      
+mbedtls_x509_key_size_helper        
+psa_rsa_sign        
+ssl_load_six_bytes      
+mbedtls_x509write_crt_set_subject_name      
+snprintf        X
+mbedtls_chachapoly_setkey       
+fuzz_recv   <0  
+mbedtls_rsa_rsaes_pkcs1_v15_encrypt     
+mbedtls_timing_get_timer        
+mbedtls_oid_get_md_alg      
+mbedtls_cipher_get_block_size       
+mbedtls_x509_crt_info       
+ecdh_compute_shared_restartable     
+key_type_is_raw_bytes       
+psa_import_rsa_key      
+mbedtls_ssl_tls_prf     
+mbedtls_hkdf_expand <0  
+ssl_parse_record_header     
+mbedtls_internal_sha256_process <0  
+mbedtls_asn1_write_bitstring        
+mbedtls_rsa_import_raw      
+mbedtls_asn1_write_ia5_string       
+mbedtls_asn1_write_len      
+mbedtls_ssl_pk_alg_from_sig     
+ssl_write_real  <0  
+mbedtls_ecp_grp_id_list emptyset    
+rnd_pseudo_rand     
+mbedtls_cipher_info_from_psa        
+mbedtls_blowfish_crypt_cbc  <0  
+mbedtls_mpi_safe_cond_assign    <0  
+mbedtls_mpi_sub_mpi <0  
+mbedtls_pk_get_type     
+mbedtls_aes_crypt_ecb   <0  
+oid_cipher_alg_from_asn1        
+mbedtls_des_key_check_weak      
+ssl_parse_client_key_exchange       
+time        X
+mbedtls_oid_get_sig_alg     
+ftell       X
+x509_crt_parse_der_core <0  
+mbedtls_base64_decode   <0  
+mbedtls_ssl_send_fatal_handshake_failure        
+aes_setkey_enc_wrap     
+mbedtls_ecp_group_copy  <0  
+myrand      
+x509_get_crl_ext        
+mbedtls_cipher_check_tag        
+mbedtls_ssl_send_alert_message  <0  
+mbedtls_ssl_write_change_cipher_spec        
+ecp_mod_p224        
+mbedtls_mpi_read_binary_le  <0  
+mbedtls_blowfish_crypt_ecb  <0  
+xts_aes_setkey_dec_wrap     
+connect <0  X
+setup_key_derivation_wrap       
+mbedtls_oid_get_attr_short_name     
+chachapoly_ctx_alloc    ==0 
+ecp_mod_koblitz <0  
+get_expression      
+execute_tests       
+psa_aead_unpadded_locate_tag        
+ecp_double_jac      
+mbedtls_x509_set_extension  <0  
+eckey_check_pair        
+mbedtls_aes_xts_setkey_enc  <0  
+mbedtls_x509_get_time       
+entropy_gather_internal     
+mbedtls_md_finish   <0  
+pk_use_ecparams     
+mbedtls_blowfish_setkey <0  
+mbedtls_ssl_set_client_transport_id     
+setsockopt      X
+rsa_decrypt_wrap        
+blowfish_setkey_wrap        
+get_zeros_and_len_padding       
+getaddrinfo     X
+mbedtls_entropy_update_seed_file        
+ssl_validate_ciphersuite        
+mbedtls_base64_self_test        
+mbedtls_hkdf        
+des3_crypt_ecb_wrap     
+mbedtls_dhm_set_group       
+x509_get_dates      
+ssl_parse_client_hello      
+mbedtls_ecp_group_load      
+x509_crt_check_parent       
+ssl_handle_possible_reconnect       
+psa_hash_update     
+ssl_parse_certificate_coordinate        
+mbedtls_x509_string_to_names    <0  
+mbedtls_int_div_int     
+mbedtls_gcm_setkey  <0  
+mpi_miller_rabin    <0  
+gcm_camellia_setkey_wrap        
+rsa_prepare_blinding        
+pem_get_iv      
+mbedtls_rsa_complete        
+mbedtls_mpi_gcd <0  
+mbedtls_ecp_curve_info_from_name        
+mbedtls_des_setkey_dec      
+mbedtls_ctr_drbg_reseed_internal    <0  
+psa_mac_update      
+mbedtls_md_clone    <0  
+net_prepare     
+mbedtls_ecp_muladd  <0  
+mbedtls_ssl_sig_from_pk     
+mbedtls_net_recv        
+mbedtls_pk_get_bitlen       
+mbedtls_net_connect     
+psa_tls12_prf_psk_to_ms_input       
+LLVMFuzzerTestOneInput      
+mbedtls_net_poll    <0  
+mbedtls_mpi_is_prime_ext    <0  
+mbedtls_md5_self_test       
+mbedtls_camellia_self_test      
+psa_export_key      
+mbedtls_ssl_get_bytes_avail     
+mbedtls_ecp_tls_write_point     
+mbedtls_ssl_read        
+mbedtls_ecp_check_privkey       
+mbedtls_oid_get_oid_by_pk_alg       
+mpi_montred     
+ssl_parse_session_ticket_ext        
+psa_key_derivation_setup_kdf        
+x509_info_cert_policies     
+mbedtls_ssl_ciphersuite_uses_ec     
+mbedtls_ssl_resend      
+mbedtls_dhm_read_public     
+mbedtls_sha256_self_test        
+mbedtls_ecdsa_can_do        
+mbedtls_md_init_ctx <0  
+aes_crypt_ecb_wrap      
+mbedtls_ssl_psk_derive_premaster        
+x509_write_name     
+mbedtls_mpi_self_test   >0  
+mbedtls_net_recv_timeout        
+mbedtls_sha1_starts_ret <0  
+psa_cipher_update       
+ssl_parse_server_hello      
+mbedtls_x509write_crt_set_ns_cert_type      
+mbedtls_ctr_drbg_random_with_add        
+psa_get_hash_block_size     
+mbedtls_des3_crypt_cbc  <0  
+psa_prepare_import_ec_key       
+mbedtls_pk_parse_key    <0  
+mbedtls_poly1305_starts     
+mbedtls_ssl_handshake_client_step       
+size_greater_than       
+ecp_randomize_jac       
+ssl_parse_encrypt_then_mac_ext      
+psa_aead_setup      
+ssl_check_key_curve     
+psa_ecdsa_verify        
+psa_key_derivation_output_bytes     
+ssl_parse_server_ecdh_params        
+psa_initialize_key_slots        
+rnd_zero_rand       
+asn1_write_tagged_int   <0  
+mbedtls_sha512_starts_ret   <0  
+chachapoly_pad_ciphertext       
+x509_check_wildcard     
+psa_import_ec_private_key       
+ecp_mul_comb        
+mbedtls_blowfish_crypt_ctr  <0  
+mbedtls_ecdsa_write_signature_det   <0  
+rsa_verify_wrap     
+chachapoly_pad_aad      
+tls_prf_generic <0  
+ssl_check_server_ecdh_params        
+mbedtls_ecp_get_type        
+rsa_check_context       
+strdup      X
+mbedtls_ecp_curve_info_from_grp_id  ==0 
+mbedtls_cipher_setkey   <0  
+ssl_parse_server_dh_params      
+mbedtls_x509write_csr_set_key_usage <0  
+fopen64     X
+mbedtls_asn1_get_int        
+mbedtls_ssl_handshake_step      
+oid_x520_attr_from_asn1     
+mbedtls_mpi_gen_prime   <0  
+rsa_sign_wrap       
+test_helper_is_psa_pristine     
+mbedtls_ecp_tls_write_group     
+mbedtls_asn1_write_named_bitstring  <0  
+ecdsa_verify_restartable        
+ssl_record_is_in_progress       
+strcmp      X
+psa_generate_random <0  
+ssl_hs_is_proper_fragment       
+x509_crl_get_version        
+ssl_check_client_reconnect      
+mbedtls_sha512_self_test        
+psa_key_derivation_tls12_prf_generate_next_block        
+ecp_modp    <0  
+mbedtls_md_get_type     
+psa_hash_compare        
+mbedtls_aes_crypt_ctr       
+eckeydh_can_do      
+mbedtls_ssl_handle_message_type <0  
+mbedtls_asn1_get_tag        
+x509_crt_check_ee_locally_trusted       
+x509_crt_merge_flags_with_cb        
+mbedtls_md_info_from_type       
+fuzz_recv_timeout       
+oid_grp_id_from_asn1        
+mbedtls_ctr_drbg_write_seed_file        
+ecp_check_pubkey_mx     
+mbedtls_ccm_self_test       
+mbedtls_cipher_get_key_bitlen       
+mbedtls_pk_setup        
+mbedtls_mpi_mul_mpi <0  
+mbedtls_mpi_lt_mpi_ct   <0  
+mbedtls_asn1_write_null <0  
+gettimeofday    <0  X
+psa_import_key  <0  
+mbedtls_asn1_get_enum       
+pk_write_ec_private     
+psa_hmac_abort_internal     
+mbedtls_ssl_check_cert_usage        
+mbedtls_ssl_get_alpn_protocol       
+mbedtls_poly1305_update <0  
+ssl_conf_has_static_psk     
+mbedtls_pk_check_pair       
+mbedtls_rsa_rsassa_pkcs1_v15_verify <0  
+ssl_get_hs_frag_len     
+mbedtls_ssl_ciphersuite_cert_req_allowed        
+des_setkey_dec_wrap     
+mbedtls_pk_write_key_pem        
+ssl_bitmask_check       
+mbedtls_mpi_mod_int <0  
+mbedtls_rsa_rsaes_pkcs1_v15_decrypt     
+mbedtls_ssl_flight_transmit     
+x509_info_subject_alt_name      
+rsa_alt_can_do  emptyset    
+mbedtls_ssl_get_peer_cert       
+mbedtls_ecdh_gen_public <0  
+ecp_mul_comb_core       
+psa_get_key_lifetime        
+mbedtls_internal_md5_process    emptyset    
+mbedtls_ssl_set_hostname        
+eckey_sign_wrap     
+mbedtls_ssl_parse_certificate   <0  
+ssl_check_hs_header     
+chacha20_ctx_alloc      
+des_crypt_ecb_wrap      
+mbedtls_ssl_own_key     
+ssl_get_remaining_space_in_datagram     
+mbedtls_x509_crt_check_extended_key_usage       
+mbedtls_mpi_is_prime    <0  
+psa_key_policy_permits      
+get_one_and_zeros_padding   <0  
+mbedtls_rsa_private     
+mbedtls_ecdh_read_public        
+ecp_precompute_comb     
+entropy_dummy_source        
+mbedtls_x509_crt_parse_der_nocopy       
+mbedtls_aes_crypt_cbc   emptyset    
+ecdh_read_params_internal       
+mbedtls_des3_crypt_ecb      
+mbedtls_md      
+x509_get_crl_entry_ext      
+mbedtls_constant_time_memcmp        
+mbedtls_x509write_crt_pem   <0  
+psa_wipe_key_slot       
+mbedtls_aes_xts_decode_keys <0  
+exercise_export_key ==0 
+mbedtls_ripemd160_update_ret        
+ecp_normalize_mxz       
+mbedtls_x509_get_sig_alg        
+x509_parse_int      
+pk_parse_key_pkcs8_unencrypted_der      
+psa_key_derivation_get_kdf_alg      
+ssl_get_maximum_datagram_size       
+ssl_flight_append       
+aes_crypt_cfb128_wrap       
+ssl_load_buffered_record        
+mbedtls_timing_hardclock        
+mbedtls_aesni_setkey_enc        
+exercise_cipher_key ==0 
+mbedtls_ssl_get_version     
+rsa_alt_check_pair      
+mbedtls_ecp_self_test   <0  
+mbedtls_x509write_crt_set_basic_constraints     
+mbedtls_ecdh_setup      
+psa_mac_verify_setup        
+ssl_parse_supported_point_formats_ext       
+hmac_drbg_reseed_core   <0  
+mbedtls_ssl_conf_psk        
+fcntl       X
+mbedtls_asn1_write_algorithm_identifier     
+camellia_crypt_ctr_wrap     
+mbedtls_ssl_ciphersuite_uses_server_signature       
+mbedtls_cipher_update   <0  
+getsockopt      X
+exported_key_sanity_check       
+mbedtls_mpi_exp_mod <0  
+x509_write_extension        
+mbedtls_cipher_auth_decrypt <0  
+exercise_mac_key    ==0 
+ssl_parse_new_session_ticket        
+mbedtls_md_starts   <0  
+mbedtls_md_hmac_update      
+psa_hmac_finish_internal    <0  
+fseek       X
+mbedtls_ssl_list_ciphersuites       
+unhexify_alloc      
+pk_group_from_specified     
+mbedtls_pk_encrypt      
+psa_check_rsa_key_byte_aligned      
+mbedtls_entropy_gather      
+mbedtls_x509_get_alg_null       
+mbedtls_ssl_ciphersuite_uses_psk        
+mbedtls_dhm_parse_dhm       
+mbedtls_ssl_cookie_check        
+ssl_write_client_key_exchange       
+ecp_group_load      
+psa_key_agreement_raw_internal      
+good_nonce_len      
+mbedtls_ecdsa_write_signature       
+exercise_signature_key  ==0 
+mbedtls_ecdh_get_params     
+pk_get_ecpubkey     
+mbedtls_ssl_derive_keys <0  
+ciphersuite_is_removed      
+mbedtls_x509_crt_parse_der_internal <0  
+mbedtls_asn1_get_len    <0  
+psa_tls12_prf_input <0  
+mbedtls_cipher_list     
+mbedtls_ssl_check_pending       
+ecp_mod_p384        
+mbedtls_pk_write_pubkey_der     
+des_setkey_enc_wrap     
+oid_pk_alg_from_asn1        
+mbedtls_mpi_div_mpi <0  
+platform_setup      
+mbedtls_pk_get_name     
+gmtime_r        X
+mbedtls_x509_csr_parse_der  <0  
+asn1_skip_integer       
+x509_get_uid        
+mbedtls_aes_crypt_ofb   <0  
+mbedtls_md5_ret     
+query_config        
+ecp_comb_recode_scalar      
+mbedtls_ecdh_calc_secret        
+mbedtls_cipher_info_from_type       
+pk_get_rsapubkey        
+strlen      X
+mbedtls_ssl_flush_output        
+check_test      
+ecdsa_alloc_wrap        
+mbedtls_x509write_csr_pem       
+readdir64       X
+mbedtls_net_set_block   <0  
+fclose      X
+mbedtls_rsa_get_len emptyset    
+ctr_drbg_update_internal        
+mbedtls_poly1305_mac        
+oid_md_alg_from_asn1        
+ssl_get_ecdh_params_from_cert       
+exercise_key_agreement_key  ==0 
+tls1_prf        
+psa_key_agreement_internal      
+psa_get_key_id      
+mbedtls_ssl_ciphersuite_from_string     
+mbedtls_ecp_set_zero    <0  
+psa_mac_sign_setup      
+ecdsa_sign_restartable      
+rsa_can_do      
+gcm_gen_table       
+mbedtls_ssl_conf_dh_param_bin   <0  
+ssl_parse_client_dh_public      
+psa_get_key_domain_parameters       
+mbedtls_ssl_cookie_write    <0  
+mbedtls_ssl_get_max_out_record_payload  <0  
+mbedtls_ripemd160_finish_ret        
+mbedtls_ssl_ticket_parse    <0  
+psa_tls12_prf_psk_to_ms_set_key     
+mbedtls_ctr_drbg_update_ret <0  
+mbedtls_pk_parse_keyfile        
+mbedtls_net_send        
+mbedtls_des3_set2key_dec        
+mbedtls_aes_crypt_cfb128        
+mbedtls_ssl_handshake   <0  
+mbedtls_ecdsa_write_signature_restartable       
+mbedtls_internal_sha512_process <0  
+mbedtls_chachapoly_auth_decrypt     
+mbedtls_ccm_setkey  <0  
+x509_profile_check_key      
+mbedtls_rsa_rsaes_oaep_decrypt      
+load_file       
+arc4_setkey_wrap        
+mbedtls_ecp_curve_info_from_tls_id      
+verify_string       
+pk_get_ecparams     
+exercise_key_derivation_key ==0 
+mbedtls_aesni_crypt_ecb     
+mbedtls_mpi_div_int <0  
+mbedtls_ssl_get_ciphersuite_id  ==0 
+mbedtls_x509write_crt_der       
+mbedtls_pk_can_do       
+mbedtls_platform_setup      
+mbedtls_x509_csr_parse  <0  
+ecdh_make_public_internal       
+mbedtls_des3_set3key_dec    emptyset    
+dep_check       
+mbedtls_entropy_write_seed_file     
+psa_asymmetric_decrypt      
+psa_hash_finish <0  
+mbedtls_x509_time_is_future     
+recvfrom        X
+psa_validate_key_attributes     
+stat64      X
+ssl_check_dtls_clihlo_cookie        
+oid_ext_key_usage_from_asn1     
+mbedtls_ssl_check_sig_hash      
+mbedtls_ecdsa_read_signature_restartable        
+mbedtls_rsa_export_crt  <0  
+mbedtls_arc4_crypt      
+mbedtls_mpi_mul_mod <0  
+pk_parse_key_pkcs1_der      
+mbedtls_md5_finish_ret      
+mbedtls_x509_crt_verify     
+des3_set2key_dec_wrap       
+mbedtls_ccm_auth_decrypt        
+__sysv_signal       X
+mbedtls_ssl_set_calc_verify_md      
+oid_md_hmac_from_asn1       
+mbedtls_ecp_muladd_restartable  <0  
+mbedtls_asn1_write_utf8_string  <0  
+mbedtls_x509_crt_parse_path     
+mbedtls_mpi_add_int <0  
+mbedtls_asn1_get_mpi    <0  
+dummy_entropy   emptyset    
+mbedtls_md_hmac_reset       
+mbedtls_ssl_hash_from_md_alg        
+mbedtls_ssl_ticket_setup        
+dup     X
+psa_hash_clone  <0  
+mbedtls_mpi_copy    <0  
+mbedtls_ctr_drbg_seed       
+psa_cipher_setup    <0  
+mbedtls_ecc_group_to_psa        
+ecp_mod_p224k1      
+psa_internal_export_key     
+mbedtls_cipher_set_padding_mode <0  
+mbedtls_ssl_start_renegotiation     
+psa_get_key_slot_bits       
+shutdown        X
+x509_parse_time     
+mbedtls_sha256_starts_ret   <0  
+mbedtls_x509_get_ext    <0  
+mbedtls_x509_csr_parse_file     
+ecp_safe_invert_jac     
+ssl_write_server_key_exchange       
+psa_key_agreement_ecdh      
+exercise_key    ==0 
+dhm_update_blinding     
+eckey_verify_wrap       
+mbedtls_rsa_public      
+mbedtls_entropy_self_test       
+ssl_next_record_is_in_datagram      
+mbedtls_x509_csr_info       
+psa_start_key_creation      
+mbedtls_ssl_get_key_exchange_md_tls1_2  <0  
+mbedtls_oid_get_pk_alg      
+ecp_mod_p521        
+mbedtls_ssl_get_session_pointer     
+mbedtls_version_get_number      
+psa_validate_optional_attributes    <0  
+hexcmp      
+rsa_alt_alloc_wrap  ==0 
+psa_key_derivation_get_capacity     
+memcmp      X
+ssl_get_hs_total_len        
+safer_memcmp        
+mbedtls_ssl_context_load    <0  

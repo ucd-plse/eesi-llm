@@ -1,0 +1,1210 @@
+p_byterange_filter  !=0 
+ap_check_pipeline   <0  
+ap_content_length_filter    !=0 
+ap_core_translate   >0  
+ap_create_scoreboard    >0  
+ap_directory_walk   >0  
+ap_discard_request_body !=0 
+ap_expr_yyalloc ==0 
+ap_expr_yy_create_buffer    emptyset    
+ap_expr_yyparse >0  
+ap_expr_yyrealloc   ==0 
+ap_expr_yy_scan_buffer  ==0 
+ap_expr_yy_scan_bytes   emptyset    
+ap_expr_yy_scan_string  emptyset    
+ap_fflush   !=0 
+ap_file_walk    emptyset    
+ap_filter_flush !=0 
+ap_get_basic_auth_pw    >0  
+ap_get_brigade  <0  
+ap_get_client_block <0  
+ap_http_chunk_filter    !=0 
+ap_http_filter  !=0 
+ap_http_header_filter   !=0 
+ap_http_outerror_filter !=0 
+ap_init_virtual_host    >0  
+ap_invoke_handler   !=0 
+ap_location_walk    emptyset    
+ap_map_http_request_error   !=0 
+ap_meets_conditions >0  
+ap_old_write_filter !=0 
+ap_open_htaccess    >0  
+ap_open_logs        
+ap_parse_form_data  !=0 
+ap_parse_htaccess   >0  
+ap_parse_vhost_addrs    >0  
+ap_pass_brigade_fchk    !=0 
+ap_pcfg_openfile    >0  
+ap_process_config_tree  >0  
+ap_process_request_internal >0  
+ap_read_config  ==0 
+ap_read_pid >0  
+ap_regexec  >0  
+ap_regexec_len  >0  
+ap_replace_stderr_log   >0  
+ap_rflush   <0  
+ap_rprintf  <0  
+ap_rputc    <0  
+ap_rputs    <0  
+ap_run_sub_req  >0  
+ap_runtime_dir_relative ==0 
+ap_rvputs   <0  
+ap_rwrite   <0  
+ap_rxplus_exec  emptyset    
+ap_scan_script_header_err   >0  
+ap_scan_script_header_err_brigade   >0  
+ap_scan_script_header_err_brigade_ex    >0  
+ap_scan_script_header_err_core  >0  
+ap_scan_script_header_err_core_ex   >0  
+ap_scan_script_header_err_ex    >0  
+ap_scan_script_header_err_strs  >0  
+ap_scan_script_header_err_strs_ex   >0  
+ap_send_fd  !=0 
+ap_send_http_trace  >0  
+ap_server_root_relative ==0 
+ap_setup_client_block   >0  
+ap_shutdown_conn    !=0 
+ap_signal_server    emptyset    
+ap_sub_req_output_filter    !=0 
+ap_unescape_all >0  
+ap_unescape_url >0  
+ap_unescape_urlencoded  >0  
+ap_unescape_url_keep2f  >0  
+ap_vrprintf <0  
+ap_xml_parse_input  !=0 
+bail_out_on_error   !=0 
+buffer_output   !=0 
+core_map_to_storage >0  
+core_override_type  >0  
+decl_die    >0  
+default_handler !=0 
+dirsection  >0  
+do_double_reverse   <0  
+event_pre_config    >0  
+get_addresses   >0  
+get_mutex_filename  ==0 
+init_server_config  ==0 
+main    emptyset    
+open_error_log      
+open_scoreboard >0  
+op_ipmatch  emptyset    
+resolve_symlink >0  
+r_flush <0  
+send_416    !=0 
+unescape_url    >0  
+apr_allocator_alloc ==0 X
+apr_allocator_create    >0  X
+apr_app_initialize  >0  X
+apr_array_append    emptyset    X
+apr_array_copy  ==0 X
+apr_array_make  ==0 X
+apr_array_pop       X
+apr_array_pstrcat       X
+apr_array_push      X
+apr_atoi64      X
+apr_atomic_add32    emptyset    X
+apr_atomic_cas32    emptyset    X
+apr_atomic_casptr   emptyset    X
+apr_atomic_dec32    emptyset    X
+apr_atomic_inc32    emptyset    X
+apr_atomic_read32   emptyset    X
+apr_base64_decode       X
+apr_base64_decode_len       X
+apr_base64_encode       X
+apr_base64_encode_len       X
+apr_brigade_cleanup >0  X
+apr_brigade_create  ==0 X
+apr_brigade_destroy >0  X
+apr_brigade_flatten >0  X
+apr_brigade_insert_file     X
+apr_brigade_length  >0  X
+apr_brigade_partition   >0  X
+apr_brigade_puts    >0  X
+apr_brigade_putstrs     X
+apr_brigade_split_ex        X
+apr_brigade_split_line      X
+apr_brigade_vprintf >0  X
+apr_brigade_vputstrs        X
+apr_brigade_write       X
+apr_brigade_writev      X
+apr_bucket_alloc        X
+apr_bucket_alloc_create emptyset    X
+apr_bucket_eos_create   emptyset    X
+apr_bucket_file_enable_mmap >0  X
+apr_bucket_flush_create emptyset    X
+apr_bucket_immortal_create  emptyset    X
+apr_bucket_mmap_create      X
+apr_bucket_pool_create      X
+apr_bucket_shared_destroy       X
+apr_bucket_shared_make      X
+apr_bucket_socket_create        X
+apr_bucket_transient_create     X
+apr_cpystrn emptyset    X
+apr_ctime       X
+apr_date_parse_http     X
+apr_date_parse_rfc      X
+apr_dir_close   >0  X
+apr_dir_open    >0  X
+apr_dir_read    >0  X
+apr_dso_error       X
+apr_dso_load    ==0 X
+apr_dso_sym >0  X
+apr_dynamic_fn_retrieve     X
+apr_file_close  >0  X
+apr_file_dup2   >0  X
+apr_file_flags_get  emptyset    X
+apr_file_flush  >0  X
+apr_file_getc   >0  X
+apr_file_gets   >0  X
+apr_file_info_get   >0  X
+apr_file_inherit_unset  >0  X
+apr_file_open   >0  X
+apr_file_open_stderr    >0  X
+apr_file_open_stdout    >0  X
+apr_filepath_merge  >0  X
+apr_filepath_name_get   emptyset    X
+apr_filepath_root   >0  X
+apr_filepath_set    >0  X
+apr_file_pipe_create    >0  X
+apr_file_pipe_create_ex >0  X
+apr_file_pipe_timeout_set   >0  X
+apr_file_printf <0  X
+apr_file_puts   >0  X
+apr_file_read   >0  X
+apr_file_read_full  >0  X
+apr_file_remove >0  X
+apr_file_seek   >0  X
+apr_file_write  >0  X
+apr_fnmatch     X
+apr_fnmatch_test        X
+apr_generate_random_bytes       X
+apr_gethostname     X
+apr_getnameinfo     X
+apr_getopt      X
+apr_getopt_init     X
+apr_gid_name_get        X
+apr_global_mutex_create     X
+apr_hash_first      X
+apr_hash_get        X
+apr_hash_make   ==0 X
+apr_hash_next       X
+apr_hash_overlay        X
+apr_hash_pool_get       X
+apr_ipsubnet_create     X
+apr_ipsubnet_test       X
+apr_is_empty_array      X
+apr_is_empty_table      X
+apr_itoa    emptyset    X
+apr_ltoa    emptyset    X
+apr_md5_final       X
+apr_md5_init        X
+apr_md5_update      X
+apr_off_t_toa   emptyset    X
+apr_os_file_get     X
+apr_os_global_mutex_get     X
+apr_os_proc_mutex_get       X
+apr_os_sock_get     X
+apr_os_thread_current       X
+apr_os_thread_get       X
+apr_palloc  ==0 X
+apr_parse_addr_port     X
+apr_pmemdup     X
+apr_poll    >0  X
+apr_pollset_add >0  X
+apr_pollset_create  ==0 X
+apr_pollset_create_ex   ==0 X
+apr_pollset_destroy >0  X
+apr_pollset_method_name     X
+apr_pollset_poll        X
+apr_pollset_remove  >0  X
+apr_pollset_wakeup      X
+apr_pool_abort_get  emptyset    X
+apr_pool_allocator_get  emptyset    X
+apr_pool_cleanup_run    >0  X
+apr_pool_create_ex  >0  X
+apr_pool_parent_get emptyset    X
+apr_pool_userdata_get   emptyset    X
+apr_pool_userdata_set   emptyset    X
+apr_pool_userdata_setn  emptyset    X
+apr_procattr_child_errfn_set    emptyset    X
+apr_procattr_child_err_set  >0  X
+apr_procattr_child_in_set   >0  X
+apr_procattr_cmdtype_set    emptyset    X
+apr_procattr_create ==0 X
+apr_procattr_dir_set    >0  X
+apr_procattr_error_check_set    emptyset    X
+apr_procattr_io_set     X
+apr_proc_create     X
+apr_proc_detach     X
+apr_proc_kill       X
+apr_proc_mutex_create   ==0 X
+apr_proc_mutex_lockfile     X
+apr_proc_mutex_name     X
+apr_proc_other_child_alert      X
+apr_proc_wait   >0  X
+apr_proc_wait_all_procs >0  X
+apr_psprintf        X
+apr_pstrcat     X
+apr_pstrcatv        X
+apr_pstrdup     X
+apr_pstrmemdup      X
+apr_pstrndup        X
+apr_pvsprintf       X
+apr_random_insecure_bytes   >0  X
+apr_random_insecure_ready       X
+apr_random_standard_new     X
+apr_rfc822_date     X
+apr_setup_signal_thread     X
+apr_shm_baseaddr_get        X
+apr_shm_create      X
+apr_shm_destroy >0  X
+apr_shm_detach  >0  X
+apr_shm_remove  >0  X
+apr_shm_size_get        X
+apr_signal      X
+apr_signal_description_get      X
+apr_signal_thread       X
+apr_skiplist_alloc      X
+apr_skiplist_init       X
+apr_skiplist_insert     X
+apr_skiplist_peek       X
+apr_skiplist_pop        X
+apr_snprintf        X
+apr_sockaddr_equal      X
+apr_sockaddr_info_get   >0  X
+apr_sockaddr_ip_get     X
+apr_socket_accept   >0  X
+apr_socket_addr_get     X
+apr_socket_bind >0  X
+apr_socket_close    >0  X
+apr_socket_connect  >0  X
+apr_socket_create   ==0 X
+apr_socket_listen   >0  X
+apr_socket_opt_get      X
+apr_socket_opt_set      X
+apr_socket_recv >0  X
+apr_socket_send >0  X
+apr_socket_sendfile >0  X
+apr_socket_sendv        X
+apr_socket_shutdown >0  X
+apr_socket_timeout_get      X
+apr_socket_timeout_set      X
+apr_stat    >0  X
+apr_strerror        X
+apr_strftime        X
+apr_strmatch_precompile     X
+apr_strtoff     X
+apr_strtoi64        X
+apr_strtok      X
+apr_table_copy      X
+apr_table_do        X
+apr_table_elts      X
+apr_table_get       X
+apr_table_make      X
+apr_table_overlay       X
+apr_threadattr_create       X
+apr_threadattr_detach_set       X
+apr_threadattr_stacksize_set        X
+apr_thread_cond_broadcast   emptyset    X
+apr_thread_cond_create  !=0 X
+apr_thread_cond_destroy !=0 X
+apr_thread_cond_signal  !=0 X
+apr_thread_cond_wait    !=0 X
+apr_thread_create       X
+apr_thread_exit !=0 X
+apr_thread_join !=0 X
+apr_thread_mutex_create !=0 X
+apr_thread_mutex_destroy    emptyset    X
+apr_thread_mutex_lock   !=0 X
+apr_thread_mutex_unlock !=0 X
+apr_time_exp_gmt        X
+apr_time_exp_lt     X
+apr_time_now    emptyset    X
+apr_tokenize_to_argv        X
+apr_uid_name_get        X
+apr_uri_parse       X
+apr_uri_parse_hostinfo      X
+apr_uri_unparse     X
+apr_version_string  emptyset    X
+apr_vformatter      X
+apr_vsnprintf       X
+apr_xml_parser_create       X
+apr_xml_parser_done     X
+apr_xml_parser_feed     X
+apr_xml_parser_geterror     X
+apu_version_string      X
+atexit      X
+atoi        X
+atol        X
+calloc  ==0 X
+chown       X
+__ctype_b_loc       X
+__errno_location        X
+fork        X
+fprintf     X
+freopen     X
+getenv      X
+geteuid     X
+getgrnam        X
+getloadavg      X
+getpgid     X
+getpgrp     X
+getpid      X
+getpwnam        X
+getrlimit       X
+htonl       X
+__isoc99_sscanf     X
+kill        X
+malloc      X
+memcmp      X
+pcre_compile2       X
+pcre_exec       X
+pcre_fullinfo       X
+printf      X
+pthread_kill    >0  X
+pthread_sigmask >0  X
+read        X
+realloc ==0 X
+semctl      X
+setsockopt      X
+sigaction       X
+sigaddset       X
+sigemptyset     X
+stpcpy      X
+strcasecmp  emptyset    X
+strcat  emptyset    X
+strchr  emptyset    X
+strcmp  emptyset    X
+strcpy  emptyset    X
+strlen  emptyset    X
+strncasecmp emptyset    X
+strncmp emptyset    X
+strncpy emptyset    X
+strpbrk emptyset    X
+strrchr emptyset    X
+strspn  emptyset    X
+strstr  emptyset    X
+strtod  emptyset    X
+strtol  emptyset    X
+syscall <0  X
+sysconf <0  X
+times       X
+tolower     X
+toupper     X
+write       X
+add_any_filter  ==0 
+add_any_filter_handle   ==0 
+add_optional_notes  emptyset    
+alloc_listener      
+ap_add_if_conf      
+ap_add_input_filter     
+ap_add_input_filter_handle      
+ap_add_loaded_module    ==0 
+ap_add_module   ==0 
+ap_add_node     
+ap_add_output_filter        
+ap_add_output_filter_handle     
+ap_allow_options    emptyset    
+ap_array_str_contains   emptyset    
+ap_array_str_index      
+ap_auth_name        
+ap_auth_type        
+ap_bucket_eoc_create        
+ap_bucket_eoc_make      
+ap_bucket_eor_create        
+ap_bucket_eor_make      
+ap_bucket_error_create      
+ap_bucket_error_make        
+ap_build_config     
+ap_build_config_sub     
+ap_build_cont_config        
+ap_calc_scoreboard_size     
+ap_calloc   emptyset    
+ap_cfg_closefile        
+ap_cfg_getline_core     
+ap_check_cmd_context        
+ap_check_mpm        
+ap_cleanup_shared_mem   !=0 
+ap_condition_if_match       
+ap_condition_if_modified_since      
+ap_condition_if_none_match      
+ap_condition_if_range       
+ap_condition_if_unmodified_since        
+ap_context_document_root        
+ap_context_prefix       
+ap_count_dirs       
+ap_create_conn_config       
+ap_create_per_dir_config    ==0 
+ap_create_request_config    ==0 
+ap_cstr_casecmp ==0 
+ap_cstr_casecmpn        
+ap_dir_fnmatch      
+ap_dir_nofnmatch    >0  
+ap_document_root        
+ap_duplicate_listeners      
+ap_escape_errorlog_item emptyset    
+ap_escape_html2 emptyset    
+ap_escape_logitem   emptyset    
+ap_escape_path_segment_buffer   emptyset    
+ap_escape_urlencoded_buffer emptyset    
+ap_exists_config_define     
+ap_exists_directive     
+ap_explode_recent_gmt       
+ap_explode_recent_localtime     
+ap_expr_binary_op_make      
+ap_expr_eval        
+ap_expr_eval_binary_op      
+ap_expr_eval_comp   <0  
+ap_expr_eval_re_backref emptyset    
+ap_expr_eval_string_func    emptyset    
+ap_expr_eval_unary_op   emptyset    
+ap_expr_eval_var    emptyset    
+ap_expr_eval_word   emptyset    
+ap_expr_exec        
+ap_expr_exec_ctx        
+ap_expr_exec_re     
+ap_expr_info_make       
+ap_expr_list_func_make      
+ap_expr_make        
+ap_expr_parse       
+ap_expr_parse_cmd_mi        
+ap_expr_str_exec        
+ap_expr_str_exec_re     
+ap_expr_str_func_make       
+ap_expr_unary_op_make       
+ap_expr_var_make        
+ap_expr_yylex       
+ap_expr_yylex_destroy       
+ap_expr_yylex_init      
+ap_fatal_signal_child_setup     
+ap_fatal_signal_setup       
+ap_find_child_by_pid        
+ap_find_command     
+ap_find_command_in_modules      
+ap_find_etag_strong     
+ap_find_etag_weak       
+ap_find_linked_module       
+ap_find_module_short_name       
+ap_find_path_info       
+ap_find_token       
+ap_fputstrs     
+ap_get_conn_socket  emptyset    
+ap_get_input_filter_handle  emptyset    
+ap_get_limit_req_body   emptyset    
+ap_get_limit_xml_body   emptyset    
+ap_get_list_item    emptyset    
+ap_get_local_host   emptyset    
+ap_get_module_flags emptyset    
+ap_get_output_filter_handle emptyset    
+ap_get_protocol emptyset    
+ap_get_protocol_upgrades    emptyset    
+ap_get_remote_host  emptyset    
+ap_get_remote_logname   emptyset    
+ap_get_request_note emptyset    
+ap_get_scoreboard_process   emptyset    
+ap_get_scoreboard_worker_from_indexes   emptyset    
+ap_get_server_banner    emptyset    
+ap_get_server_built emptyset    
+ap_get_server_description   emptyset    
+ap_get_server_name  emptyset    
+ap_get_server_name_for_url  emptyset    
+ap_get_server_port  emptyset    
+ap_get_server_protocol  emptyset    
+ap_get_status_line  emptyset    
+ap_get_useragent_host   emptyset    
+ap_getword  emptyset    
+ap_getword_conf emptyset    
+ap_getword_conf2    emptyset    
+ap_getword_nulls    emptyset    
+ap_getword_white    emptyset    
+ap_if_walk      
+ap_if_walk_sub      
+ap_index_of_response        
+ap_is_chunked       
+ap_is_directory     
+ap_is_matchexp      
+ap_is_recursion_limit_exceeded      
+ap_is_url       
+ap_list_provider_names      
+ap_make_content_type        
+ap_make_dirstr_parent       
+ap_make_etag        
+ap_make_full_path       
+ap_make_method_list     
+ap_malloc       
+ap_md5      
+ap_md5_binary       
+ap_md5contextTo64       
+ap_md5digest        
+ap_merge_per_dir_configs        
+ap_method_number_of     
+ap_method_register      
+ap_mpm_podx_check       
+ap_mpm_podx_close       
+ap_mpm_podx_open        
+ap_mpm_podx_signal      
+ap_mpm_query        
+ap_mpm_safe_kill        
+ap_new_log_config       
+ap_open_piped_log_ex        
+ap_os_escape_path       
+ap_parse_log_level  emptyset    
+ap_parse_mutex  >0  
+ap_parse_strict_length  emptyset    
+ap_parse_token_list_strict  emptyset    
+ap_pass_brigade     
+ap_pbase64decode        
+ap_pbase64encode        
+ap_pcfg_open_custom     
+ap_pcfg_strerror        
+ap_pregcomp     
+ap_pregsub      
+ap_prep_lingering_close     
+ap_process_child_status     
+ap_process_fnmatch_configs      
+ap_process_http_async_connection        
+ap_process_http_sync_connection     
+ap_process_resource_config      
+ap_psignature       
+ap_queue_create     
+ap_queue_info_create        
+ap_queue_info_num_idlers        
+ap_queue_info_set_idle      
+ap_queue_info_term      
+ap_queue_info_try_get_idler >0  
+ap_queue_info_wait_for_idler    !=0 
+ap_queue_interrupt_all  !=0 
+ap_queue_interrupt_one  !=0 
+ap_queue_pop_something  !=0 
+ap_queue_push_socket    !=0 
+ap_queue_push_timer !=0 
+ap_queue_term   !=0 
+ap_rationalize_mtime        
+ap_read_request     
+ap_recent_ctime_ex      
+ap_recent_rfc822_date       
+ap_regcomp      
+ap_regcomp_default_cflag_by_name        
+ap_regcomp_get_default_cflags       
+ap_register_input_filter    emptyset    
+ap_register_output_filter   emptyset    
+ap_register_output_filter_protocol  emptyset    
+ap_register_provider    emptyset    
+ap_regname      
+ap_reopen_scoreboard        
+ap_resolve_env      
+ap_response_code_string     
+ap_retained_data_create     
+ap_retained_data_get        
+ap_rgetline_core        
+ap_run_access_checker       
+ap_run_access_checker_ex        
+ap_run_auth_checker     
+ap_run_check_config     
+ap_run_check_user_id        
+ap_run_create_connection        
+ap_run_create_request       
+ap_run_default_port     
+ap_run_dirwalk_stat emptyset    
+ap_run_drop_privileges      
+ap_run_expr_lookup      
+ap_run_fixups       
+ap_run_force_authn      
+ap_run_generate_log_id      
+ap_run_get_suexec_identity      
+ap_run_handler      
+ap_run_header_parser        
+ap_run_http_scheme      
+ap_run_insert_network_bucket        
+ap_run_log_transaction      
+ap_run_map_to_storage       
+ap_run_monitor      
+ap_run_mpm      
+ap_run_mpm_get_name     
+ap_run_mpm_query        
+ap_run_mpm_register_timed_callback      
+ap_run_note_auth_failure        
+ap_run_open_htaccess        
+ap_run_open_logs        
+ap_run_post_config      
+ap_run_post_perdir_config       
+ap_run_post_read_request        
+ap_run_pre_close_connection     
+ap_run_pre_config       
+ap_run_pre_connection       
+ap_run_pre_mpm  emptyset    
+ap_run_process_connection       
+ap_run_protocol_get     
+ap_run_protocol_propose     
+ap_run_protocol_switch      
+ap_run_quick_handler        
+ap_run_translate_name       
+ap_run_type_checker     
+ap_satisfies        
+ap_save_brigade     
+ap_scan_http_field_content      
+ap_scan_http_token      
+ap_scan_vchar_obstext       
+ap_select_protocol      
+ap_send_http_options        
+ap_set_byterange        
+ap_set_config_vectors       
+ap_set_flag_slot        
+ap_set_keepalive        
+ap_setup_listeners      
+ap_setup_prelinked_modules      
+ap_should_client_block      
+ap_show_mpm     
+ap_size_list_item       
+ap_soak_end_container       
+ap_start_lingering_close    emptyset    
+ap_state_query      
+ap_str2_alnum   emptyset    
+ap_strcasecmp_match emptyset    
+ap_strcmp_match emptyset    
+ap_sub_req_lookup_file      
+ap_sub_req_lookup_uri       
+ap_sub_req_method_uri       
+ap_switch_protocol      
+ap_timeout_parameter_parse      
+ap_unix_create_privileged_process       
+ap_unixd_mpm_get_retained_data      
+ap_unixd_set_global_mutex_perms     
+ap_unixd_set_proc_mutex_perms       
+ap_unregister_extra_mpm_process     
+ap_update_child_status  <0  
+ap_update_child_status_from_conn    <0  
+ap_update_child_status_from_indexes <0  
+ap_update_global_status     
+ap_varbuf_cfg_getline       
+ap_walk_config      
+ap_walk_config_sub      
+c2x     
+cached_explode      
+cfg_trim_line       
+check_errorlog_dir      
+check_header        
+check_headers       
+check_headers_recursion     
+check_headers_table     
+connections_above_limit     
+construct_host_header       
+copy_brigade_range      
+core_create_req     
+core_upgrade_handler        
+count_directives_sub        
+cpystrn     
+create_default_per_dir_config       
+create_empty_config     
+create_namebased_scoreboard     
+create_server_config        
+do_errorlog_default     
+do_errorlog_format      
+dso_load        
+dummy_connection        
+etag_uint64_to_hex      
+execute_now     
+field_name_len      
+find_accf_name      
+find_default_server     
+find_ipaddr     
+find_last_token     
+find_listeners      
+find_list_item      
+find_module     
+find_parent     
+fix_hostname        
+fix_hostname_non_v6     
+fix_hostname_v6_literal     
+form_header_field       
+get_canned_error_string     
+get_filter_handle       
+hash_addr       
+hash_inaddr     
+http2env        
+inc_rec     
+init_process        
+insert_old_write_filter     
+internal_internal_redirect      
+intstrcmp       
+invoke_cmd      
+invoke_filter_init      
+is_mpm_running      
+listeners_disabled      
+log_apr_status      
+log_child       
+log_ctime       
+log_file_line       
+log_header      
+log_loglevel        
+log_module_name     
+log_pid     
+log_table_entry     
+log_tid     
+lookup_builtin_method       
+make_allow      
+make_child      
+make_sock       
+make_sub_request        
+matches_aliases     
+missing_container_arg       
+mutex_needs_file        
+mxcfg_lookup        
+new_ipaddr_chain        
+new_name_chain      
+open_listeners      
+original_uri        
+parse_chunk_size        
+parse_errorlog_item     
+parse_errorlog_misc_string      
+parse_errorlog_string       
+piped_log_cleanup_for_exec      
+piped_log_spawn     
+pod_signal_internal     
+podx_signal_internal        
+prep_walk_cache     
+process_command_config      
+proc_mutex_mech     
+protocol_cmp        
+push2worker     
+push_timer2worker       
+queue_interrupt     
+read_chunked_trailers       
+read_request_line       
+reclaim_one_pid     
+register_filter     
+regsub_core     
+rename_original_env     
+send_all_header_fields      
+send_brigade_blocking       
+send_brigade_nonblocking        
+sendfile_nonblocking        
+send_signal     
+set_allow_opts      
+ssl_expr_eval_comp      
+start_lingering_close_blocking      
+start_lingering_close_nonblocking       
+stop_lingering_close        
+strcmplex       
+strict_hostname_check       
+substring_conf      
+TO_QUEUE_MAKE       
+trie_node_alloc     
+unclosed_directive      
+update_child_status_internal        
+use_range_x     
+validate_status_line        
+worker_thread_should_exit_early     
+writev_nonblocking      
+x2c     
+yy_get_next_buffer      
+yy_get_previous_state       
+yy_init_globals     
+yysyntax_error      
+yytnamerr       
+yy_try_NUL_trans        
+abort_on_oom        
+ap_allow_overrides      
+ap_append_pid       
+ap_byterange_filter     
+ap_cfg_getc     
+ap_cfg_getline      
+ap_cleanup_scoreboard       
+ap_close_selected_listeners     
+ap_construct_server     
+ap_construct_url        
+ap_cookie_check_string      
+ap_cookie_read      
+ap_cookie_remove        
+ap_cookie_remove2       
+ap_cookie_write     
+ap_cookie_write2        
+ap_core_input_filter        
+ap_core_output_filter       
+ap_create_environment       
+ap_dir_cfgmatch     
+ap_escape_path_segment      
+ap_escape_quotes        
+ap_escape_shell_cmd     
+ap_escape_urlencoded        
+ap_exists_scoreboard_image      
+ap_expr_lookup_default      
+ap_expr_post_config     
+ap_expr_yyget_debug     
+ap_expr_yyget_extra     
+ap_expr_yyget_in        
+ap_expr_yyget_leng      
+ap_expr_yyget_lineno        
+ap_expr_yyget_lval      
+ap_expr_yyget_out       
+ap_expr_yyget_text      
+ap_expr_yylex_init_extra        
+ap_fcgi_encoded_env_len     
+ap_fcgi_encode_env      
+ap_field_noparam        
+ap_find_last_token      
+ap_find_list_item       
+ap_find_loaded_module_symbol        
+ap_find_module_name     
+ap_fprintf      
+ap_get_basic_auth_components        
+ap_get_conn_module_loglevel     
+ap_get_conn_server_module_loglevel      
+ap_get_core_module_config       
+ap_get_exec_line    emptyset    
+ap_getline  emptyset    
+ap_get_module_config    emptyset    
+ap_get_request_module_loglevel  emptyset    
+ap_get_scoreboard_global    emptyset    
+ap_get_scoreboard_worker    emptyset    
+ap_get_server_module_loglevel   emptyset    
+ap_get_token    emptyset    
+ap_getword_conf2_nc     
+ap_getword_conf_nc      
+ap_getword_nc       
+ap_getword_nulls_nc     
+ap_getword_white_nc     
+ap_global_mutex_create      
+ap_gname2id emptyset    
+ap_hook_get_access_checker  emptyset    
+ap_hook_get_access_checker_ex   emptyset    
+ap_hook_get_auth_checker    emptyset    
+ap_hook_get_check_config    emptyset    
+ap_hook_get_check_user_id   emptyset    
+ap_hook_get_child_init  emptyset    
+ap_hook_get_child_status    emptyset    
+ap_hook_get_create_connection   emptyset    
+ap_hook_get_create_request  emptyset    
+ap_hook_get_default_port    emptyset    
+ap_hook_get_dirwalk_stat    emptyset    
+ap_hook_get_drop_privileges emptyset    
+ap_hook_get_end_generation  emptyset    
+ap_hook_get_error_log   emptyset    
+ap_hook_get_expr_lookup emptyset    
+ap_hook_get_fixups  emptyset    
+ap_hook_get_force_authn emptyset    
+ap_hook_get_generate_log_id emptyset    
+ap_hook_get_get_mgmt_items  emptyset    
+ap_hook_get_get_suexec_identity emptyset    
+ap_hook_get_handler emptyset    
+ap_hook_get_header_parser   emptyset    
+ap_hook_get_http_scheme emptyset    
+ap_hook_get_insert_error_filter emptyset    
+ap_hook_get_insert_filter   emptyset    
+ap_hook_get_insert_network_bucket   emptyset    
+ap_hook_get_log_transaction emptyset    
+ap_hook_get_map_to_storage  emptyset    
+ap_hook_get_monitor emptyset    
+ap_hook_get_mpm emptyset    
+ap_hook_get_mpm_get_name    emptyset    
+ap_hook_get_mpm_query   emptyset    
+ap_hook_get_mpm_register_timed_callback emptyset    
+ap_hook_get_note_auth_failure       
+ap_hook_get_open_htaccess       
+ap_hook_get_open_logs       
+ap_hook_get_optional_fn_retrieve        
+ap_hook_get_post_config     
+ap_hook_get_post_perdir_config      
+ap_hook_get_post_read_request       
+ap_hook_get_pre_close_connection        
+ap_hook_get_pre_config      
+ap_hook_get_pre_connection      
+ap_hook_get_pre_mpm     
+ap_hook_get_pre_read_request        
+ap_hook_get_process_connection      
+ap_hook_get_protocol_get        
+ap_hook_get_protocol_propose        
+ap_hook_get_protocol_switch     
+ap_hook_get_quick_handler       
+ap_hook_get_resume_connection       
+ap_hook_get_suspend_connection      
+ap_hook_get_test_config     
+ap_hook_get_translate_name      
+ap_hook_get_type_checker        
+ap_ht_time      
+ap_ind      
+ap_is_allowed_protocol      
+ap_is_initial_req       
+ap_is_rdirectory        
+ap_limit_section        
+ap_list_provider_groups     
+ap_lookup_provider      
+ap_make_dirstr_prefix       
+ap_matches_request_vhost        
+ap_method_in_list       
+ap_method_is_limited        
+ap_method_name_of       
+ap_method_registry_destroy      
+ap_mpm_end_gen_helper       
+ap_mpm_pod_check        
+ap_mpm_pod_close        
+ap_mpm_pod_open     
+ap_mpm_pod_signal       
+ap_mpm_register_timed_callback      
+ap_mpm_set_coredumpdir      
+ap_mpm_set_graceful_shutdown        
+ap_mpm_set_max_mem_free     
+ap_mpm_set_max_requests     
+ap_mpm_set_pidfile      
+ap_mpm_set_thread_stacksize     
+ap_mutex_register       
+ap_open_piped_log       
+ap_os_create_privileged_process     
+ap_os_is_path_absolute      
+ap_piped_log_read_fd        
+ap_piped_log_write_fd       
+ap_pool_cleanup_set_null        
+ap_pregsub_ex       
+ap_process_http_connection      
+ap_proc_mutex_create        
+ap_pstr2_alnum      
+ap_queue_destroy        
+ap_random_pick      
+ap_realloc      
+ap_recent_ctime     
+ap_regerror     
+ap_register_auth_provider       
+ap_register_request_note        
+ap_remove_input_filter_byhandle     
+ap_remove_output_filter_byhandle        
+ap_request_has_body     
+ap_rind     
+ap_run_get_mgmt_items       
+ap_rxplus_compile       
+ap_rxplus_pmatch        
+ap_send_mmap        
+ap_set_deprecated       
+ap_set_extended_status      
+ap_set_file_slot        
+ap_set_flag_slot_char       
+ap_set_int_slot     
+ap_set_listenbacklog        
+ap_set_listencbratio        
+ap_set_listener     
+ap_set_mutex        
+ap_set_name_virtual_host        
+ap_set_receive_buffer_size      
+ap_set_reqtail      
+ap_set_scoreboard       
+ap_set_send_buffer_size     
+ap_set_string_slot      
+ap_set_string_slot_lower        
+ap_some_authn_required      
+ap_some_auth_required       
+ap_strcasestr       
+ap_strchr       
+ap_strchr_c     
+ap_stripprefix      
+ap_strrchr      
+ap_strrchr_c        
+ap_strstr       
+ap_strstr_c     
+ap_sub_req_lookup_dirent        
+ap_suck_in_APR      
+ap_sys_privileges_handlers      
+ap_uname2id     
+ap_unixd_accept     
+ap_update_child_status_descr        
+ap_update_child_status_from_server      
+ap_varbuf_pdup      
+ap_varbuf_regsub        
+ap_vhost_iterate_given_conn     
+arr_elts_close      
+arr_elts_getstr     
+base64_func     
+cfg_close       
+cfg_getch       
+cfg_getstr      
+check_signal        
+cleanup_global_providers        
+close_listeners_on_exec     
+conf_vector_length_pre_config       
+conn_var_fn     
+core_check_config       
+core_create_conn        
+core_create_proxy_req       
+core_dirwalk_stat       
+core_expr_lookup        
+core_generate_log_id        
+core_insert_network_bucket      
+core_post_config    emptyset    
+core_pre_config     
+core_pre_connection     
+core_upgrade_storage        
+create_core_dir_config      
+create_core_server_config       
+decrement_connection_count      
+deregister_all_hooks        
+do_nothing      
+env_func        
+eoc_bucket_read     
+eor_bucket_cleanup      
+eor_bucket_read     
+error_bucket_read       
+escape_func     
+event_check_config      
+event_get_name      
+event_open_logs     
+event_post_config       
+event_post_read_request     
+event_pre_connection        
+event_protocol_switch       
+event_query     
+event_register_timed_callback       
+event_request_cleanup       
+event_run       
+expr_lookup_not_found       
+extract_cookie_line     
+fatal_signal_cleanup        
+file_func       
+filesection     
+filesize_func       
+filter_cleanup      
+fname_alphasort     
+generate_error      
+getsfunc_BRIGADE        
+getsfunc_FILE       
+getsfunc_STRING     
+http_create_request     
+http_port       
+http_post_config        
+http_scheme     
+http_send_options       
+ifsection       
+include_config      
+listener_thread     
+load_file       
+load_module     
+log_constant_item       
+log_env_var     
+log_keepalives      
+log_local_address       
+log_log_id      
+log_note        
+log_remote_address      
+log_server_name     
+log_virtual_host        
+md5_func        
+merge_core_dir_configs      
+merge_core_server_configs       
+misc_var_fn     
+op_file_link        
+op_file_min     
+op_file_subr        
+op_file_xbit        
+op_fnmatch      
+op_nz       
+op_R        
+op_strcmatch        
+op_strmatch     
+op_T        
+op_url_subr     
+osenv_func      
+piped_log_cleanup       
+process_resource_config_cb      
+ptrans_pre_cleanup      
+queue_info_cleanup      
+regex_cleanup       
+reorder_sorter      
+req_header_var_fn       
+req_table_func      
+request_var_fn      
+reset_banner        
+reset_config_defines        
+reset_conf_vector_length        
+reset_request_notes     
+retained_data_cleanup       
+rxplus_cleanup      
+send_header     
+server_hostname_port        
+set_accept_path_info    emptyset    
+set_access_name emptyset    
+set_accf_map    emptyset    
+set_add_default_charset emptyset    
+set_allow2f emptyset    
+set_cgi_pass_auth   emptyset    
+set_cgi_var emptyset    
+set_content_md5 emptyset    
+set_cookie_doo_doo  emptyset    
+set_core_server_flag    emptyset    
+set_daemons_to_start    emptyset    
+set_default_type    emptyset    
+set_define  emptyset    
+set_document_root   ==0 
+set_enable_mmap emptyset    
+set_enable_sendfile emptyset    
+set_error_document  emptyset    
+set_errorlog_format emptyset    
+set_etag_bits   emptyset    
+set_hostname_lookups    emptyset    
+set_http_method emptyset    
+set_http_protocol_options   emptyset    
+set_keep_alive  emptyset    
+set_keep_alive_max  emptyset    
+set_keep_alive_timeout  !=0 
+set_limit_cpu   emptyset    
+set_limit_mem   emptyset    
+set_limit_nproc emptyset    
+set_limit_req_body  emptyset    
+set_limit_req_fields    emptyset    
+set_limit_req_fieldsize emptyset    
+set_limit_req_line  !=0 
+set_limit_xml_req_body  emptyset    
+set_loglevel    emptyset    
+set_max_overlaps    emptyset    
+set_max_ranges  emptyset    
+set_max_reversals   emptyset    
+set_max_spare_threads   emptyset    
+set_max_workers emptyset    
+set_merge_trailers  emptyset    
+set_min_spare_threads   emptyset    
+set_options emptyset    
+set_override    >0  
+set_override_list   emptyset    
+set_protocol    emptyset    
+set_protocols   >0  
+set_protocols_honor_order   emptyset    
+set_qualify_redirect_url    emptyset    
+set_recursion_limit emptyset    
+set_regex_default_options   emptyset    
+set_runtime_dir emptyset    
+set_server_alias    emptyset    
+set_server_limit    emptyset    
+set_serverpath  emptyset    
+set_server_root !=0 
+set_server_string_slot  emptyset    
+set_serv_tokens !=0 
+set_sethandler  >0  
+set_signature_flag  emptyset    
+set_thread_limit    emptyset    
+set_threads_per_child   emptyset    
+set_timeout emptyset    
+set_trace_enable    emptyset    
+set_use_canonical_name  emptyset    
+set_use_canonical_phys_port emptyset    
+set_worker_factor   !=0 
+sha1_func       
+so_sconf_create     
+start_cond_section      
+start_threads       
+subnet_parse_arg        
+table_do_fn_check_lengths       
+test_ifdefine_section       
+test_ifdirective_section        
+test_iffile_section     
+test_ifmod_section      
+test_ifsection_section      
+timer_comp      
+tolower_func        
+toupper_func        
+unbase64_func       
+unescape_func       
+uniq_field_values       
+unload_module       
+unset_define        
+unset_signals       
+urlsection      
+varbuf_cleanup      
+vhost_check_config      
+virtualhost_section     
+worker_thread       

@@ -1,0 +1,763 @@
+pthread_setcanceltype   !=0 X
+web_client_api_request_single_chart emptyset    
+sock_setreuse   <0  
+__isinf emptyset    X
+now_realtime_usec   ==0 
+rrddim_set  ==0 
+__netdata_rwlock_unlock >0  
+rrdpush_receiver_permission_denied  emptyset    
+socket_listen_main_single_threaded  emptyset    
+connect_to_one_of   emptyset    
+trim_all    emptyset    
+netdev_rename_find  emptyset    
+health_readfile ==0 
+unit_test   emptyset    
+rrdvar_index_find   emptyset    
+__errno_location    emptyset    X
+registry_machine_get    emptyset    
+setsid  <0  X
+health_main emptyset    
+web_client_create_on_listenfd   ==0 
+print_calculated_number emptyset    
+pthread_self    emptyset    X
+prometheus_label_copy   emptyset    
+netdata_mutex_unlock_debug  >0  
+__netdata_mutex_trylock >0  
+getpriority <0  X
+pthread_mutex_lock  >0  X
+inet_pton   <0  X
+sysconf <0  X
+web_files_uid   emptyset    
+rrdcalc_status2string   emptyset    
+nice    <0  X
+registry_person_url_callback_verify_machine_exists  emptyset    
+main    emptyset    
+now_sec ==0 
+setvbuf !=0 X
+dictionary_name_value_create_nolock ==0 
+fopen   ==0 X
+strncpyz    emptyset    
+do_proc_net_stat_synproxy   >0  
+single_variable2json    emptyset    
+expression_parse    ==0 
+procfile_filename   emptyset    
+do_proc_net_dev >0  
+sched_getparam  <0  X
+help    emptyset    
+health_alarm_log_read   emptyset    
+registry_url_get    emptyset    
+machine_request_callback    emptyset    
+registry_request_machine    ==0 
+config_isspace  emptyset    
+ferror  emptyset    X
+tc_class_compare    emptyset    
+web_server_rcv_callback <0  
+mountinfo_read  emptyset    
+sprintf <0  X
+fclose  <0  X
+registry_url_index_add  emptyset    
+chdir   <0  X
+path_is_dir emptyset    
+setrlimit   <0  X
+check_storage_number_exists >0  
+mountinfo_find_by_filesystem_mount_source   emptyset    
+now_monotonic_usec  ==0 
+statsd_process  emptyset    
+parse_variable  emptyset    
+vsnprintf   <0  X
+verify_netdata_host_prefix  <0  
+mountinfo_find  emptyset    
+pipe    <0  X
+kill    <0  X
+pthread_create  >0  X
+pluginsd_main   emptyset    
+statsd_readfile emptyset    
+recvmmsg    <0  X
+bind    <0  X
+rrdset_done_interpolate emptyset    
+atol    emptyset    X
+sigaction   <0  X
+madvise <0  X
+rrdset_compare  emptyset    
+uptime_from_boottime    ==0 
+should_send_chart_matching  emptyset    
+health_parse_db_lookup  ==0 
+health_variable_lookup  ==0 
+is_major_enabled    emptyset    
+web_client_api_request_v1_chart emptyset    
+web_client_api_request_v1_data_options  emptyset    
+rrdvar_index_del    ==0 
+rrdr_create ==0 
+format_dimension_collected_graphite_plaintext   emptyset    
+create_listen_socket4   <0  
+grouping_create_average emptyset    
+procfile_reopen ==0 
+dup2    <0  X
+timeval_usec    emptyset    
+str2ull emptyset    
+simple_hash_strcmp  emptyset    
+registry_machine_allocate   emptyset    
+socket_listen_main_static_threaded_worker   emptyset    
+rrdcalc_create  emptyset    
+fprintf <0  X
+registry_fix_url    emptyset    
+arl_create  emptyset    
+registry_person_save    <0  
+statsd_metric_compare   emptyset    
+sock_enlarge_out    <0  
+strcat  emptyset    X
+rrdhost_find_by_hostname    emptyset    
+rrdset_time2slot    emptyset    
+do_proc_net_rpc_nfs emptyset    
+pause   <0  X
+inet_ntop   ==0 X
+do_proc_diskstats   emptyset    
+rrdcalc_isrunnable  emptyset    
+do_proc_net_snmp    emptyset    
+rrdvar_fix_name emptyset    
+rrdpush_receive >0  
+seteuid <0  X
+do_proc_net_sockstat6   emptyset    
+rrdvar_custom_host_variable_create  emptyset    
+__netdata_rwlock_destroy    >0  
+rrdfamily_compare   emptyset    
+rrdset_find_byname  emptyset    
+strtoul emptyset    X
+registry_request_access_json    emptyset    
+statsd_parse_int    emptyset    
+format_dimension_stored_json_plaintext  emptyset    
+registry_machine_link_to_url    emptyset    
+do_ipc  >0  
+pthread_attr_getstacksize   >0  X
+bcache_read_number_with_units   emptyset    
+url_decode  emptyset    
+grouping_create_median  emptyset    
+pthread_mutex_unlock    >0  X
+dictionary_walker   emptyset    
+mkdir   <0  X
+syscall <0  X
+http_request_validate   emptyset    
+web_client_get_from_cache_or_allocate   emptyset    
+statsd_parse_skip_up_to emptyset    
+grouping_create_incremental_sum emptyset    
+format_value_with_precision_and_unit    emptyset    
+malloc  ==0 X
+do_sys_fs_btrfs emptyset    
+strdupz_decoding_octal  emptyset    
+web_client_switch_host  emptyset    
+rrdvar_create_and_index emptyset    
+valuetype2string    emptyset    
+rmdir   <0  X
+rrdcalc_add_alarm_from_config   ==0 
+mymmap  ==0 
+become_daemon   emptyset    
+get_multiple_connections_strategy   emptyset    
+prometheus_server_last_access   emptyset    
+read_file   >0  
+web_client_api_request_v1_alarm_variables   emptyset    
+__netdata_rwlock_wrlock >0  
+parse_and   emptyset    
+parse_one_full_operand  ==0 
+strftime    emptyset    X
+avl_traverse_lock   <0  
+pflines_new emptyset    
+statsd_algorithm_for_metric emptyset    
+parse_or    emptyset    
+load_netdata_conf   ==0 
+isoperatorterm_symbol   emptyset    
+callocz emptyset    
+setsockopt  <0  X
+dt_usec emptyset    
+__netdata_rwlock_trywrlock  >0  
+pflines_add emptyset    
+web_server_snd_callback <0  
+do_proc_net_stat_conntrack  emptyset    
+strstr  emptyset    X
+trim    emptyset    
+simple_uhash    emptyset    
+strsep_on_1char emptyset    
+listen_sockets_add  <0  
+rrddim_unhide   >0  
+ipc_sem_get_limits  <0  
+registry_person_url_index_find  emptyset    
+do_proc_vmstat  emptyset    
+pthread_mutex_init  >0  X
+registry_machine_url_allocate   emptyset    
+semctl  <0  X
+registry_url_index_del  emptyset    
+tc_class_index_find emptyset    
+buffer_tostring emptyset    
+rrddim_compare  emptyset    
+rrdhost_find_by_guid    emptyset    
+web_client_receive  <0  
+prometheus_preparation  emptyset    
+strtoull    emptyset    X
+registry_request_switch_json    emptyset    
+web_client_connected    emptyset    
+getpwuid    ==0 X
+discard_response    emptyset    
+str2ul  emptyset    
+lstat   <0  X
+mallopt ==0 X
+lrint   emptyset    X
+access_to_file_is_not_permitted emptyset    
+print_host_variables    emptyset    
+do_proc_sys_devices_system_edac_mc  >0  
+parse_abs   emptyset    
+netdata_rwlock_tryrdlock_debug  >0  
+buffer_create   emptyset    
+statsd_add_dim_to_app_chart emptyset    
+strcasestr  emptyset    X
+rrdset_compare_name emptyset    
+statfs  <0  X
+__netdata_rwlock_rdlock >0  
+registry_request_hello_json emptyset    
+value_is_zinit  emptyset    
+snprintfz   emptyset    
+registry_machine_find   emptyset    
+path_is_file    emptyset    
+deflateEnd  <0  X
+poll_default_add_callback   emptyset    
+getegid emptyset    X
+softnet_column_name emptyset    
+check_rrdcalc_comparisons   emptyset    
+rrdset2anything_api_v1  emptyset    
+process_graphite_response   emptyset    
+registry_person_find    emptyset    
+rrdhost_compare emptyset    
+read_tcp_max_orphans    emptyset    
+multi_threaded_web_client_worker_main   emptyset    
+gnu_dev_minor   emptyset    X
+dictionary_del  emptyset    
+registry_get_this_machine_guid  emptyset    
+write   <0  X
+run_all_mockup_tests    >0  
+parse_if_then_else  emptyset    
+avl_insert_lock <0  
+poll    <0  X
+sock_enlarge_in <0  
+string2valuetype    emptyset    
+setegid <0  X
+get_disk    emptyset    
+do_proc_loadavg >0  
+foreach_host_variable_callback  <0  
+strncpy emptyset    X
+realloc ==0 X
+statsd_main emptyset    
+web_server_mode_name    emptyset    
+unit_test_storage   emptyset    
+rrdpush_receiver_too_busy_now   emptyset    
+simple_hash emptyset    
+check_number_printing   emptyset    
+web_client_permission_denied    emptyset    
+health_parse_options    emptyset    
+rrdset_init_last_updated_time   emptyset    
+web_client_send_chunk_close <0  
+cgroup_find emptyset    
+grouping_create_des emptyset    
+listen  <0  X
+rrdset_set_name ==0 
+munmap  <0  X
+web_server_add_callback emptyset    
+pthread_detach  >0  X
+connect_to_unix <0  
+api_listen_sockets_setup    emptyset    
+__netdata_rwlock_tryrdlock  >0  
+group_method2string emptyset    
+pluginsd_space  emptyset    
+health_stock_config_dir emptyset    
+sock_setreuse_port  <0  
+netdata_rwlock_trywrlock_debug  >0  
+__netdata_rwlock_init   >0  
+appconfig_set_number        
+rrddim_set_multiplier       
+netdata_rwlock_wrlock_debug     
+need_to_send_chart_definition       
+parse_less_than_or_equal        
+sigemptyset <0  X
+get_system_pid_max      
+sched_getscheduler  <0  X
+is_true     
+now_boottime_usec   ==0 
+arl_expect_custom       
+do_proc_sys_devices_system_node >0  
+unit_test_buffer        
+recv    <0  X
+read_tcp_mem        
+appconfig_set       
+prometheus_name_copy        
+grouping_create_sum     
+avl_remove  emptyset    
+open_log_file       
+fflush  <0  X
+check_storage_number        
+statsd_private_rrdset_create        
+appconfig_set_boolean       
+diskspace_main      
+rrddim_index_find       
+netdata_thread_create       
+do_proc_stat    >0  
+read_per_core_files     
+web_client_send_chunk_header    <0  
+getpid  emptyset    X
+rrdvar_callback_for_all_host_variables      
+netdata_mutex_lock_debug    >0  
+printf  <0  X
+print_number_llu_r      
+setgid  emptyset    X
+appconfig_get       
+find_dir_in_subdirs     
+connect <0  X
+sock_setnonblock        
+dictionary_set      
+getuid  emptyset    X
+fcntl   <0  X
+registry_db_save    <0  
+ntohs   emptyset    X
+appconfig_value_create      
+setresuid   <0  X
+rrddim_hide     
+killpid     
+waitid  <0  X
+registry_person_get     
+listen_sockets_setup        
+strcasecmp  emptyset    X
+fgets   ==0 X
+rrdset_init_last_collected_time     
+rrdcalc_get_unique_id       
+check_host_and_call     
+strsep  emptyset    X
+registry_get_this_machine_hostname      
+test_variable_renames       
+do_proc_uptime  >0  
+run_test        
+connect_to_this     
+gmtime_r    ==0 X
+web_client_send <0  
+rrdsetvar_custom_chart_variable_create      
+pfwords_new     
+fileno  emptyset    X
+geteuid emptyset    X
+getpwnam    ==0 X
+expression_evaluate     
+getenv  emptyset    X
+simple_pattern_matches_extract      
+match_pattern       
+getrusage   <0  X
+isvariableterm      
+strdup_client_description       
+pthread_cancel  >0  X
+expression_strerror     
+tc_device_index_find        
+create_listen_socket6       
+rrdvar_compare  emptyset    
+strchr  emptyset    X
+rrdset2value_api_v1     
+chmod   <0  X
+registry_person_url_reallocate      
+calloc  ==0 X
+web_client_api_request_v1_data  emptyset    
+backends_main       
+web_client_api_request_v1_data_group    emptyset    
+do_sys_kernel_mm_ksm        
+usleep  <0  X
+create_listen_socket_unix       
+strdupz     
+eval_node_alloc emptyset    
+do_proc_net_sctp_snmp   >0  
+pthread_rwlock_trywrlock    >0  X
+parse_next_operand_given_its_operator       
+get_interrupts_array        
+check_if_resumed_from_suspention        
+do_proc_net_ip_vs_stats >0  
+color_map       
+__isnanf    emptyset    X
+registry_db_load    ==0 
+memory_file_save        
+appconfig_get_boolean       
+backend_name_copy       
+appconfig_exists        
+web_client_send_deflate <0  
+sleep   emptyset    X
+contenttype_for_filename        
+pthread_rwlock_tryrdlock    >0  X
+appconfig_section_create        
+avl_traverse    <0  
+fchown  <0  X
+statvfs <0  X
+parse_open_subexpression        
+__isnanl    emptyset    X
+procfile_open       
+arl_find_or_create_and_relink       
+registry_url_compare    emptyset    
+format_dimension_stored_graphite_plaintext      
+statsd_metric_index_find        
+__netdata_mutex_unlock  >0  
+atoll       X
+uuid_parse      X
+pthread_rwlock_unlock       X
+health_parse_delay      
+now_timeval     
+web_client_api_request_v1_data_google_format    emptyset    
+rename      X
+snprintf        X
+appconfig_move      
+web_client_api_request_v1_alarms    emptyset    
+single_threaded_link_client     
+parse_greater_than_or_equal     
+netdata_rwlock_init_debug       
+setgroups       X
+mypclose        
+rrdcalctemplate_add_template_from_config        
+setresgid       X
+http_header_parse       
+rrdset_first_slot       
+lseek       X
+is_virtual_filesystem       
+pthread_rwlock_rdlock       X
+opendir     X
+rrdr_line_init      
+dt_usec_signed      
+rrdvar_index_add        
+setenv      X
+registry_json_disabled      
+rrdset_cache_dir        
+getgrnam        X
+gettid      
+recursively_delete_dir      
+parse_minus     
+heartbeat_monotonic_dt_to_now_usec      
+proc_main       
+statsd_metric_type_string       
+now_realtime_timeval        
+rrdfamily_index_find        
+netdata_threads_init        
+__ctype_b_loc       X
+rrdset_find_on_create       
+add_dimension_to_app_chart      
+strcmp      X
+mypopene        
+netdata_mutex_init_debug    >0  
+parse_less      
+strtoll     X
+rrdcalc_value2status        
+parse_equal     
+cpuidlejitter_main      
+deflateInit2_       X
+grouping_create_max     
+registry_person_save_url    <0  
+recv_timeout        
+appconfig_option_index_find     
+health_parse_duration       
+from_hex        
+parse_plus      
+strip_control_characters        
+arl_check       
+web_response_code_to_string     
+str2i       
+__netdata_mutex_lock    >0  
+bind_to_this        
+get_disk_name       
+strerror_r      X
+tc_class_add        
+appconfig_section_compare   emptyset    
+process_opentsdb_response       
+url_encode      
+do_proc_net_sockstat    >0  
+setuid      X
+strdup      X
+parse_not_equal     
+parse_multiply      
+web_client_api_request_v1   emptyset    
+memory_file_mmap        
+rrddim_set_name     
+rrdset_find     
+netdata_mutex_trylock_debug >0  
+strerror_result     
+memory_file_open        
+registry_verify_request     
+tc_device_compare   emptyset    
+rrd_memory_mode_name        
+netdata_rwlock_unlock_debug     
+strlen      X
+localtime_r     X
+parse_operator      
+sigfillset      X
+do_proc_sys_kernel_random_entropy_avail >0  
+netdata_rwlock_rdlock_debug     
+to_hex      
+dictionary_name_value_index_find_nolock     
+close       X
+registry_machine_save_url   <0  
+sleep_usec      
+netdata_thread_tag      
+sched_setscheduler      X
+__netdata_mutex_init    >0  
+deflate     X
+rrddimvar_create        
+memory_file_mmap_ksm        
+__fpclassifyl       X
+cgroup_chart_type       
+process_json_response       
+registry_person_link_to_url     
+mysendfile      
+avl_remove_lock <0  
+find_all_btrfs_pools        
+web_client_api_request_v1_registry  emptyset    
+__HoltWinters       
+accept4     X
+ftruncate       X
+web_client_alloc    emptyset    
+cgroup_chart_id_strdupz     
+fork        X
+name_value_compare  emptyset    
+web_client_read_file    <0  
+strcpy      X
+pthread_attr_init       X
+add_wildcarded      
+getgrouplist        X
+registry_request_delete_json        
+web_server_mode_id      
+rrdhost_should_be_removed       
+str2uint64_t        
+rrdpush_receiver_thread_spawn       
+strncmp     X
+clock_gettime       X
+gai_strerror        X
+mountinfo_find_by_filesystem_super_option       
+do_proc_interrupts  >0  
+check_strdupz_path_subpath      
+sched_get_priority_min      X
+__isnan     X
+do_proc_spl_kstat_zfs_arcstats  >0  
+thread_start        
+registry_fix_machine_name       
+do_proc_net_softnet_stat    >0  
+dictionary_get      
+statsd_listen_sockets_setup     
+statsd_file_callback        
+fgets_trim_len      
+prometheus_units_copy       
+appconfig_get_boolean_ondemand      
+pthread_rwlock_destroy      X
+getrlimit       X
+pthread_join        X
+heartbeat_next      
+registry_person_url_index_add       
+statsd_parse_skip_spaces        
+sched_get_priority_max      X
+rrd2rrdr        
+rrddim_set_divisor      
+fd_is_valid     
+shell_name_copy     
+is_read_only        
+rrdset_update_last_collected_time       
+error_log_limit     
+parse_close_subexpression       
+read_proc_uptime        
+registry_machine_save   <0  
+print_number_lu_r       
+tc_device_create        
+fputc       X
+web_client_process_url  emptyset    
+procfile_readall        
+statsd_collector_thread     
+grouping_create_stddev      
+qsort_compare   emptyset    
+getgrgid        X
+grouping_create_min     
+mallocz emptyset    
+socket_listen_main_static_threaded      
+__sigsetjmp     X
+pthread_rwlock_wrlock       X
+align_entries_to_pagesize       
+rrd_memory_mode_id      
+parse_not       
+execl       X
+rrdpush_sender_thread_connect_to_master     
+read        X
+web_client_api_request_v1_allmetrics    emptyset    
+registry_log_load       
+rrdcalc_is_matching_this_rrdset     
+web_client_api_request  emptyset    
+format_dimension_collected_opentsdb_telnet      
+appconfig_load      
+pthread_setcancelstate      X
+registry_request_delete     
+rrdsetvar_create        
+dictionary_get_all      
+fstat   <0  X
+mypopen     
+prctl       X
+verify_required_directory       
+rrdpush_sender_thread       
+get_system_cpus     
+statsd_find_or_add_metric       
+llrintl     X
+rrdhost_find_or_create      
+cgroup_title_strdupz        
+escape_xmlz     
+parse_rest_of_expression        
+socket_listen_main_multi_threaded       
+gethostname     X
+rrdcalc_find        
+find_all_nodes      
+rrdset_find_bytype      
+str2ll      
+rrdset_type_name        
+select      X
+web_client_create_on_fd emptyset    
+rrdpush_receiver_thread     
+listen_sockets_check_is_member      
+rrdset_index_find_name      
+registry_person_allocate    emptyset    
+appconfig_index_find        
+rrdhost_create      
+get_numa_node_count     
+pthread_sigmask     X
+web_files_gid       
+now_boottime_sec        
+regenerate_guid     
+single_threaded_unlink_client       
+__isinfl        X
+web_client_api_request_v1_badge emptyset    
+open    <0  X
+rrddim_find     
+isoperatorterm_word     
+getnameinfo     X
+tc_space        
+ipc_sem_get_status <0  
+rrdfamily_create        
+avl_insert  <0  
+execle      X
+web_content_type_to_string      
+web_client_crock_socket <0  
+netdata_thread_detach       
+mystrsep        
+read_single_signed_number_file      
+nanosleep       X
+statsd_rcv_callback <0  
+rrdset_type_id      
+appconfig_option_compare    emptyset    
+poll_default_rcv_callback       
+rrdset_create_custom        
+appconfig_section_find      
+accept_socket       
+do_proc_softirqs    >0  
+strtol      X
+format_value_and_unit       
+rrdpush_init        
+registry_log_open       
+registry_request_search_json        
+now_monotonic_timeval       
+netdata_thread_cancel       
+web_client_api_request_v1_alarm_log emptyset    
+web_server_file_read_callback       
+toupper     X
+if_nametoindex      X
+pluginsd_process        
+read_single_number_file     
+pack_storage_number     
+getaddrinfo     X
+find_btrfs_disks        
+get_disk_name_from_path     
+registry_init       
+do_proc_meminfo >0  
+parse_pattern       
+backend_parse_data_source       
+closedir        X
+quoted_strings_splitter     
+pthread_mutex_trylock   >0  X
+strdupz_path_subpath        
+socket      X
+grouping_create_ses     
+do_proc_net_snmp6   >0  
+vprintf     X
+url_decode_r    emptyset    
+stat        X
+simple_pattern_create       
+avl_search_lock emptyset    
+send_timeout        
+netdata_thread_join     
+netdata_rwlock_destroy_debug        
+pthread_attr_setstacksize       X
+timeval_msec        
+link        X
+rrdset_strncpyz_name        
+avl_walker  <0  
+dictionary_create       
+rrdset_index_find       
+getopt      X
+gnu_dev_major       X
+mmap        X
+str2l       
+is_machine_guid_blacklisted     
+format_dimension_stored_opentsdb_telnet     
+registry_db_should_be_saved     
+now_usec    ==0 
+pluginsd_split_words        
+rrddim_set_by_pointer       
+appconfig_set_default       
+become_user     
+unit_test_str2ld        
+now_boottime_timeval        
+copy_series     
+web_client_send_chunk_finalize  <0  
+rrdset_index_del_name       
+chown       X
+fdopen      X
+health_source_file      
+unlink      X
+parse_greater       
+do_proc_net_netstat >0  
+connect_to_this_ip46        
+do_proc_net_rpc_nfsd    >0  
+web_client_api_request_v1_data_format   emptyset    
+pthread_rwlock_init     X
+access      X
+rrd_algorithm_id        
+now_monotonic_sec       
+pluginsd_worker_thread      
+readlink        X
+rrd_algorithm_name      
+get_netdev      
+rrdcalc_exists      
+vsnprintfz      
+__isinff        X
+getgid      X
+web_client_uncrock_socket   <0  
+vfprintf        X
+avl_search  emptyset    
+backends_can_send_rrdset        
+dirname     X
+poll_add_fd     
+cgroups_main        
+umask       X
+readdir     X
+parse_divide        
+rrddim_add_custom       
+sock_delnonblock        
+registry_person_url_allocate    emptyset    
+appconfig_get_number        
+print_number_llu_r_smart        
+person_url_compare  emptyset    
+tc_main     
+cgroup_add      
+statsd_parse_field_trim     
+registry_person_url_index_del       
+rrdvar_custom_variable_create   emptyset    
+health_user_config_dir      
+parse_full_expression       
+statsd_add_callback     
+now_realtime_sec        
+send        X
+health_alarm_log_open       
+rrdset_index_add_name       
+registry_request_access     
+reallocz    emptyset    
+parse_constant      
+htons       X
+rrddim_set_algorithm        
+web_server_check_client_status      
+putchar     X
+tolower     X
