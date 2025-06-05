@@ -131,7 +131,7 @@ Bitcode ID (last 8 characters)           File name:            <0          >0   
 ef786082                                 mbedtls-reg2mem.bc    818         15           64           4           0           1           0           272          1174        0.00      
 91d8f71a                                 netdata-reg2mem.bc    161         72           222          2           4           1           0           234          696         0.00      
 e7471634                                 pidgin-reg2mem.bc     16          4            95           0           4           0           0           53           172         0.00      
-cd77a397                                 zlib-reg2mem.bc        76          1            14           0           0           0           0           29           120         0.00      
+cd77a397                                 zlib-reg2mem.bc       76          1            14           0           0           0           0           29           120         0.00      
 ```
 Please note that these injected results are for just simply viewing the raw
 numbers for comparison against the numbers presented in the paper.
