@@ -211,6 +211,29 @@ def add_arguments(service_parsers):
         required=True,
         help="Output path where .csv file will be written.",
     )
+    # EESI service: ListSpecificationsTable 
+    eesi_list_specifications_table_parser = eesi_parser.add_parser(
+        "ListSpecificationsTable",
+        help="Outputs specifications table to a csv file.",
+    )
+    eesi_list_specifications_table_parser.add_argument(
+        "--confidence-threshold",
+        type=int,
+        default=100,
+        help="The confidence to threshold lattice elements on.",
+    )
+    eesi_list_specifications_table_parser.add_argument(
+        "--bitcode-uri",
+        default=None,
+        help="Bitcode URI to filter for.",
+    )
+    eesi_list_specifications_table_parser.add_argument(
+        "--to-latex",
+        action="store_true",
+        default=False,
+    )
+
+
 
     # EESI service: ListStatisticsDatabase
     eesi_list_statistics_database_args = eesi_parser.add_parser(
@@ -396,19 +419,6 @@ def parse_eesi_list_specifications_table_args(args):
     command_kwargs["to_latex"] = args.to_latex
 
     return command, command_kwargs
-
-def parse_eesi_specifications_table_to_latex_args(args):
-    """Parses command-line arguments for ListSpecificationsTable."""
-
-    database = cli.db.db.connect(args.db_name, args.db_host, args.db_port)
-
-    command = cli.eesi.commands.specifications_table_to_latex
-    command_kwargs = dict()
-    command_kwargs["database"] = database
-    command_kwargs["confidence_threshold"] = args.confidence_threshold
-
-    return command, command_kwargs
-
 
 def parse_eesi_specifications_table_to_csv_args(args):
     """Parses command-line arguments for SpecificationsTableToCsv."""
