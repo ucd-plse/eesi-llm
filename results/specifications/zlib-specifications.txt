@@ -1,4 +1,3 @@
-cd77a397                                 zlib-reg2mem.bc                                                            
 gzsetparams: gzsetparams <0
 gzputs: gzputs <0
 gzputc: gzputc <0

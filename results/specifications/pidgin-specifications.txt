@@ -1,4 +1,3 @@
-e7471634                                 pidgin-reg2mem.bc                                                          
 persistance_write_expired_prekey_profile: persistance_write_expired_prekey_profile <0
 persistance_write_expired_client_profile: persistance_write_expired_client_profile <0
 persistance_write_client_profile_FILEp: persistance_write_client_profile_FILEp <0
