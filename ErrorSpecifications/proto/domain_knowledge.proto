@@ -1,0 +1,50 @@
+// This contains proto messages pertaining to domain knowledge that is used
+// to keep track of information related to programs that will be analyzed by
+// EESIER.
+
+syntax = "proto3";
+
+package error_specifications;
+
+import "proto/bitcode.proto";
+// import "bitcode.proto";
+
+message SuccessCode {
+  // The name of the success code.
+  string name = 1;
+
+  // The value of the success code.
+  int32 value = 2;
+
+  // The submodules where the code is applicable.
+  repeated string submodules = 3;
+}
+
+message ErrorCode {
+  // The name of the error code.
+  string name = 1;
+
+  // The error value
+  int32 value = 2;
+
+  // The submodules where the code is applicable.
+  repeated string submodules = 3;
+}
+
+message ErrorOnlyArgument {
+  // The argument position, numbered starting from 0
+  int32 position = 1;
+
+  // The value of the argument
+  ConstantValue value = 2;
+}
+
+message ErrorOnlyCall {
+  // The error-only function being called
+  Function function = 1;
+
+  // The arguments required to consider the function as error-only.
+  // If this is empty, then all calls to the function will be
+  // considered error-only.
+  repeated ErrorOnlyArgument required_args = 2;
+}

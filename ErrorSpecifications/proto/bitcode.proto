@@ -1,0 +1,188 @@
+// Protobuf messages related to bitcode files
+// Bitcode files are first registered with the service by either pointing to a
+// local file, and S3 file. After that, bitcode files are referenced by handle.
+
+syntax = "proto3";
+
+package error_specifications;
+
+import "proto/operations.proto";
+// import "operations.proto";
+
+service BitcodeService {
+  // Register a bitcode file. This makes the BitcodeService aware of the
+  // file and returns a handle (sha256 hash) to the file.
+  rpc RegisterBitcode(RegisterBitcodeRequest) returns (RegisterBitcodeResponse);
+
+  // Annotate a bitcode file to give instructions unique identifiers.
+  rpc Annotate(AnnotateRequest) returns (AnnotateResponse);
+
+  // Get all of the functions defined by bitcode file.
+  rpc GetDefinedFunctions(DefinedFunctionsRequest) returns (Operation);
+
+  // Get all of the functions called by a bitcode file.
+  rpc GetCalledFunctions(CalledFunctionsRequest) returns (Operation);
+
+  // Get all of the functions called by all callers in a bitcode file.
+  rpc GetLocalCalledFunctions(LocalCalledFunctionsRequest) returns (Operation);
+
+  // Get all of the functions called per file.
+  rpc GetFileCalledFunctions(FileCalledFunctionsRequest) returns (Operation);
+
+  // This way BitcodeService and other services do not need
+  // to share a file system.
+  rpc DownloadBitcode(DownloadBitcodeRequest) returns (stream DataChunk);
+}
+
+message RegisterBitcodeRequest {
+  // Provide in the form file://path
+  Uri uri = 1;
+}
+
+message RegisterBitcodeResponse {
+  // Unique identifier for this file
+  Handle bitcode_id = 1;
+}
+
+message AnnotateRequest {
+  Handle bitcode_id = 1;
+  Uri output_uri = 2;
+}
+
+message AnnotateResponse {
+  Handle bitcode_id = 1;
+}
+
+message DownloadBitcodeRequest {
+  Handle bitcode_id = 1;
+}
+
+message DataChunk {
+  bytes content = 1;
+}
+
+message DefinedFunctionsRequest {
+  Handle bitcode_id = 1;
+}
+
+message DefinedFunctionsResponse {
+  repeated Function functions = 1;
+}
+
+message CalledFunctionsRequest {
+  Handle bitcode_id = 1;
+}
+
+message LocalCalledFunctionsRequest {
+  Handle bitcode_id = 1;
+}
+
+message FileCalledFunctionsRequest {
+  Handle bitcode_id = 1;
+}
+
+message CalledFunctionsResponse {
+  // Effectively a map from Function to total number of call sites.
+  // Note that this may return multiple entries for a single function
+  // source name. It uses `Function.llvm_name` as the key.
+  repeated CalledFunction called_functions = 1;
+}
+
+message LocalCalledFunctionsResponse {
+  // A map from the called function to another map from the caller function
+  // to the total number of call sites (of the called function in the caller).
+  repeated LocalCalledFunction local_called_functions = 1;
+}
+
+message FileCalledFunctionsResponse {
+  // A map from the file to the list of called functions for that file.
+  repeated FileCalledFunction file_called_functions = 1;
+}
+
+message CalledFunction {
+  // The function that is called. This function is not necessarily defined
+  // in the bitcode file.  Therefore the `bitcode_id` field will be empty.
+  Function function = 1;
+  int32 total_call_sites = 2;
+}
+
+// The layout of CallerFunction is the same as CalledFunction. This message
+// is included is to avoid "lazily" using CalledFunction in place of the
+// CallerFunction message, aiming to reduce confusion.
+message CallerFunction {
+  // The function that is calling, i.e., the caller.
+  Function function = 1;
+
+  // The total number of times that the caller is calling a function.
+  int32 total_call_sites = 2;
+}
+
+message LocalCalledFunction {
+  Function called_function = 1;
+
+  // The list of CallerFunctions (i.e., caller functions and total call counts)
+  // for the called_function.
+  repeated CallerFunction caller_functions = 2;
+}
+
+// A FileCalledFunction includes the file name and the CalledFunctions for that
+// file. The counts in the CalledFunctions are based on the total count for the
+// file.
+message FileCalledFunction {
+  // The file that the CalledFunctions reside.
+  string file = 1;
+
+  repeated CalledFunction called_functions = 2;
+}
+
+enum FunctionReturnType {
+  FUNCTION_RETURN_TYPE_INVALID = 0;
+  FUNCTION_RETURN_TYPE_VOID = 1;
+  FUNCTION_RETURN_TYPE_INTEGER = 2;
+  FUNCTION_RETURN_TYPE_POINTER = 3;
+
+  // At least float, double, etc.
+  FUNCTION_RETURN_TYPE_OTHER = 9;
+}
+
+message Function {
+  // The actual function name in the LLVM bitcode file.
+  string llvm_name = 1;
+
+  // Original function name in source code.
+  string source_name = 2;
+
+  // The bitcode file this function belongs to.
+  Handle bitcode_id = 3;
+
+  // The return type of the function.
+  FunctionReturnType return_type = 4;
+}
+
+message ConstantValue {
+  oneof value {
+    // A constant integer value.
+    // NULL is 0, so it is represented with int_value = 0.
+    int32 int_value = 1;
+
+    // A constant string value.
+    string string_value = 2;
+  }
+}
+
+message Instruction {
+  // The bitcode file this instruction belongs to
+  Handle bitcode_id = 1;
+
+  // The source location of the instruction
+  Location location = 2;
+
+  // The function this instruction belongs to
+  Function parent_function = 3;
+}
+
+// A source location. Used by a variety of services.
+message Location {
+  string file = 1;
+  int64 line = 2;
+}

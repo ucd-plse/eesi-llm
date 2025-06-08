@@ -1,0 +1,82 @@
+// Error-handling specification output from the EHnfer miner.
+// EHnfer mines error-handling specifications in the form of
+// association rules. See the paper "Path-based Function Embedding and its
+// Application to Error-Handling Specification Mining" for details.
+
+syntax = "proto3";
+
+import "proto/bitcode.proto";
+import "proto/mining.proto";
+import "proto/operations.proto";
+
+package error_specifications.ehnfer;
+
+service EhnferService {
+  // Mine for error-handling specifications
+  // This is a long-running operation
+  rpc Mine(MineRequest) returns (Operation);
+
+  // Get all of the mined specifications
+  rpc GetAllSpecifications(AllSpecificationsRequest)
+      returns (stream Specification);
+}
+
+message MineRequest {
+  Handle mining_database_id = 1;
+
+  // The programembedding model to use for merged mining
+  Handle model_id = 2;
+
+  // Any non-negative integer (usually in the range of 5 to 15)
+  // Only specifications with a support level >= `support_threshold`
+  // are retained
+  int32 support_threshold = 3;
+
+  // Between 0.0 and 1.0
+  // Specifications that contain functions with a similarity
+  // in `model` >= `similarity_threshold` are merged.
+  float similarity_threshold = 4;
+}
+
+message MineResponse {
+}
+
+message MineMetadata {
+  // Estimated percent complete (0 to 100)
+  int32 progress = 1;
+}
+
+message AllSpecificationsRequest {
+  // Unique identifier of the mining database
+  Handle mining_database_id = 1;
+}
+
+// All specifications are sets of association rules
+// A specification is a "merged" specification if len(rules) > 1
+message Specification {
+  repeated AssociationRule rules = 1;
+
+  // This is the number of error handlers that support this specification
+  int32 support = 2;
+
+  // The ratio of the number of error handlers that support this specification
+  // to the number of error handlers that this specification applies to
+  float confidence = 3;
+}
+
+// A specification is a tuple of two sets,
+// a support number, and a confidence number
+message AssociationRule {
+  // Left-hand side of the rule (antecedent)
+  ItemSet left = 1;
+
+  // Right-hand side of the rule (consequent)
+  ItemSet right = 2;
+
+  // The number of error handlers that support this association rule
+  int32 support = 3;
+
+  // The ratio of the number of error handlers that support this assocation
+  // rule to the number of error handlers that this assocation rule applies to
+  float confidence = 4;
+}

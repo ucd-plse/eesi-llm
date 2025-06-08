@@ -1,0 +1,60 @@
+// Messages related to the "mining database".
+// A mining database is the raw material over which error-handling specification
+// mining is performed. It is the input to the EHnfer miner.
+
+syntax = "proto3";
+
+package error_specifications.ehnfer;
+
+import "proto/bitcode.proto";
+import "proto/eesi.proto";
+import "proto/operations.proto";
+
+service MiningDatabaseService {
+  // Create a mining database.
+  // This is a long-running operation.
+  rpc CreateMiningDatabase(CreateMiningDatabaseRequest) returns (Operation);
+
+  // Get the content of a mining database.
+  rpc GetMiningDatabase(GetMiningDatabaseRequest) returns (stream Transaction);
+}
+
+message CreateMiningDatabaseRequest {
+  // Unique identifier of the bitcode file returned by Bitcode service
+  Handle bitcode_id = 1;
+}
+
+// Associated with the Operation returned by CreateMiningDatabase
+message CreateMiningDatabaseResponse {
+  // Unique identifier of the mining database
+  Handle mining_database_id = 1;
+}
+
+message CreateMiningDatabaseMetadata {
+  // Estimated percentage complete (0 to 100)
+  int32 progress = 2;
+}
+
+// Used to retrive the content of a mining database.
+// The handle is returned as part of the stream of progress messages
+// when CreateMiningDatabase is called.
+message GetMiningDatabaseRequest {
+  Handle mining_database_id = 1;
+}
+
+// A mining database is a stream of Transactions.
+message Transaction {
+  ErrorHandler handler = 1;
+
+  // The set of items associated with the error-handling context
+  ItemSet context = 2;
+
+  // The set of items associated with an errror-handling response
+  ItemSet response = 3;
+}
+
+// Items can be anything, though they are commonly names of function calls.
+// They are just strings here for flexibility.
+message ItemSet {
+  repeated string items = 1;
+}

@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package error_specifications;
+
+import "proto/get_graph.proto";
+import "proto/operations.proto";
+
+service WalkerService {
+  // Start a random walk over interprocedural control flow graph,
+  // output from the old func2vec getgraph. This is temporary until
+  // the new ICFG service exists.
+  rpc RandomWalkLegacyIcfgBackground(RandomWalkLegacyIcfgRequest)
+      returns (Operation);
+
+  // Start a random walk over interprocedural control flow graph,
+  // output from the old func2vec getgraph. This is temporary until
+  // the new ICFG service exists.
+  rpc RandomWalkLegacyIcfg(RandomWalkLegacyIcfgRequest)
+      returns (stream Sentence);
+}
+
+message RandomWalkLegacyIcfgRequest {
+  // Must be file://absolute/path for a local file on the walker server.
+  Uri input_icfg_uri = 1;
+
+  // Where to save the random walks to.
+  // Must be file:// scheme.
+  Uri output_walks_uri = 2;
+
+  // The maximum length of each sentence
+  int32 walk_length = 3;
+
+  // Number of walks to perform for each label
+  int32 walks_per_label = 4;
+}
+
+// Associated with Operation returned by RandomWalkBackground.
+message RandomWalkLegacyIcfgResponse {
+  // A copy of the request that has finished.
+  RandomWalkLegacyIcfgRequest request = 1;
+}
+
+// Associated with Operation returned by RandomWalkBackground.
+message RandomWalkMetadata {
+}
+
+message Sentence {
+  repeated Label words = 1;
+}

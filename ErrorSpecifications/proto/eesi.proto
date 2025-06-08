@@ -1,0 +1,203 @@
+// This is the service for the interleaved EESI and LLM error specification
+// inference.
+
+syntax = "proto3";
+
+package error_specifications;
+
+import "proto/domain_knowledge.proto";
+import "proto/bitcode.proto";
+import "proto/operations.proto";
+
+service EesiService {
+  // Get all of the function error specifications for a bitcode file
+  // This is a long-running operation
+  rpc GetSpecifications(GetSpecificationsRequest) returns (Operation);
+
+  // Get all of the error handlers in a bitcode file
+  // This is a long-running operation
+  rpc GetErrorHandlers(GetErrorHandlersRequest) returns (Operation);
+}
+message GetSpecificationsRequest {
+  // Unique identifier of the bitcode file returned by Bitcode service
+  Handle bitcode_id = 1;
+
+  // The following three fields make up the EESI domain knowledge inputs
+  // that boostrap the specification inference process.
+  // ------------------------------------------------------
+  // Initial function-error specifications
+  repeated Specification initial_specifications = 2;
+
+  // Error-only functions
+  // These are functions that are only called from an error path.
+  repeated ErrorOnlyCall error_only_functions = 3;
+
+  // Error codes to bootstrap EESI
+  // The integer portion of an `ErrorCode` is always an error value.
+  repeated ErrorCode error_codes = 4;
+
+  // Success codes
+  // These are the error codes' corresponding success values.
+  repeated SuccessCode success_codes = 5;
+
+  string llm_name = 6;
+
+  // Whether to apply a heuristic to determine if 0 is a success
+  // code in certain contexts, instead of every time.
+  bool smart_success_code_zero = 7;
+
+  // The path to the ctags file. This is needed when querying the LLM.
+  string ctags_file = 8;
+}
+
+// Associated with the Operation returned by GetAllSpecifications()
+message GetSpecificationsResponse {
+  repeated Specification specifications = 1;
+  repeated Violation violations = 2;
+}
+
+message GetErrorHandlersRequest {
+  // Unique identifier of the bitcode file returned by Bitcode service
+  Handle bitcode_id = 1;
+  repeated Specification specifications = 2;
+}
+
+enum SignLatticeElement {
+  SIGN_LATTICE_ELEMENT_INVALID = 0;
+  SIGN_LATTICE_ELEMENT_BOTTOM = 1;
+  SIGN_LATTICE_ELEMENT_LESS_THAN_ZERO = 2;
+  SIGN_LATTICE_ELEMENT_GREATER_THAN_ZERO = 3;
+  SIGN_LATTICE_ELEMENT_ZERO = 4;
+  SIGN_LATTICE_ELEMENT_LESS_THAN_EQUAL_ZERO = 5;
+  SIGN_LATTICE_ELEMENT_GREATER_THAN_EQUAL_ZERO = 6;
+  SIGN_LATTICE_ELEMENT_NOT_ZERO = 7;
+  SIGN_LATTICE_ELEMENT_TOP = 8;
+}
+
+message Specification {
+  Function function = 1;
+  SignLatticeElement lattice_element = 2;
+
+  // The confidence, where 0 <= confidence <= 100, represents the confidence
+  // that the lattice element is correct. This value is based on the cosine
+  // similarity between the function synonyms that are returned from the
+  // embedding that is used in EESIER's analysis. If the analysis determines a
+  // specification through static analysis, then the confidence is 100
+  // (highest).
+  // This confidence represents the confidence that the lattice element of the
+  // specification Meets with the zero lattice element (i.e., ==0)
+  // and remains non-bottom. I.e., the confidence that an error-value is
+  // zero.
+  uint32 confidence_zero = 3;
+  // This confidence represents the confidence that the lattice element of the
+  // specification Meets with <0 and remains non-bottom. I.e., the confidence
+  // that an error-value is negative.
+  uint32 confidence_less_than_zero = 4;
+  // This confidence represents the confidence that the lattice element of the
+  // specification Meets with >0 and remains non-bottom. I.e., the confidence
+  // that an error-value is positive.
+  uint32 confidence_greater_than_zero = 5;
+  // This confidence represents the confidence that the lattice element of
+  // the specification is the emptyset. That is, that specification lattice
+  // element set should not contain ==0, <0, or >0. This is separate from the
+  // specification lattice_element field being SIGN_LATTICE_ELEMENT_BOTTOM, as
+  // this moreso represents the lattice element being "unknown", since
+  // specification lattice elements are bottom by default. In simpler terms, the
+  // emptyset confidence represents the confidence that the related
+  // specification function does not return any error indicating value.
+  uint32 confidence_emptyset = 6;
+
+  // Track which functions contributed to that abstract error value being
+  // inferred. We only track the name here since we already will be keeping
+  // track of its error specification.
+  repeated string sources_of_inference_less_than_zero = 7;
+  repeated string sources_of_inference_greater_than_zero = 8;
+  repeated string sources_of_inference_zero = 9;
+  repeated string sources_of_inference_emptyset = 10;
+
+  bool inferred_with_llm = 11;
+}
+
+message ErrorHandler {
+  // Each handler is uniquely identified by the conditional branch
+  // instruction that is testing for an error value.
+  Instruction branch = 1;
+
+  // The function that is returning the error value being tested
+  Function tested_function = 2;
+}
+
+enum ExpansionOperationType {
+  // Represents an invalid operation, this will cause the expansion to not
+  // proceed.
+  EXPANSION_OPERATION_INVALID = 0;
+
+  // Performs the meet of the synonyms for the expansion.
+  EXPANSION_OPERATION_MEET = 1;
+
+  // Performs the join of the synonyms for the expansion.
+  EXPANSION_OPERATION_JOIN = 2;
+
+  // Performs the max of the synonyms for the expansion.
+  EXPANSION_OPERATION_MAX = 3;
+}
+
+enum ViolationType {
+  // Represents an invalid violation type, not an actual violation that the
+  // checker finds.
+  VIOLATION_TYPE_INVALID = 0;
+
+  // An unused violation occurs when an error-specification exists for a
+  // function exists, but the return value of that function is never used,
+  // i.e. it is not checked.
+  VIOLATION_TYPE_UNUSED_RETURN_VALUE = 1;
+
+  // An insufficient violation occurs when an error-specification exists for
+  // a function, but the check that occurs is insufficient in relation to the
+  // SignLatticeElement of that specification. E.g. a function has a
+  // specification of <=0, but only <0 is checked.
+  VIOLATION_TYPE_INSUFFICIENT_CHECK = 2;
+
+  // An unchecked violation occurs when error-specification exists for a
+  // function and the return value for such a function call is stored, but
+  // never checked, i.e., there exists no conditional checking for error.
+  VIOLATION_TYPE_UNCHECKED_CHECK = 3;
+}
+
+message Violation {
+  ViolationType violation_type = 1;
+
+  // Human-readable message.
+  string message = 2;
+
+  // The source location where the violation occurs.
+  Location location = 3;
+
+  // The specification that is being violated.
+  Specification specification = 4;
+
+  // The parent function that contains the call site.
+  Function parent_function = 5;
+
+  // The confidence of a violation based on the confidence of the error
+  // specification used to find the bug. This value ranges from 0 to 100.
+  uint64 confidence = 6;
+}
+
+// A ScoredViolation contains the underlying violation, along with confidence
+// values (e.g. global/local) that represent how certain we are that a violation
+// is correct.
+message ScoredViolation {
+  // The underlying violation that has an associated scored.
+  Violation violation = 1;
+
+  //        Number of violations of specification in project
+  // 1 -  ----------------------------------------------------
+  //      Number of calls in project to specification function
+  float local_confidence = 2;
+
+  //        Total number of violations of specification
+  // 1 -  -----------------------------------------------
+  //      Total number of calls to specification function
+  float global_confidence = 3;
+}

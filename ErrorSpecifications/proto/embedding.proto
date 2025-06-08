@@ -1,0 +1,138 @@
+// This is the gRPC service associated with func2vec.
+// Func2vec is the tool from the paper "Path-based Function Embedding and
+// its application to Error-handling Specification Mining"
+//
+// This service can be used to train an embedding and query the resulting
+// embedding.
+
+syntax = "proto3";
+
+package error_specifications;
+
+import "proto/operations.proto";
+import "proto/get_graph.proto";
+
+service EmbeddingService {
+  // Train a embedding on a walks file.
+  rpc Train(TrainRequest) returns (TrainResponse);
+
+  // Imports an already existing embedding (word2vec text format).
+  rpc RegisterEmbedding(RegisterEmbeddingRequest)
+      returns (RegisterEmbeddingResponse);
+
+  // Get the similarity of a pair of labels in the embedding.
+  rpc GetSimilarity(GetSimilarityRequest) returns (GetSimilarityResponse);
+
+  // Get top-K most similar labels.
+  rpc GetMostSimilar(GetMostSimilarRequest) returns (GetMostSimilarResponse);
+
+  // Get the entire vocabulary for the supplied embedding, where the
+  // vocabulary is the list of functions that are represented by our
+  // embedding.
+  rpc GetVocabulary(GetVocabularyRequest) returns (GetVocabularyResponse);
+}
+
+// The request for training a model (i.e. embedding) using the embedding
+// service.
+// NEXT_ID: 7
+message TrainRequest {
+  // URI of the random walks file. Must be a local file.
+  Uri random_walks_uri = 1;
+
+  // Where to save the embedding. Must be a local file.
+  Uri output_embedding_uri = 2;
+
+  // The number of dimensions to use for the embedding (e.g. 100, 300)
+  int32 dimensions = 3;
+
+  // The window size to use for the embedding (e.g. 1 or 5)
+  int32 window = 4;
+
+  // word2vec min count
+  int32 mincount = 5;
+
+  // The method for generating an embedding. Currently, only Word2Vec and
+  // fastText are supported.
+  EmbeddingMethod embedding_method = 6;
+}
+
+// The response for for the Train gRPC.
+message TrainResponse {
+  Handle embedding_id = 1;
+}
+
+// Contains metadata associated with the Train gRPC process.
+message TrainMetadata {
+  // Estimated percentage complete (0 to 100).
+  int32 progress = 1;
+}
+
+// The request for getting the vocabulary of a registered embedding.
+message GetVocabularyRequest {
+  // The ID of the embedding to use. Must be registered first.
+  Handle embedding_id = 1;
+}
+
+// The response for the GetVocabulary gRPC.
+message GetVocabularyResponse {
+  // The labels from the embedding, in our case, these are function names.
+  repeated string function_labels = 1;
+}
+
+// The request for registering an embedding file with the embedding service.
+message RegisterEmbeddingRequest {
+  // Uri to saved embedding.
+  Uri uri = 1;
+}
+
+// The response for the RegisterEmbedding gRPC.
+message RegisterEmbeddingResponse {
+  Handle embedding_id = 1;
+}
+
+// The request for getting the similarity score between two labels in an
+// embedding.
+message GetSimilarityRequest {
+  Handle embedding_id = 1;
+  Label label1 = 2;
+  Label label2 = 3;
+}
+
+// The response for the GetSimilarity gRPC.
+message GetSimilarityResponse {
+  float similarity = 1;
+}
+
+// The request for getting the most similar labels in an embedding.
+message GetMostSimilarRequest {
+  // The ID of the embedding to use. Must be registered first.
+  Handle embedding_id = 1;
+
+  // Return top-k labels that are most similar to this label.
+  Label label = 2;
+
+  // How many similar labels to return.
+  int32 top_k = 3;
+}
+
+// The response for the GetMostSimilar gRPC.
+message GetMostSimilarResponse {
+  // Order of embedding IDs matches similarity scores.
+  repeated Label labels = 1;
+  repeated float similarities = 2;
+}
+
+// Represents the possible training methodologies for generating embeddings in
+// the embedding service.
+enum EmbeddingMethod {
+  // Represents an invalid method for generating embeddings.
+  EMBEDDING_METHOD_INVALID = 0;
+
+  // This embedding methodology uses gensim's included Word2Vec to generate
+  // embeddings.
+  EMBEDDING_METHOD_WORD2VEC = 1;
+
+  // This embedding methodology uses gensim's included FastText to generate
+  // embeddings.
+  EMBEDDING_METHOD_FASTTEXT = 2;
+}

@@ -1,0 +1,46 @@
+// This is the service for the tool EESI associated with the paper
+// Effective Error Specification Inference via Domain Knowledge Expansion
+
+syntax = "proto3";
+
+package error_specifications;
+
+import "proto/eesi.proto";
+
+service GptService {
+  // Get all of the function error specifications for a bitcode file
+  // This is a long-running operation
+  rpc GetGptSpecification(GetGptSpecificationRequest)
+      returns (GetGptSpecificationResponse);
+
+  rpc GetGptThirdPartySpecifications(GetGptThirdPartySpecificationsRequest)
+      returns (GetGptThirdPartySpecificationsResponse);
+}
+
+message GetGptSpecificationRequest {
+  string ctags_file = 1;
+
+  string function_name = 2;
+
+  // Error specifications for context for Gpt model.
+  repeated Specification error_specifications = 3;
+  map<string, SignLatticeElement> error_code_names = 4;
+  map<string, SignLatticeElement> success_code_names = 5;
+  string llm_name = 6;
+}
+
+message GetGptThirdPartySpecificationsRequest {
+  map<string, string> function_names = 1;
+  repeated Specification error_specifications = 2;
+  map<string, SignLatticeElement> error_code_names = 3;
+  map<string, SignLatticeElement> success_code_names = 4;
+  string llm_name = 5;
+}
+
+message GetGptSpecificationResponse {
+  map<string, SignLatticeElement> specifications = 1;
+}
+
+message GetGptThirdPartySpecificationsResponse {
+  map<string, SignLatticeElement> specifications = 1;
+}

@@ -1,0 +1,79 @@
+// This is the service for the tool EESI associated with the paper
+// Effective Error Specification Inference via Domain Knowledge Expansion
+
+syntax = "proto3";
+
+package error_specifications;
+
+message LLMInferenceResult {
+  // Since this will be attached to each inferred specification, we'll just
+  // include a field to indicate whether the final error specification is
+  // uses the LLM.
+  bool uses_llm = 0;
+
+  repeated
+}
+
+// The operation to use on the synonyms for the embedding-guided expansion.
+ExpansionOperationType expansion_operation = 3;
+}
+
+enum ViolationType {
+  // Represents an invalid violation type, not an actual violation that the
+  // checker finds.
+  VIOLATION_TYPE_INVALID = 0;
+
+  // An unused violation occurs when an error-specification exists for a
+  // function exists, but the return value of that function is never used,
+  // i.e. it is not checked.
+  VIOLATION_TYPE_UNUSED_RETURN_VALUE = 1;
+
+  // An insufficient violation occurs when an error-specification exists for
+  // a function, but the check that occurs is insufficient in relation to the
+  // SignLatticeElement of that specification. E.g. a function has a
+  // specification of <=0, but only <0 is checked.
+  VIOLATION_TYPE_INSUFFICIENT_CHECK = 2;
+
+  // An unchecked violation occurs when error-specification exists for a
+  // function and the return value for such a function call is stored, but
+  // never checked, i.e., there exists no conditional checking for error.
+  VIOLATION_TYPE_UNCHECKED_CHECK = 3;
+}
+
+message Violation {
+  ViolationType violation_type = 1;
+
+  // Human-readable message.
+  string message = 2;
+
+  // The source location where the violation occurs.
+  Location location = 3;
+
+  // The specification that is being violated.
+  Specification specification = 4;
+
+  // The parent function that contains the call site.
+  Function parent_function = 5;
+
+  // The confidence of a violation based on the confidence of the error
+  // specification used to find the bug. This value ranges from 0 to 100.
+  uint64 confidence = 6;
+}
+
+// A ScoredViolation contains the underlying violation, along with confidence
+// values (e.g. global/local) that represent how certain we are that a violation
+// is correct.
+message ScoredViolation {
+  // The underlying violation that has an associated scored.
+  Violation violation = 1;
+
+  //        Number of violations of specification in project
+  // 1 -  ----------------------------------------------------
+  //      Number of calls in project to specification function
+  float local_confidence = 2;
+
+  //        Total number of violations of specification
+  // 1 -  -----------------------------------------------
+  //      Total number of calls to specification function
+  float global_confidence = 3;
+}
