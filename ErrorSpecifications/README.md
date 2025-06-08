@@ -1,15 +1,58 @@
 # Interleaving Static Analysis and LLM Prompting - Tool Implementation
 
 ### Requirements
+
+You can either try to set up all of the requirements and dependencies on your
+own system to reproduce the experiments or you can use the provided [docker](https://docs.docker.com/get-started/get-docker/)
+image that provides an environment with the necessary dependencies to run the
+interleaved analysis and run the experiments on the benchmarks that were
+demonstrated in the papers. 
+
+#### OpenAI API Token (Required for All)
+
+You must have an OpenAI API token to use the interleaved analysis. You can
+get one by visiting their [website](https://www.platform.openai.com/api-keys).
+You then must set the environment variable `OPENAI_API_KEY` to the token that
+you have generated. If you have not set this up properly, then the GPT service
+introduced later will not start properly.
+
+#### Setting up the Docker Image
+
+First, ensure that you have [docker installed](https://www.docker.com/get-started/).
+Afterwards, you can build the image using the command (~5-10 minutes):
+```bash
+cd ./docker && docker build --tag "eesillm" .
+```
+
+This will then build the image that provides that required dependencies. After
+the image has finished building, you can start the container and enter the shell
+with the command:
+```bash
+docker run -v <PATH-TO-REPO-DIR>:/home/evaluation-container/eesi-llm -it eesillm /bin/bash
+```
+
+You then enter into the directory:
+ ```bash
+cd /home/evaluation-container/eesi-llm`
+```
+
+And you will now have the required environment to run the interleaved analysis.
+Please note that the directory `/home/evaluation-container/eesi-llm` is where
+the shared volume between the host and container is located, so any changes
+made to files in one will affect the other. The remainder of the commands related
+to running the script will apply to both running the commands in this container
+and any local machine that is set up.
+
+#### Local Setup (Ubuntu 20.04)
 To install the initial set of dependencies:
 ```bash
 $ ./scripts/install_deps.sh
 ```
 
-You can also install `bazel 4.1.0` and `MongoDB 3.6`:
+You can also install `bazel 4.1.0` and `MongoDB`:
 
 - [bazel 4.1.0](https://docs.bazel.build/versions/4.1.0/install-ubuntu.html)
-- [MongoDB 3.6](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/)
+- [MongoDB](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/)
 
 #### bazel_python (aprox. running time: 15-20 minutes)
 
@@ -19,14 +62,6 @@ and follow the `README`. Note: We use python `3.7.4` as demonstrated in the
 `bazel_python` `README`. If you do not use `bazel-4.1.0`, installing `bazel_python` will
 likely not work. We have also included a `bazel_python.tar.gz` file with
 the compressed version.
-
-#### OpenAI API Token
-
-You must have an OpenAI API token to use the interleaved analysis. You can
-get one by visiting their [website](https://www.platform.openai.com/api-keys).
-You then must set the environment variable `OPENAI_API_KEY` to the token that
-you have generated. If you have not set this up properly, then the GPT service
-introduced later will not start properly.
 
 ### Initial Setup
 
@@ -42,29 +77,21 @@ $ ./script/launch_services.sh
 ``` 
 
 Note: you must have tmux installed for the previous script to work. The previous
-script will launch services in tmux sessions: `bitcode`, `eesi`, and `gpt`. 
+script will launch services in tmux sessions: `bitcode`, `eesi`, `gpt` and `mongo`. 
 
 You can also launch the services manually by:
 ```bash
-$ bazel run //bitcode:main --cxxopt='-std=c++14'
-$ bazel run //eesi:main --cxxopt='-std=c++14'
-$ bazel run //gpt:service --cxxopt='-std=c++14'
-```
-
-##### Mongo
-
-Results for EESI are stored in Mongo. Before running EESI, make sure that
-you have installed Mongo and have the mongo service active and listening to
-the default port of `27017`. To start the mongo service:
-```bash
+$ bazel run //bitcode:main --cxxopt='-std=c++14' --copt="-Wno-error=array-parameter" --copt="-Wno-error=stringop-overflow"
+$ bazel run //eesi:main --cxxopt='-std=c++14' --copt="-Wno-error=array-parameter" --copt="-Wno-error=stringop-overflow"
+$ bazel run //gpt:service --cxxopt='-std=c++14' --copt="-Wno-error=array-parameter" --copt="-Wno-error=stringop-overflow"
 $ mongod --port 27017
 ```
 
 ### Running the Tool
 
 You can either re-run the interleaved analysis on the same benchmarks presented
-in the paper by following the directions in [Reproducing Analysis from Paper](####-Reproducing-Analysis-from-Paper)
-or you can run your own analysis by following the directions in [Running Analysis on Your Own](####-Running-Analysis-on-Your-Own).
+in the paper by following the directions in [Reproducing Analysis from Paper](####Reproducing-Analysis-from-Paper)
+or you can run your own analysis by following the directions in [Running Analysis on Your Own](####Running-Analysis-on-Your-Own).
 
 #### Reproducing Analysis from Paper 
 
@@ -200,7 +227,7 @@ remaining figures regarding precision, recall, and F1.
 ##### Registering Bitcode
 To run the tool on some arbitrary program, you must first register the bitcode
 that will be analyzed by EESI. If you don't have the bitcode set up, read
-the [generating bitcode](#####-Generating-Bitcode) section:
+the [generating bitcode](#####Generating-Bitcode) section:
 ```
 bazel run //cli:main -- --db-name <DB-NAME> bitcode RegisterBitcode \
     --bitcode-uri <BITCODE-URI> 
