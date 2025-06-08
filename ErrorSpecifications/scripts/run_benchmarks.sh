@@ -5,7 +5,6 @@ echo $SCRIPT_DIR
 BASE_BC_DIR="file://$(cd ${SCRIPT_DIR}/../testdata/benchmarks/bitcode; pwd)/"
 BASE_DK_DIR="$(cd ${SCRIPT_DIR}/../testdata/benchmarks/domain_knowledge; pwd)/"
 BASE_SRC_DIR="$(cd ${SCRIPT_DIR}/../testdata/benchmarks/src_code; pwd)/"
-BASE_EMBED_DIR="file://$(cd ${SCRIPT_DIR}/../testdata/benchmarks/embeddings; pwd)/"
 MBEDTLS="${BASE_BC_DIR}mbedtls-reg2mem.bc" 
 LFS="${BASE_BC_DIR}littlefs-reg2mem.bc" 
 NETDATA="${BASE_BC_DIR}netdata-reg2mem.bc" 
