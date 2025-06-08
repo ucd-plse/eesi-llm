@@ -81,10 +81,15 @@ script will launch services in tmux sessions: `bitcode`, `eesi`, `gpt` and `mong
 
 You can also launch the services manually by:
 ```bash
-$ bazel run //bitcode:main --cxxopt='-std=c++14' --copt="-Wno-error=array-parameter" --copt="-Wno-error=stringop-overflow"
-$ bazel run //eesi:main --cxxopt='-std=c++14' --copt="-Wno-error=array-parameter" --copt="-Wno-error=stringop-overflow"
-$ bazel run //gpt:service --cxxopt='-std=c++14' --copt="-Wno-error=array-parameter" --copt="-Wno-error=stringop-overflow"
+$ bazel run //bitcode:main --cxxopt='-std=c++14'
+$ bazel run //eesi:main --cxxopt='-std=c++14'
+$ bazel run //gpt:service --cxxopt='-std=c++14'
 $ mongod --port 27017
+```
+
+To add logging for each of the services, include for each command:
+```bash
+export GLOG_logtostderr=0 && export GLOG_log_dir=${SCRIPT_DIR}/../logs
 ```
 
 ### Running the Tool
