@@ -90,8 +90,8 @@ $ mongod --port 27017
 ### Running the Tool
 
 You can either re-run the interleaved analysis on the same benchmarks presented
-in the paper by following the directions in [Reproducing Analysis from Paper](####Reproducing-Analysis-from-Paper)
-or you can run your own analysis by following the directions in [Running Analysis on Your Own](####Running-Analysis-on-Your-Own).
+in the paper by following the directions in [Reproducing Analysis from Paper](####reproducing-analysis-from-paper)
+or you can run your own analysis by following the directions in [Running Analysis on Your Own](####running-analysis-on-your-own).
 
 #### Reproducing Analysis from Paper 
 
@@ -227,7 +227,7 @@ remaining figures regarding precision, recall, and F1.
 ##### Registering Bitcode
 To run the tool on some arbitrary program, you must first register the bitcode
 that will be analyzed by EESI. If you don't have the bitcode set up, read
-the [generating bitcode](#####Generating-Bitcode) section:
+the [generating bitcode](#####generating-bitcode) section:
 ```
 bazel run //cli:main -- --db-name <DB-NAME> bitcode RegisterBitcode \
     --bitcode-uri <BITCODE-URI> 
