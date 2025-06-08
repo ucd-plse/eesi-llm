@@ -13,6 +13,8 @@ PIDGIN="${BASE_BC_DIR}pidgin-reg2mem.bc"
 ZLIB="${BASE_BC_DIR}zlib-reg2mem.bc"
 HTTPD="${BASE_BC_DIR}httpd-reg2mem.bc"
 BAZEL=bazel-4.1.0
+BAZEL_COPTS=(-Wno-error=array-parameter -Wno-error=stringop-overflow)
+BAZEL_CXXOPTS=(-std=c++14)
 LLM_NAME=gpt-4.1-mini-2025-04-14
 DBNAME=${LLM_NAME}_eesi_llm
 DBNAME=$(echo "$DBNAME" | tr . _)
@@ -114,13 +116,13 @@ for bc_uri in ${bc_uris[@]}; do
     smart_success_code_zero="${smart_success_code_zeros[$bc_basename]}"
     ctags="--ctags ${ctag_files[$bc_basename]}"
     
-    ${BAZEL} run //cli:main -- --db-name ${DBNAME} bitcode \
-      RegisterBitcode --uri $bc_uri
-    ${BAZEL} run //cli:main -- --db-name ${DBNAME} \
+    ${BAZEL} run //cli:main  "${BAZEL_CXXOPTS[@]/#/--cxxopt=}" -- --db-name ${DBNAME} \
+      bitcode RegisterBitcode --uri $bc_uri 
+    ${BAZEL} run //cli:main  "${BAZEL_CXXOPTS[@]/#/--cxxopt=}" -- --db-name ${DBNAME} \
         bitcode GetCalledFunctionsUri --uri $bc_uri
-    ${BAZEL} run //cli:main -- --db-name ${DBNAME} \
+    ${BAZEL} run //cli:main  "${BAZEL_CXXOPTS[@]/#/--cxxopt=}" -- --db-name ${DBNAME} \
         bitcode GetDefinedFunctionsUri --uri $bc_uri
-    ${BAZEL} run //cli:main -- --db-name ${DBNAME} \
+    ${BAZEL} run //cli:main  "${BAZEL_CXXOPTS[@]/#/--cxxopt=}" -- --db-name ${DBNAME} \
         eesi GetSpecificationsUri --bitcode-uri $bc_uri $ctags $init_specs \
         $error_code $error_only $success_code $smart_success_code_zero \
         --llm-name ${LLM_NAME} ${OVERWRITE}
