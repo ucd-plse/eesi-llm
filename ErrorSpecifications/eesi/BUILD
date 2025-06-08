@@ -44,7 +44,6 @@ cc_library(
         "include/eesi_server.h",
     ],
     includes = ["include"],
-    visibility = ["//eesi/test:__pkg__"],
     deps = [
         ":eesi_llvm_passes",
         "//common:llvm",
