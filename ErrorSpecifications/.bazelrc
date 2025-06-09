@@ -1,0 +1,2 @@
+build --define BAZEL_PYTHON_DIR=/home/evaluation-container/.bazel_python
+run --define BAZEL_PYTHON_DIR=/home/evaluation-container/.bazel_python
