@@ -29,7 +29,7 @@ cd ./docker && docker build --tag "eesillm" .
 
 This will then build the image that provides that required dependencies. After
 the image has finished building, you can start the container and enter the shell
-with the command (replace <PATH-TO-REPO-DIR> with the path of the root of this
+with the command (replace `<PATH-TO-REPO-DIR>` with the path of the root of this
 repository `eesi-llm`):
 ```bash
 docker run -v <PATH-TO-REPO-DIR>:/home/evaluation-container/eesi-llm -it eesillm /bin/bash
