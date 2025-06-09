@@ -166,7 +166,10 @@ e7471634                                 pidgin-reg2mem.bc     16          4    
 cd77a397                                 zlib-reg2mem.bc       76          1            14           0           0           0           0           29           120         0.00      
 ```
 Please note that these injected results are for just simply viewing the raw
-numbers for comparison against the numbers presented in the paper.
+numbers for comparison against the numbers presented in the paper. **Additionally**,
+if you notice that some of the benchmarks are not appearing in the table above,
+you may need to run the `./scripts/inject_specifications.sh` command again. There
+is a bug where it doesn't always save each state in the pipeline correctly.
 
 **Running Analysis**: To run EESI and the interleaved LLM analysis, you can use
 the script `./scripts/run_benchmarks.sh`. Due to the size of the benchmarks
