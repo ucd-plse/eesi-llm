@@ -33,7 +33,7 @@ docker run -v <PATH-TO-REPO-DIR>:/home/evaluation-container/eesi-llm -it eesillm
 
 You then enter into the directory:
  ```bash
-cd /home/evaluation-container/eesi-llm`
+cd /home/evaluation-container/eesi-llm
 ```
 
 And you will now have the required environment to run the interleaved analysis.
@@ -192,10 +192,10 @@ using `-l`, as it is the smallest.
 To view the specifications counts, refer to the `ListSpecificationsTable` commands
 and use the appropriate `--db-name` related to your experimental results of
 interest. For example, if you store the baseline static analysis results from
-EESI (`Table 3` in STTT and SOAP papers) where the results are stored in `gpt-4_1-mini-2024-04-14_eesi_llm`:
+EESI (`Table 3` in STTT and SOAP papers) where the results are stored in `gpt-4_1-mini-2025-04-14_eesi_llm`:
 
 ```bash
-bazel run //cli:main -- --db-name gpt-4_1-mini-2024-04-14_eesi_llm eesi ListSpecificationsTable --confidence-threshold 100
+bazel run //cli:main -- --db-name gpt-4_1-mini-2025-04-14_eesi_llm eesi ListSpecificationsTable --confidence-threshold 100
 ```
 
 The output should look like:
@@ -214,7 +214,7 @@ cut-off any error specifications learned via LLM-assisted analysis. The remainde
 of the `List` commands will result in non-deterministic numbers.
 
 If you run the interleaved analysis, you can view your results by supplying the correct
-`--db-name` (e.g., `gpt-4_1-mini-2024-04-14_eesi_llm`) and changing the `--confidence-threshold` value
+`--db-name` (e.g., `gpt-4_1-mini-2025-04-14_eesi_llm`) and changing the `--confidence-threshold` value
 to `1`. Remember, if you ran the analysis locally, it is extremely likely your results
 will not match the paper. The results for our individual experimental run
 were presented in Table 4 of both the STTT and SOAP papers.
