@@ -37,7 +37,7 @@ docker run -v <PATH-TO-REPO-DIR>:/home/evaluation-container/eesi-llm -it eesillm
 
 You then enter into the directory:
  ```bash
-cd /home/evaluation-container/eesi-llm
+cd /home/evaluation-container/eesi-llm/ErrorSpecifications
 ```
 
 And you will now have the required environment to run the interleaved analysis.
