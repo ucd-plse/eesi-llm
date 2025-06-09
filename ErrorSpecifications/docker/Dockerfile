@@ -43,6 +43,7 @@ RUN apt-get update
 RUN apt-get install -y mongodb-org bazel-4.1.0 tmux build-essential zlib1g-dev libssl-dev libbz2-dev google-perftools libboost-all-dev libffi-dev
 
 RUN ln -s /usr/bin/bazel-4.1.0 /usr/bin/bazel
+RUN rm /usr/bin/python
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
 RUN mkdir -p /home/evaluation-container
