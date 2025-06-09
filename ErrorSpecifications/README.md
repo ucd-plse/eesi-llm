@@ -73,7 +73,7 @@ The analysis pipeline is implemented as gRPC services, in order to run the
 analysis, you must launch each service. You can do so automatically by
 running the script:
 ```bash
-$ ./script/launch_services.sh
+$ ./scripts/launch_services.sh
 ``` 
 
 Note: you must have tmux installed for the previous script to work. The previous
