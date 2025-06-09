@@ -2,11 +2,12 @@
 
 ### Requirements
 
-You can either try to set up all of the requirements and dependencies on your
-own system to reproduce the experiments or you can use the provided [docker](https://docs.docker.com/get-started/get-docker/)
-image that provides an environment with the necessary dependencies to run the
-interleaved analysis and run the experiments on the benchmarks that were
-demonstrated in the papers. 
+We provide two options for setting up the required dependencies to run the
+interleaved analysis for error specification inference:
+(1) [docker](#setting-up-the-docker-image) and
+(2) [installing the dependencies on your own local machine](#install-dependencies-on-local-machine). The docker image will automatically install the requirements and can
+be used to launch a container with the appropriate execution environment
+for running the interleaved analysis.
 
 #### OpenAI API Token (Required for All)
 
@@ -14,7 +15,9 @@ You must have an OpenAI API token to use the interleaved analysis. You can
 get one by visiting their [website](https://www.platform.openai.com/api-keys).
 You then must set the environment variable `OPENAI_API_KEY` to the token that
 you have generated. If you have not set this up properly, then the GPT service
-introduced later will not start properly.
+introduced later will not start properly. If you are using the helper script
+`./scripts/launch_services.py` to start the GPT service, then you must modify
+the `OPENAI_API_KEY` variable in that script to match your registered API key.
 
 #### Setting up the Docker Image
 
@@ -26,7 +29,8 @@ cd ./docker && docker build --tag "eesillm" .
 
 This will then build the image that provides that required dependencies. After
 the image has finished building, you can start the container and enter the shell
-with the command:
+with the command (replace <PATH-TO-REPO-DIR> with the path of the root of this
+repository `eesi-llm`):
 ```bash
 docker run -v <PATH-TO-REPO-DIR>:/home/evaluation-container/eesi-llm -it eesillm /bin/bash
 ```
@@ -43,7 +47,8 @@ made to files in one will affect the other. The remainder of the commands relate
 to running the script will apply to both running the commands in this container
 and any local machine that is set up.
 
-#### Local Setup (Ubuntu 20.04)
+#### Install Dependencies on Local Machine 
+If you are using docker to run the experiments, you can skip this section.
 To install the initial set of dependencies:
 ```bash
 $ ./scripts/install_deps.sh
@@ -65,9 +70,7 @@ the compressed version.
 
 ### Initial Setup
 
-#### Launching Services
-
-##### Interleaved Analyis Services
+#### Interleaved Analyis Services
 
 The analysis pipeline is implemented as gRPC services, in order to run the
 analysis, you must launch each service. You can do so automatically by
@@ -150,8 +153,10 @@ specifications and a helper script to view the final set of learned error specif
 **Injecting Specifications**: To view the final results of our interleaved analysis
 (the numbers from Table 4 in both SOAP and STTT papers), you can use the
 `./scripts/inject_specifications.sh` helper script to inject the specifications
-from the files included in `./testdata/benchmarks/artifact_results`. You can
-then view the raw number of learned error specifications using the command:
+from the files included in `./testdata/benchmarks/artifact_results`. **Please
+note** that there is a minor bug in the above helper script where you may need to run
+the script twice. You can then view the raw number of learned error specifications
+using the command:
 ```bash
 bazel run //cli:main -- --db-name eesi_llm_injected eesi ListSpecificationsTable
 ```
@@ -209,9 +214,10 @@ cd77a397                                 zlib-reg2mem.bc                        
 cd77a397                                 httpd-reg2mem.bc                                                            16          42           16           0           1           27          0           183          285         0.00  
 ```
 
-Note: The above results are non-deterministic, as the above command will
+Note: The above results are deterministic from the static analysis only, as the above command will
 cut-off any error specifications learned via LLM-assisted analysis. The remainder
-of the `List` commands will result in non-deterministic numbers.
+of the `List` commands will result in non-deterministic numbers as these results
+will incorporate error specifications learned via LLM.
 
 If you run the interleaved analysis, you can view your results by supplying the correct
 `--db-name` (e.g., `gpt-4_1-mini-2025-04-14_eesi_llm`) and changing the `--confidence-threshold` value
