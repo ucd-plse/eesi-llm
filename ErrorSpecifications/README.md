@@ -43,9 +43,8 @@ cd /home/evaluation-container/eesi-llm/ErrorSpecifications
 And you will now have the required environment to run the interleaved analysis.
 Please note that the directory `/home/evaluation-container/eesi-llm` is where
 the shared volume between the host and container is located, so any changes
-made to files in one will affect the other. The remainder of the commands related
-to running the script will apply to both running the commands in this container
-and any local machine that is set up.
+made to files in one will affect the other. You can now go the [initial setup](#initial-setup)
+to launch the services to start running the interleaved analysis.
 
 #### Install Dependencies on Local Machine 
 If you are using docker to run the experiments, you can skip this section.
