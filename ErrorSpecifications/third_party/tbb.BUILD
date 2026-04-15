@@ -24,8 +24,8 @@ genrule(
               extra_inc=big_iron.inc \
               $$COMPILER_OPT; \
 
-         echo cp build/build_{release,debug}/*.a $$DEST_DIR
-         cp build/build_{release,debug}/*.a $$DEST_DIR
+         echo cp build/build_release/*.a $$DEST_DIR
+         cp build/build_release/*.a $$DEST_DIR
          cd $$WORK_DIR
   """,
 )

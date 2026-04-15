@@ -62,7 +62,7 @@ usage() { echo "Usage: $0 [-d <DB_BASE_NAME>] [-e <EVID_COUNT>]" 1>&2;
 
 declare -a bc_uris=( "$LFS" "$PIDGIN" "$MBEDTLS" "$ZLIB" "$NETDATA" "$HTTPD" )
 OVERWRITE=""
-while getopts "d:osl:zpanml" o; do
+while getopts "d:oszpanml" o; do
     case "${o}" in
         d)
             DBNAME=${OPTARG}
